@@ -21,7 +21,7 @@
     #request to index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ nipe_fagio/index.php?/$1 [L]
+    RewriteRule ^(.*)$ lakeland/index.php?/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>

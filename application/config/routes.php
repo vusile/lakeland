@@ -41,6 +41,10 @@
 $route['default_controller'] = "main";
 $route['404_override'] = '';
 $route['^(?!backend|auth|action|examples).*'] = "main/$0";
+$route['day-tours'] = "main/day_tours";
+$route['summary'] = "main/summary";
+$route['scheduled'] = "main/schedule";
+$route['custom'] = "main/custom";
 $route['our-songs'] = "main/songs";
 $route['contact-us'] = "main/contact";
 $route['about-us'] = "main/about";

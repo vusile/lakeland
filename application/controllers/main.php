@@ -24,7 +24,53 @@ class Main extends CI_Controller {
 
 
 
-		$this->load->view('index');
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('home');
+		$this->load->view('footer');
+	}
+	public function day_tours($url='')
+	{
+		if($url='day_tours'){
+		$this->load->view('header');
+		$this->load->view('menu');
+		//$this->load->view('day_tours');
+		$this->load->view('day_tours_details');
+		$this->load->view('footer');
+	    }
+
+		else{
+			
+				$this->load->view('header');
+				$this->load->view('menu');
+				$this->load->view('day_tours_details');
+				$this->load->view('footer');
+			}
+			
+	}
+	public function summary()
+	{
+		
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('summary');
+		$this->load->view('footer');
+	}
+	public function custom()
+	{
+		
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('custom');
+		$this->load->view('footer');
+	}
+	public function scheduled()
+	{
+		
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('schedule');
+		$this->load->view('footer');
 	}
 	
 	public function login()
