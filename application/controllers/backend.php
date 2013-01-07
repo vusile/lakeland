@@ -23,7 +23,7 @@ class Backend extends CI_Controller {
 			redirect('login');
 	}	
 	
-	function nf_settings()
+	function lakeland_settings()
 	{
 		$this->grocery_crud->unset_delete();
 		$output = $this->grocery_crud->render();
@@ -31,11 +31,11 @@ class Backend extends CI_Controller {
 	}
 	
 	
-	function nf_directory()
+	function lakeland_directory()
 	{
 		
-		$this->grocery_crud->set_relation('company_type','nf_company_types','title');
-		$this->grocery_crud->set_relation('sector','nf_company_sectors','title');
+		$this->grocery_crud->set_relation('company_type','lakeland_company_types','title');
+		$this->grocery_crud->set_relation('sector','lakeland_company_sectors','title');
 		$this->grocery_crud->set_field_upload('logo', 'images');
 		$this->grocery_crud->callback_after_insert(array($this, 'directory_callback'));
 		$this->grocery_crud->callback_after_update(array($this, 'directory_callback'));
@@ -47,7 +47,7 @@ class Backend extends CI_Controller {
 	function directory_callback($post_array, $primary_key)
 	{
 		$this->db->where('id',$primary_key);
-		$directories= $this->db->get('nf_directory');
+		$directories= $this->db->get('lakeland_directory');
 		
 		
 		
@@ -85,10 +85,10 @@ class Backend extends CI_Controller {
 		//$this->image_moo->load($source_image)->resize(250,100)->save( $source_image,$overwrite=TRUE);
 	}
 	
-	function nf_newsletters()
+	function lakeland_newsletters()
 	{
 		$this->grocery_crud->unset_fields('url','identifier');
-		$this->grocery_crud->set_relation_n_n('news_articles','nf_newsletter_news','nf_news','newsletter_id','news_id','title','priority');
+		$this->grocery_crud->set_relation_n_n('news_articles','lakeland_newsletter_news','lakeland_news','newsletter_id','news_id','title','priority');
 		$this->grocery_crud->callback_after_insert(array($this, 'generate_newsletter_url'));
 		$this->grocery_crud->callback_after_update(array($this, 'generate_newsletter_url'));
 		$this->grocery_crud->unset_columns('identifier');
@@ -103,30 +103,34 @@ class Backend extends CI_Controller {
 
 		
 		$this->db->where('id',$primary_key);
-		$title_obj=$this->db->get('nf_newsletters');
+		$title_obj=$this->db->get('lakeland_newsletters');
 		
 		if($title_obj->row()->url == '')
 		{
-			$data['url'] = base_url() . 'nl/' . $this->convert_url('nf_newsletters', 'url', $title_obj->row()->newsletter_subject);
-			$data['identifier'] = $this->convert_url('nf_newsletters', 'url', $title_obj->row()->newsletter_subject);
+			$data['url'] = base_url() . 'nl/' . $this->convert_url('lakeland_newsletters', 'url', $title_obj->row()->newsletter_subject);
+			$data['identifier'] = $this->convert_url('lakeland_newsletters', 'url', $title_obj->row()->newsletter_subject);
 			$this->db->where('id',$primary_key);
-			$this->db->update('nf_newsletters',$data);
+			$this->db->update('lakeland_newsletters',$data);
 		}
 		
 		
 		return true;
 	}
 	
-	function nf_pages()
+	function lakeland_pages()
 	{
-		$this->grocery_crud->unset_delete();
-		$this->grocery_crud->unset_fields('thumb_nail','identifier');
-		$this->grocery_crud->unset_columns('thumb_nail','identifier');
+		try {
+	//	$this->grocery_crud->unset_delete();
+		$this->grocery_crud->unset_fields('thumbnail','identifier');
+		$this->grocery_crud->unset_columns('thumbnail','identifier');
 		$this->grocery_crud->callback_after_insert(array($this, 'generate_thumb'));
 		$this->grocery_crud->callback_after_update(array($this, 'generate_thumb'));
 		$output = $this->grocery_crud->render();
 
 		$this->_example_output($output);
+		}catch(Exception $e){
+			show_error($e->getMessage().' --- '.$e->getTraceAsString());
+		}
 	}	
 	
 	function generate_thumb($post_array,$primary_key)
@@ -152,15 +156,15 @@ class Backend extends CI_Controller {
 			
 			$index = count($name);
 			
-			$data['thumb_nail'] = $name[$index-1];	
+			$data['thumbnail'] = $name[$index-1];	
 			
 			$this->db->where('id',$primary_key);
-			$this->db->update('nf_pages',$data);
+			$this->db->update('lakeland_pages',$data);
 		}
 		
 	}
 	
-	function nf_company_sectors()
+	function lakeland_company_sectors()
 	{
 		$output = $this->grocery_crud->render();
 
@@ -168,7 +172,7 @@ class Backend extends CI_Controller {
 
 	}	
 	
-	function nf_team()
+	function lakeland_team()
 	{
 		$this->grocery_crud->callback_after_insert(array($this, 'team_callback'));
 		$this->grocery_crud->callback_after_update(array($this, 'team_callback'));
@@ -180,7 +184,7 @@ class Backend extends CI_Controller {
 	function team_callback($post_array, $primary_key)
 	{
 		$this->db->where('id',$primary_key);
-		$members= $this->db->get('nf_team');
+		$members= $this->db->get('lakeland_team');
 		
 		
 		
@@ -209,7 +213,7 @@ class Backend extends CI_Controller {
 			$this->image_moo->load($source_image)->resize(999999999999,400)->save( $source_image,$overwrite=TRUE);
 	}
 	
-	function nf_company_types()
+	function lakeland_company_types()
 	{
 		$output = $this->grocery_crud->render();
 
@@ -218,9 +222,9 @@ class Backend extends CI_Controller {
 	}
 
 	
-	function nf_projects_and_publications($section)
+	function lakeland_projects_and_publications($section)
 	{
-		$this->grocery_crud->set_relation('parent_category','nf_projects_and_publications','title',array('section' => $section, 'parent_category' =>''));
+		$this->grocery_crud->set_relation('parent_category','lakeland_projects_and_publications','title',array('section' => $section, 'parent_category' =>''));
 	
 		$this->grocery_crud->unset_fields('section','url','link');
 		$this->grocery_crud->unset_columns('section','url');		
@@ -239,12 +243,12 @@ class Backend extends CI_Controller {
 			$this->grocery_crud->callback_after_update(array($this, 'generate_publications_link'));
 		}	
 			
-		$this->db->where('nf_projects_and_publications.section',$section);
+		$this->db->where('lakeland_projects_and_publications.section',$section);
 		$output = $this->grocery_crud->render();
 		$this->_example_output($output);
 	}
 	
-	function nf_publications($id)
+	function lakeland_publications($id)
 	{
 		
 		$this->grocery_crud->set_field_upload('publication_file','publications');
@@ -259,11 +263,11 @@ class Backend extends CI_Controller {
 		$this->_example_output($output);
 	}
 	
-	function nf_projects($id)
+	function lakeland_projects($id)
 	{
 		
-		$this->grocery_crud->set_relation_n_n('partners','nf_projects_partners','nf_directory','project','partner','company_name');
-		$this->grocery_crud->set_relation('featured','nf_options','title');
+		$this->grocery_crud->set_relation_n_n('partners','lakeland_projects_partners','lakeland_directory','project','partner','company_name');
+		$this->grocery_crud->set_relation('featured','lakeland_options','title');
 		$this->grocery_crud->callback_after_insert(array($this, 'set_projects_category'));
 		$this->grocery_crud->callback_after_update(array($this, 'set_projects_category'));
 		$this->grocery_crud->where('category',$id);
@@ -309,7 +313,7 @@ class Backend extends CI_Controller {
 		
 		
 		$this->db->where('id',$primary_key);
-		$this->db->update('nf_publications',$data);
+		$this->db->update('lakeland_publications',$data);
 
 		return true;
 	}
@@ -321,11 +325,11 @@ class Backend extends CI_Controller {
 		);
 		
 		$this->db->where('id',$primary_key);
-		$title_obj=$this->db->get('nf_projects');
+		$title_obj=$this->db->get('lakeland_projects');
 		
 		if($title_obj->row()->url == '')
 		{
-			$data['url'] = $this->convert_url('nf_projects', 'url', $title_obj->row()->title);
+			$data['url'] = $this->convert_url('lakeland_projects', 'url', $title_obj->row()->title);
 		}
 		
 		
@@ -356,7 +360,7 @@ class Backend extends CI_Controller {
 
 		
 		$this->db->where('id',$primary_key);
-		$this->db->update('nf_projects',$data);
+		$this->db->update('lakeland_projects',$data);
 		
 		if($post_array['featured'] == 1)
 		{
@@ -364,7 +368,7 @@ class Backend extends CI_Controller {
 				'featured' => 2
 			);
 			$this->db->where('id <>',$primary_key);
-			$this->db->update('nf_projects',$featured);
+			$this->db->update('lakeland_projects',$featured);
 		}
 		
 		return true;
@@ -410,21 +414,21 @@ class Backend extends CI_Controller {
 	{	
 	
 		$data = array (
-			'link' => '<a target = "_blank" href = "' . base_url() . 'backend/nf_publications/' . $primary_key .'">Publications</a>',
+			'link' => '<a target = "_blank" href = "' . base_url() . 'backend/lakeland_publications/' . $primary_key .'">Publications</a>',
 			'section' => $this->uri->segment(3)
 		);
 		
 		$this->db->where('id',$primary_key);
-		$title_obj=$this->db->get('nf_projects_and_publications');
+		$title_obj=$this->db->get('lakeland_projects_and_publications');
 		
 		if($title_obj->row()->url == '')
 		{
-			$data['url'] = $this->convert_url('nf_projects_and_publications', 'url', $title_obj->row()->title);
+			$data['url'] = $this->convert_url('lakeland_projects_and_publications', 'url', $title_obj->row()->title);
 		}
 		
 		
 		$this->db->where('id',$primary_key);
-		$this->db->update('nf_projects_and_publications',$data);
+		$this->db->update('lakeland_projects_and_publications',$data);
 		
 		return true;
 	}	
@@ -433,25 +437,25 @@ class Backend extends CI_Controller {
 	{
 		
 		$data = array (
-			'link' => '<a target = "_blank" href = "' . base_url() . 'backend/nf_projects/' . $primary_key .'">Projects</a>',
+			'link' => '<a target = "_blank" href = "' . base_url() . 'backend/lakeland_projects/' . $primary_key .'">Projects</a>',
 			'section'=> $this->uri->segment(3)
 		);
 		
 		$this->db->where('id',$primary_key);
-		$title_obj=$this->db->get('nf_projects_and_publications');
+		$title_obj=$this->db->get('lakeland_projects_and_publications');
 		
 		if($title_obj->row()->url == '')
 		{
-			$data['url'] = $this->convert_url('nf_projects_and_publications', 'url', $title_obj->row()->title);
+			$data['url'] = $this->convert_url('lakeland_projects_and_publications', 'url', $title_obj->row()->title);
 		}
 		
 		$this->db->where('id',$primary_key);
-		$this->db->update('nf_projects_and_publications',$data);
+		$this->db->update('lakeland_projects_and_publications',$data);
 		
 		return true;
 	}
 	
-	function nf_news()
+	function lakeland_news()
 	{
 		
 		$this->grocery_crud->unset_fields('url','date','thumb_nail');
@@ -506,21 +510,21 @@ class Backend extends CI_Controller {
 		}
 		
 		$this->db->where('id',$primary_key);
-		$title_obj=$this->db->get('nf_news');
+		$title_obj=$this->db->get('lakeland_news');
 		
 		$data['date'] = date('Y-m-d');
 		if($title_obj->row()->url == '')
 		{
-			$data['url'] = $this->convert_url('nf_news', 'url', $title_obj->row()->title);
+			$data['url'] = $this->convert_url('lakeland_news', 'url', $title_obj->row()->title);
 		}
 		
 		$this->db->where('id',$primary_key);
-		$this->db->update('nf_news',$data);
+		$this->db->update('lakeland_news',$data);
 		return true;
 		
 	}
 	
-	function nf_home()
+	function lakeland_home()
 	{
 		$this->grocery_crud->unset_delete();
 		$this->grocery_crud->set_field_upload('image', 'img');

@@ -35,40 +35,11 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Day Tours</p>
+	<h1 class="sitetitle">Day Tours</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-  Ullam saepe asperiores pariatur sunt quae consequatur adipisci 
-  aut dolorem magni obcaecati dolor quam ipsum est reiciendis vel quod 
-  quasi enim illo.
-  </p>
- <p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-  Ullam saepe asperiores pariatur sunt quae consequatur adipisci 
-  aut dolorem magni obcaecati dolor quam ipsum est reiciendis vel quod 
-  quasi enim illo.
-  </p>
- <p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-  Ullam saepe asperiores pariatur sunt quae consequatur adipisci 
-  aut dolorem magni obcaecati dolor quam ipsum est reiciendis vel quod 
-  quasi enim illo.
-  </p>
-
-
-  
-
-
-
-
-
-
-
-
-
+  <?php echo $details->content; ?>
 
 
 </div></div></div>

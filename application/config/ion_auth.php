@@ -31,10 +31,10 @@ $config['collections']['login_attempts'] = 'login_attempts';
 | -------------------------------------------------------------------------
 | Database table names.
 */
-$config['tables']['users']           = 'nf_users';
-$config['tables']['groups']          = 'nf_groups';
-$config['tables']['users_groups']    = 'nf_users_groups';
-$config['tables']['login_attempts']  = 'nf_login_attempts';
+$config['tables']['users']           = 'lakeland_users';
+$config['tables']['groups']          = 'lakeland_groups';
+$config['tables']['users_groups']    = 'lakeland_users_groups';
+$config['tables']['login_attempts']  = 'lakeland_login_attempts';
 
 /*
  | Users table column and Group table column you want to join WITH.

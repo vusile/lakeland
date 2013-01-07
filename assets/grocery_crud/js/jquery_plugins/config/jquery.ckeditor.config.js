@@ -1,12 +1,12 @@
 $(function(){
 	$( 'textarea.texteditor' ).ckeditor({
 		toolbar:'Full',
-		filebrowserBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html',
-		filebrowserImageBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html?type=Images',
-		filebrowserFlashBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html?type=Flash',
-		filebrowserUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		filebrowserImageUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		filebrowserBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html',
+		filebrowserImageBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html?type=Images',
+		filebrowserFlashBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html?type=Flash',
+		filebrowserUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+		filebrowserImageUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+		filebrowserFlashUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
 		filebrowserWindowWidth : '1000',
 		filebrowserWindowHeight : '700'
 	
@@ -22,12 +22,12 @@ $(function(){
 			{ name: 'styles', items : [ 'Styles','Format'] }
 		],
 		width:700,
-		filebrowserBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html',
-		filebrowserImageBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html?type=Images',
-		filebrowserFlashBrowseUrl : 'http://localhost/nipe_fagio/ckfinder/ckfinder.html?type=Flash',
-		filebrowserUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		filebrowserImageUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl : 'http://localhost/nipe_fagio/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+		filebrowserBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html',
+		filebrowserImageBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html?type=Images',
+		filebrowserFlashBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html?type=Flash',
+		filebrowserUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+		filebrowserImageUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+		filebrowserFlashUploadUrl : 'http://localhost/lakeland/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
 		filebrowserWindowWidth : '1000',
 		filebrowserWindowHeight : '700',
 		extraPlugins: 'MediaEmbed',

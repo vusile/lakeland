@@ -19,16 +19,28 @@ class Main extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-		
-
-
-
-		$this->load->view('header');
+		$this->db->where('url','home');
+		$content = $this->db->get('lakeland_pages');
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
+		$this->load->view('header',$header);
 		$this->load->view('menu');
-		$this->load->view('home');
+		$this->load->view('home',$data);
 		$this->load->view('footer');
 	}
+	
+	public function about()
+	{		
+		$this->db->where('url','about-us');
+		$content = $this->db->get('lakeland_pages');
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
+		$this->load->view('header',$header);
+		$this->load->view('day_tours_details',$data);
+		$this->load->view('footer');
+	}
+	
+	
 	public function day_tours($url='')
 	{
 		if($url='day_tours'){
@@ -94,8 +106,7 @@ class Main extends CI_Controller {
 	
 	public function login()
 	{
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		
 		$this->load->view('Header',$header);
 		$this->load->view('Login');
@@ -138,12 +149,12 @@ class Main extends CI_Controller {
 			
 		$this->db->where('parent_category',0);
 		$this->db->where('section',$section);
-		$parent_categories = $this->db->get('nf_projects_and_publications');
+		$parent_categories = $this->db->get('lakeland_projects_and_publications');
 		
 		$this->db->where('parent_category >',0);
 		$this->db->where('section',$section);
 		$this->db->order_by('parent_category');
-		$child_categories = $this->db->get('nf_projects_and_publications');
+		$child_categories = $this->db->get('lakeland_projects_and_publications');
 		
 		$children = array();
 		foreach($child_categories->result() as $child)
@@ -187,28 +198,18 @@ class Main extends CI_Controller {
 	public function fetch_page($identifier)
 	{
 		$this->db->where('identifier',$identifier);
-		$content = $this->db->get('nf_pages');
+		$content = $this->db->get('lakeland_pages');
 		return $content->row();
 	}
 	
-	public function about()
-	{		
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
-		$data['details'] = $this->fetch_page('ABOUT');
-		$header['title'] = $data['details']->title;
-		$this->load->view('Header',$header);
-		$this->load->view('Page',$data);
-		$this->load->view('Footer');
-	}
+
 	
 	
 	public function blog()
 	{
 		$data['title'] =$header['title'] = 'Nipe Fagio Blog';
 		
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);	
+	
 		$this->load->view('Header',$header);
 		$this->load->view('Blog',$data);
 		$this->load->view('Footer');
@@ -218,9 +219,8 @@ class Main extends CI_Controller {
 	{
 		$data['title'] =$header['title'] = 'Nipe Fagio News';
 		$this->db->order_by('date','desc');
-		$data['news'] = $this->db->get('nf_news');
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+		$data['news'] = $this->db->get('lakeland_news');
+
 			
 		$this->load->view('Header',$header);
 		$this->load->view('News',$data);
@@ -232,8 +232,7 @@ class Main extends CI_Controller {
 		$data['title'] =$header['title'] = 'Nipe Fagio Newsletter';
 		
 
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 			
 		$this->load->view('Header',$header);
 		$this->load->view('Newsletter',$data);
@@ -243,13 +242,13 @@ class Main extends CI_Controller {
 	public function nl($url)
 	{
 		$this->db->where('identifier',$url);
-		$newsletter = $this->db->get('nf_newsletters');
+		$newsletter = $this->db->get('lakeland_newsletters');
 
 		$data['subject'] = $newsletter->row()->newsletter_subject;
 	
 		$this->db->order_by('priority');
 		$this->db->where('newsletter_id',$newsletter->row()->id);
-		$news = $this->db->get('nf_newsletter_news');
+		$news = $this->db->get('lakeland_newsletter_news');
 		
 		$articles = array();
 		foreach ($news->result() as $article)
@@ -257,7 +256,7 @@ class Main extends CI_Controller {
 		
 		//print_r($articles);
 		$this->db->where_in('id',$articles);
-		$data['news'] = $this->db->get('nf_news');
+		$data['news'] = $this->db->get('lakeland_news');
 		
 		$this->load->view('NewsletterTemplate',$data);
 	}
@@ -265,11 +264,10 @@ class Main extends CI_Controller {
 	public function article($url)
 	{
 		$this->db->where('url',$url);
-		$article = $this->db->get('nf_news');
+		$article = $this->db->get('lakeland_news');
 		
 
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		if($article->num_rows() == 0)
 			$this->blog();
 		else
@@ -284,16 +282,15 @@ class Main extends CI_Controller {
 	
 	public function projects($url)
 	{
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		
 		$this->db->where('url',$url);
-		$details = $this->db->get('nf_projects_and_publications');
+		$details = $this->db->get('lakeland_projects_and_publications');
 		
 		$data['title'] = $header['title'] = $details->row()->title;
 
 		$this->db->where('category',$details->row()->id);
-		$data['projects'] = $this->db->get('nf_projects');
+		$data['projects'] = $this->db->get('lakeland_projects');
 		
 		$this->load->view('Header',$header);
 		$this->load->view('Projects',$data);
@@ -303,10 +300,9 @@ class Main extends CI_Controller {
 	public function project($url)
 	{
 		$this->db->where('url',$url);
-		$article = $this->db->get('nf_projects');
+		$article = $this->db->get('lakeland_projects');
 
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		if($article->num_rows() == 0)
 			$this->index();
 		else
@@ -321,13 +317,12 @@ class Main extends CI_Controller {
 	
 	function the_directory()
 	{
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		
 		//$this->db->order_by('company_name');
-	//	$data['partners'] = $this->db->get('nf_directory');
+	//	$data['partners'] = $this->db->get('lakeland_directory');
 		
-		$query = "select dir.*, nct.title company_type, ncs.title sector from nf_directory dir, nf_company_sectors ncs, nf_company_types nct where nct.id = dir.company_type and ncs.id = dir.sector order by company_name";
+		$query = "select dir.*, nct.title company_type, ncs.title sector from lakeland_directory dir, lakeland_company_sectors ncs, lakeland_company_types nct where nct.id = dir.company_type and ncs.id = dir.sector order by company_name";
 		
 		$data['partners'] = $this->db->query($query);
 		
@@ -349,16 +344,15 @@ class Main extends CI_Controller {
 	
 	public function publications($url)
 	{
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);
+
 		
 		$this->db->where('url',$url);
-		$details = $this->db->get('nf_projects_and_publications');
+		$details = $this->db->get('lakeland_projects_and_publications');
 		
 		$data['title'] = $header['title'] = $details->row()->title;
 
 		$this->db->where('category',$details->row()->id);
-		$data['publications'] = $this->db->get('nf_publications');
+		$data['publications'] = $this->db->get('lakeland_publications');
 		
 		$this->load->view('Header',$header);
 		
@@ -370,10 +364,10 @@ class Main extends CI_Controller {
 	{
 		$this->db->where('album',$id);
 		$this->db->order_by('priority');
-		$data['images'] = $this->db->get('nf_images');
+		$data['images'] = $this->db->get('lakeland_images');
 		
 		$this->db->where('id',$id);
-		$album = $this->db->get('nf_albums');
+		$album = $this->db->get('lakeland_albums');
 		
 		if($album->num_rows() == 0)
 			$this->gallery();
@@ -430,7 +424,7 @@ class Main extends CI_Controller {
 		// 'word'	 => $data['cap']['word']
 		// );
 		
-		// $query = $this->db->insert_string('nf_captcha', $cap_data);	
+		// $query = $this->db->insert_string('lakeland_captcha', $cap_data);	
 		// $this->db->query($query);
 		
 		// $header['projects'] = $this->get_projects(1);
@@ -441,7 +435,7 @@ class Main extends CI_Controller {
 		// 	case 'activity':
 				
 		// 		$this->db->where('id',$id);
-		// 		$activities = $this->db->get('nf_activities');
+		// 		$activities = $this->db->get('lakeland_activities');
 		// 		$activity = $activities->row();
 									
 		// 		if($activity->contact_intro != '')
@@ -469,11 +463,11 @@ class Main extends CI_Controller {
 	function validate_captcha($captcha)
 	{
 		$expiration = time()-7200; // Two hour limit
-		$this->db->query("DELETE FROM nf_captcha WHERE captcha_time < ".$expiration);	
+		$this->db->query("DELETE FROM lakeland_captcha WHERE captcha_time < ".$expiration);	
 
 	
 		// Then see if a captcha exists:
-		$sql = "SELECT COUNT(*) AS count FROM nf_captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
+		$sql = "SELECT COUNT(*) AS count FROM lakeland_captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?";
 		$binds = array($captcha, $this->input->ip_address(), $expiration);
 		$query = $this->db->query($sql, $binds);
 		$row = $query->row();
@@ -505,12 +499,12 @@ class Main extends CI_Controller {
 			{	
 				
 				$this->db->where('id',1);
-				$obj = $this->db->get('nf_settings');
+				$obj = $this->db->get('lakeland_settings');
 				$email = $obj->row()->value;
 				
 				
 				$this->db->where('setting','CCEMAIL');
-				$ccemails = $this->db->get('nf_settings');
+				$ccemails = $this->db->get('lakeland_settings');
 				
 				//echo "Not Configured";
 				$this->load->library('email');
@@ -554,7 +548,7 @@ class Main extends CI_Controller {
 					
 					
 					$this->db->where('identifier','MESSAGE_SENT');
-					$details = $this->db->get('nf_pages');
+					$details = $this->db->get('lakeland_pages');
 					
 					$header['projects'] = $this->get_projects(1);
 					$header['publications'] = $this->get_projects(2);	
@@ -580,13 +574,12 @@ class Main extends CI_Controller {
 	function the_team()
 	{
 		$this->db->where('identifier','TEAM');
-		$details = $this->db->get('nf_pages');
-		$header['projects'] = $this->get_projects(1);
-		$header['publications'] = $this->get_projects(2);	
+		$details = $this->db->get('lakeland_pages');
+	
 		$data['details'] = $details->row();
 		$header['title'] = $details->row()->title;
 		
-		$data['team'] = $this->db->get('nf_team');
+		$data['team'] = $this->db->get('lakeland_team');
 		$this->load->view('Header',$header);
 		$this->load->view('Team',$data);
 		$this->load->view('Footer');

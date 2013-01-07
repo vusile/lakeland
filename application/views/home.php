@@ -32,12 +32,10 @@
 </div>
 </div>
 <div class="right">
-<p class="sitetitle"> Lakeland Africa Limited</p>
+<h1 class="sitetitle">Lakeland Africa Limited</h1>
 <div class="content">
 	<div style="margin-top: 40px;"></div>
-<p style="text-align: justify">
-	Lakeland Africa Limited is Tanzania's leading provider of group overland budget travels.&nbsp; It was formed  with the intention of ultimately providing all forms of land travels as well as wildlife safaris, adventure and cultural tourism.</p>
-<p style="text-align: justify"><strong>Our current services:</strong><br />
-	City Car &amp;  Truck Rentals, Airport and hotel transfers, Camping safaris, Beach holidays, Wildlife tourism, Overland Adventure tourism, Cultural and historical tourism, Mountain Climbing. We also organise fishing and water sports such as canoeing festivals in Lake Victoria.</p></div></div></div>
+	<?php echo $details->content; ?>
+	</div></div></div>
 
 

@@ -4,7 +4,8 @@
 <base />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="images/Nat_ico.ico" />
-<title>Welcome to Lakeland Africa Ltd   	</title>
+<title><?php if( isset($title)) echo $title; ?></title>
+ 
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link href="css/dropdownmenu.css" rel="stylesheet" type="text/css" />
 <link href="css/content.css" rel="stylesheet" type="text/css" />
