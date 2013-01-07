@@ -1,4 +1,0 @@
-lakeland
-========
-
-Lakeland Website
