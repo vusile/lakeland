@@ -23,8 +23,10 @@ class Main extends CI_Controller {
 		$content = $this->db->get('lakeland_pages');
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$data['fb'] = 1;
 		$this->load->view('header',$header);
 		$this->load->view('menu');
+		$this->load->view('sidebar');
 		$this->load->view('home',$data);
 		$this->load->view('footer');
 	}
@@ -36,6 +38,23 @@ class Main extends CI_Controller {
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
 		$this->load->view('header',$header);
+		$this->load->view('menu');
+		$this->load->view('sidebar');
+		$this->load->view('day_tours_details',$data);
+		$this->load->view('footer');
+	}
+	
+	function vehicles($url)
+	{
+		$this->db->where('url',$url);
+		$content = $this->db->get('lakeland_pages');
+		
+
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
+		$this->load->view('header',$header);
+		$this->load->view('menu');
+		$this->load->view('sidebar');
 		$this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
 	}

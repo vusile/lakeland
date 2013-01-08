@@ -20,7 +20,7 @@ div.content p{
 	margin: 15px 0px 0px 32px;
 padding: 0;
 }
-div.content ul, div.content ol{margin:0;padding:0; list-style-position:inside;margin-left:10px;}
+div.content ul, div.content ol{margin:0;padding:0; list-style-position:inside;margin-left:30px;}
 
 /*formularz*/
 table.form{margin-top:10px;}

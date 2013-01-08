@@ -52,9 +52,8 @@ $route['contact'] = "main/contact";
 $route['our-songs'] = "main/songs";
 $route['contact-us'] = "main/contact";
 $route['about-us'] = "main/about";
-$route['the-directory'] = "main/the_directory";
-$route['the-team'] = "main/the_team";
-$route['newsletter-archive'] = "main/newsletter";
+
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

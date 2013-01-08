@@ -1,16 +1,12 @@
 	
 <ul class="topnav" id="topnav">
     <li><a href="index">Home</a></li>
-	<li><a href="about">About Us</a></li>
-    <li><a href="packages">Group Overland Safaris</a>
+	<li><a href="about-us">About Us</a></li>
+    <li><a href="#">Group Overland Safaris</a>
     	<ul class="subnav">		  	
 			<li>
 			    <a href="day-tours"><span class="title">Day Tours</span> </a>
-			      <!--  <ul class="subnav">		  	
-						<li>
-						    <a href="day_tours_details"><span class="title">Lorem</span> </a>
-						</li>
-				   </ul> -->
+
 			</li>
 			<li>
 			    <a href="weekend"><span class="title">Weekend Getaways</span> </a>
@@ -64,13 +60,13 @@
 			</li>
 		</ul>
 	</li>
-	<li><a href="safari_vehicles">Safari Vehicles</a>
+	<li><a href="#">Safari Vehicles</a>
 		<ul class="subnav">		  	
 			<li>
-			    <a href="overland_vehicles"><span class="title">Overland Vehicles</span> </a>
+			    <a href="vehicles/overland-vehicles"><span class="title">Overland Vehicles</span> </a>
 			</li>
 			<li>
-			    <a href="landcruisers"><span class="title">Safari Landcruisers</span> </a>
+			    <a href="vehicles/safari-landcruisers"><span class="title">Safari Landcruisers</span> </a>
 			</li>
 			
 		</ul>
