@@ -1,3 +1,4 @@
+</div>
 <div class="footer"><span class="first selected">HOME</span><span>Group-Budget-Travels</span><span>ACCOMMODATION</span><span>Airport and City Transfers</span><span>WILDLIFE TOURISM</span><span>BEACH HOLIDAYS</span><span>Car &amp;  Truck Rentals</span><a href="http://wwww.ebpol.pl/" target="_blank" class="nt">
     Design by:<span>WEBPOL.<strong>pl</strong></span></a></div>
 <div class="underfooter">
