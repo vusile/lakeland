@@ -4,7 +4,7 @@
 		
        <div 
          class="fb-like-box" data-href="https://www.facebook.com/Lakelandafrica" 
-         data-width="260" data-height="250" data-show-faces="true" data-stream="false" 
+         data-width="260" data-height="200" data-show-faces="true" data-stream="false" 
          data-border-color="#535842" data-header="false" data-border-bottom="#535842">
      </div>
 </div>
