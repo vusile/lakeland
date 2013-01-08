@@ -1,25 +1,4 @@
-<div class="breadcrumb">
-	  <span class="lleft"></span>
-	  <ul>
-	    <li><a href="/home">Home</a></li>
-	    <li><a href="#">Group Overland Safaris</a></li>
-	    <li><a href="#" class="active">Day Tours</a></li>
-	  </ul>
-	  <span class="rright"></span>
-	</div>
-<<<<<<< HEAD
-=======
-	
-		
 
-
-
-<div class="left">
-	
-<!-- sidebar here with div class leftmenu -->
-
-</div>
->>>>>>> 9c02bfaa5d96206409cc657eb5b26c542517413a
 <div class="right">
 	<h1 class="sitetitle">Day Tours</h1>
 	

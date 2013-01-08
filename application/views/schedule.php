@@ -1,14 +1,4 @@
-<div class="breadcrumb">
-	  <span class="lleft"></span>
-	  <ul>
-	    <li><a href="/home">Home</a></li>
-	    <li><a href="#">Group Overland Safaris</a></li>
-	    <li><a href="#" class="active"> Scheduled Trips</a></li>
-	  </ul>
-	  <span class="rright"></span>
-	</div>
-	
-		
+
 
 
 
