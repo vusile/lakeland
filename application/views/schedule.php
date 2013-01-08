@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Upcomming Trips</p>
+	<h1 class="sitetitle">Upcomming Trips</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>

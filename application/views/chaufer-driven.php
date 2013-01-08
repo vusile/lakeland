@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Chaufer Driven</p>
+	<h1 class="sitetitle">Chaufer Driven</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>
