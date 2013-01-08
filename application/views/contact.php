@@ -1,23 +1,8 @@
 
 <div class="left">
-	
-<div class="contactinformation">
-	<div class="leftmenu2">
-		<div class="kushoto">
-          <ul>
-		           <h2><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Scheduled Trips</a></span></h2>
-          <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip NameTrip NameTrip NameTrip Name</a></li>
-      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-      
-      <span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
-		  </ul>
-		</div>
-	</div>
+	 
+<!-- sidebar here with div class leftmenu -->
 
-</div>
 </div>
 <div class="right">
 	<h1 class="sitetitle">Airport & City Transfer</h1>
@@ -31,9 +16,6 @@
        	<li><span style="color:#000;font-weight: bold;">Mobile:</span> <span style="color:#009F4D;font-weight: bold;"> +255 784 885 901 </span></li>
        	<li><span style="color:#000;font-weight: bold;">Skype(ID:XXXXXX):</span><span style="color:#009F4D;font-weight: bold;"> johndoe</span></li> 
        	<!-- <li><span style="margin-top: -24px;margin-left: 200px;"> <img src="images/skype.png" alt=""></span></li> -->
-
-
-
        </ul>
 
  </div>
@@ -68,20 +50,20 @@
         </p>
          <p class="expected">	
             <label for="expected">Expected Date of Arrival:</label><br>
-            <input type="expected" name="expected" placeholder="Enter Expected Date of Arrival (if known)" />
-            <span class="form_hint">Proper format "DD/MM/YY"</span>
+            <input type="expected" name="expected" id="expected" placeholder="Enter Expected Date of Arrival (if known)" />
+            <!-- <span class="form_hint">Proper format "DD/MM/YY"</span> -->
         </p>  
         <p class="uexpected">	
             <label for="uexpected">Expected Date of Depature:</label><br>
-            <input type="uexpected" name="uexpected" placeholder="Enter Expected Date of Depature(if known)" />
-            <span class="form_hint">Proper format "DD/MM/YY"</span>
+            <input type="uexpected" name="expected" id="uexpected"  placeholder="Enter Expected Date of Depature(if known)" />
+            <!-- <span class="form_hint">Proper format "DD/MM/YY"</span> -->
         </p> 
         <p class="number_people">	
             <label for="number_people">Number of People:</label><br>
             <input type="number_people" name="number_people" placeholder="Enter Number of People" />
             <span class="form_hint">Proper format "Use numeric values, eg: 12 "</span>
         </p>
-          <p>	
+          <p class="rooms">	
             <label for="rooms">Number and Type of Rooms Required:</label><br>
             <textarea name="rooms" cols="40" rows="6" ></textarea>
         </p>
@@ -104,13 +86,13 @@
             <input type="subject" name="subject" placeholder="Enter The Subject"  required/>
            <!--  <span class="form_hint">Proper format " "</span> -->
         </p> 
-          <p>	
+          <p class="interests">	
             <label for="interests">Tell Us About Your Interests:</label><br>
             <textarea name="rooms" cols="40" rows="6" required></textarea>
         </p>
          <p class="captcha">	
             <input type="captcha" name="captcha" placeholder="" />
-            <p>Please Prove That You Are Human By Entering The Characters In An Image Above</p>
+            <p  class="contact_teaser">Please Prove That You Are Human By Entering The Characters In An Image Above</p>
         </p> 
         <p class="captcha2">	
             <input type="captcha2" name="captcha2" placeholder="" required />
@@ -136,3 +118,10 @@
 
 
 </div></div></div>
+
+<script>
+$(function() {
+        $( "#expected,#uexpected" ).datepicker();
+    });
+
+</script>

@@ -10,7 +10,6 @@
 </div>
 <?php endif; ?>
 
-<div class="contactinformation">
 	<div class="leftmenu2">
 		<div class="kushoto">
           <ul>
@@ -23,8 +22,6 @@
 			
 			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
 		  </ul>
-		</div>
 	</div>
-
 </div>
 </div>

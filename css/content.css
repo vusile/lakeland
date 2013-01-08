@@ -42,10 +42,8 @@ select.form.error{border:1px solid #F3B6C6;color:#FA4363;}
 
 .breadcrumb{
 	height: 30px;
-width: 100%px;
-margin-left: 0px;
-margin-bottom: 0px;
-margin-top: 10px;
+width: 100%;
+margin:10px 0px 10px 10px;
 }
 .breadcrumb ul{position:relative; margin:0 5px 0 5px; padding:0; height:30px; background:url('../images/breadcrumbImage.png') 0px -30px repeat-x; }
 .breadcrumb ul li{padding:0; margin:0; list-style:none; float:left; height:30px display:inline;}
@@ -345,7 +343,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 
 /* === Form Elements === */
 .contact_form label {
-	width: 235px;
+	width:  243px;
 margin-top: 0px;
 display: inline-block;
 padding: 0px;
@@ -412,6 +410,24 @@ padding: 0px;
 .contact_form input:focus + .form_hint {display: inline;}
 .contact_form input:required:valid + .form_hint {background: #28921f;}
 .contact_form input:required:valid + .form_hint::before {color:#28921f;}
+.content p.denotes,
+.content p.name,
+.content p.email,
+.content p.email_confirm,
+.content p.phone,
+.content p.approx_budget,
+.content p.rooms,
+.content p.subject,
+.content p.interests,
+.content p.captcha,
+.content p.captcha2,
+.content p.expected,
+.content p.uexpected,
+.content p.contact_teaser,
+.content p.submit,
+.content p.number_people{
+   margin-top: 5px;
+}
 	
 /* === Button Style === */
 button.submit {
