@@ -5,16 +5,14 @@
 	<div class="leftmenu2">
 		<div class="kushoto">
           <ul>
-		      <span style="margin-top: 10px;font-size: 18px;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scheduled Trips</span>
-          <li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
+		           <h2><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Scheduled Trips</a></span></h2>
+          <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip NameTrip NameTrip NameTrip Name</a></li>
+      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+      <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+      
+      <span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
 		  </ul>
 		</div>
 	</div>
@@ -22,7 +20,7 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Airport & City Transfer</p>
+	<h1 class="sitetitle">Airport & City Transfer</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>

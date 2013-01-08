@@ -13,6 +13,9 @@ margin-top: 17px;
 padding-right: 9px;
 text-align: right;
 }
+.languages img{
+border:none;
+}
 	a.language{display:inline-block; width:31px;height:19px;}
 	a.language.pl{width:29px;background:url(../images/flagi/pl.jpg);}
 	a.language.pl.selected{background:url(../images/flagi/pl_hov.jpg);}
@@ -49,13 +52,16 @@ div.footer{width:960px;height:50px; background:url(../images/stopka.jpg);}
 div.underfooter{width:960px;height:50px;font-family:Arial;font-size:10px; color:#cde5ce;line-height:30px;text-align:center;}	
 	
 div.leftmenu{width:270px; margin-left: -20px; margin-top: -73px; background:url(../images/contact_bg.jpg) 0 0 no-repeat; height: 300px;}
-div.leftmenu2{width:270px; margin-left: -20px; margin-top: 0px; background:url(../images/contact_bg.jpg) 0 0 no-repeat; height: 300px;}
+div.leftmenu2{width:270px; margin-left: -20px; margin-top: 45px; background:url(../images/contact_bg.jpg) 0 0 no-repeat; height: 300px;}
 	/*div.leftmenu a{display:block; width:230px; height:20px; line-height:20px; padding:3px; color:#033f03; font-family:Arial; font-size:12px;text-decoration:none;
 	font-weight:bold;}
 	div.leftmenu a:hover{background:#d9f6d5; }*/
 	.kushoto{ margin: 0px 0px 0px 14px;padding-top: 20px;  }
 	.kushoto ul { list-style-type:none;margin:0;padding:0;text-decoration:none; }
+	.kushoto ul h2 a{ color:#000000; font-size: 20px;margin-left: -15px;}
+	.kushoto ul h2 { margin-top: 5px;margin-bottom: 5px;	}
 	.kushoto ul li a {  text-decoration:none; color:#033f03; font-family:Arial; font-size:12px; font-weight:bold; line-height: 20px; }
+	/*.kushoto ul li { margin: 10px 0px 10px 0px}*/
 	.kushoto ul  a {  text-decoration:none; color:#033f03; font-family:Arial; font-size:14px;  line-height: 20px; }
 	.kushoto ul  a:hover {  background:#d9f6d5;  }
 	.kushoto ul li a:hover{ background:#d9f6d5; }
@@ -64,7 +70,7 @@ div.leftmenu2{width:270px; margin-left: -20px; margin-top: 0px; background:url(.
 	}*/
 	/*#kushoto a{display:block; width:230px; height:20px; line-height:20px; padding:3px; color:#033f03; font-family:Arial; font-size:12px;text-decoration:none;   font-weight:bold; }*/
 	
-div.contactinformation{width:230px;margin-top:40px;}	
+div.contactinformation{width:230px;margin-top:30px;}	
 div.contactinformation p{padding:0; margin:0; color:#044904;font-size:11px; line-height:18px; font-family:Tahoma;}
 div.contactinformation p span{font-size:14px;font-weight:bold;line-height:32px;}
 #facebook{

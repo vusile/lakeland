@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Day Tours</p>
+	<h1 class="sitetitle">Day Tours</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>

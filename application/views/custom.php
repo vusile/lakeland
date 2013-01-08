@@ -35,7 +35,7 @@
 </div>
 </div>
 <div class="right">
-	<p class="sitetitle">Custom Packages</p>
+	<h1 class="sitetitle">Custom Packages</h1>
 	
 <div class="content">
 	<div style="margin-top: 20px;"></div>
