@@ -50,13 +50,13 @@
 	<li><a href="rentals">Car Rentals</a>
 		<ul class="subnav">		  	
 			<li>
-			    <a href="self-drive"><span class="title">Self Drive Car Rental</span> </a>
+			    <a href="carrentals/self-driven"><span class="title">Self Drive Car Rental</span> </a>
 			</li>
 			<li>
-			    <a href="chaufer"><span class="title">Chaufer Driven</span> </a>
+			    <a href="carrentals/chaufer-driven"><span class="title">Chaufer Driven</span> </a>
 			</li>
 			<li>
-			    <a href="airport-transfer"><span class="title">Airport & City Transfers</span> </a>
+			    <a href="carrentals/airport-city-transfer"><span class="title">Airport & City Transfers</span> </a>
 			</li>
 		</ul>
 	</li>
