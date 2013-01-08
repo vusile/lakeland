@@ -1,14 +1,4 @@
-<div class="breadcrumb">
-	  <span class="lleft"></span>
-	  <ul>
-	    <li><a href="/home">Home</a></li>
-      <li><a href="#">Group Overland Safaris</a></li>
-      <li><a href="#">Overland Safaris</a></li>
-	    <li><a href="#">21-40 Days Trip</a></li>
-	    <li><a href="#" class="active">Exploring Northen Tanzania</a></li>
-	  </ul>
-	  <span class="rright"></span>
-	</div>
+
 	
   <div class="first_part">
     <h1>Exploring Northern Tanzania</h1>

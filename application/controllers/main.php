@@ -40,7 +40,9 @@ class Main extends CI_Controller {
 		$this->load->view('header',$header);
 		$this->load->view('menu');
 		$this->load->view('sidebar');
-		$this->load->view('day_tours_details',$data);
+		
+		$this->load->view('car_rentals',$data);
+		// $this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
 	}
 	

@@ -1,27 +1,18 @@
-<div class="breadcrumb">
-	  <span class="lleft"></span>
-	  <ul>
-	    <li><a href="/home">Home</a></li>
-	    <li><a href="#">Car Rentals</a></li>
-	    <li><a href="#" class="active">Airport & City Transfer</a></li>
-	  </ul>
-	  <span class="rright"></span>
-	</div>
-	
-		
 
 
 
 <div class="left">
-<!-- sidebar with div class leftmenu	 -->
+	 
+<!-- sidebar here with div class leftmenu -->
 
 </div>
 <div class="right">
-	<hi class="sitetitle">Airport & City Transfer</h1>
+	<h1 class="sitetitle">Airport & City Transfer</h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>
-	<div class="stab">
+	
+ <div class="stab">
   <h1>1: Lorem:</h1>
   <p>
   	  Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
@@ -43,8 +34,6 @@
  </p>
 
  </div>
- 
-
 
 
 
