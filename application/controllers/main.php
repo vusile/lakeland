@@ -91,8 +91,9 @@ class Main extends CI_Controller {
 		$content = $this->db->get('lakeland_pages');
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
 		
 		//$this->load->view('car_rentals',$data);
@@ -108,8 +109,11 @@ class Main extends CI_Controller {
 
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		
+		$menu['menu'] = $this->menu();
+		
 		$this->load->view('header',$header);
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
 		$this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
@@ -122,11 +126,13 @@ class Main extends CI_Controller {
 		$this->db->where('url',$url);
 		$content = $this->db->get('lakeland_pages');
 		
-
+		
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		
+		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
 		$this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
@@ -140,8 +146,9 @@ class Main extends CI_Controller {
 
 		//$data['details'] =  $content->row();
 	//	$header['title'] = $data['details']->title;
+		$menu['menu'] = $this->menu();
 		$this->load->view('header');//,$header);
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
 		$this->load->view('day_tours');//,$data);
 		$this->load->view('footer');
