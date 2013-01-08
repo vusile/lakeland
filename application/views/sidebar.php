@@ -14,10 +14,10 @@
 		<div class="kushoto">
           <ul>
 		      <h2><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Scheduled Trips</a></span></h2>
-          <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+          <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip</a></li>
+			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip Name Trip Name</a></li>
 			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip Name Trip Name Trip Name Trip Name</a></li>
 			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
 			
 			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>

@@ -21,5 +21,7 @@
 	  </ul>
 	  <span class="rright"></span>
 	</div>
+
+	<div class="main_part">
 	
 

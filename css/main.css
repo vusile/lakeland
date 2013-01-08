@@ -67,8 +67,8 @@ div.underfooter{width:960px;height:50px;font-family:Arial;font-size:10px; color:
 div.leftmenu{width:270px; margin-left: -20px; margin-top: -73px; background:url(../images/contact_bg.jpg) 0 0 no-repeat; height: 300px;}
 div.leftmenu2{
 	width: 292px;
-margin-left: 10px;
-margin-top: 30px;
+	margin-left: 10px;
+margin-top: 10px;
 background: url(../images/contact_bg.jpg) 0 0 no-repeat;
 height: 300px;
 	}
@@ -102,8 +102,8 @@ div.contactinformation p span{font-size:14px;font-weight:bold;line-height:32px;}
 #facebook{
 	width: 300px;
 	height: 300px;
-	margin-top: 50px;
 	margin-left: 15px;
+	margin-top: 10px;
 }
 
 #logo img{
