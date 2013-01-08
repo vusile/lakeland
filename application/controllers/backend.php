@@ -129,6 +129,7 @@ class Backend extends CI_Controller {
 	{
 		try {
 	//	$this->grocery_crud->unset_delete();
+		$this->grocery_crud->set_relation('parent_page','lakeland_pages','title');
 		$this->grocery_crud->set_relation('section','lakeland_sections','name');
 		$this->grocery_crud->unset_fields('thumbnail','identifier');
 		$this->grocery_crud->unset_columns('thumbnail','identifier');

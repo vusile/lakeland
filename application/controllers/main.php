@@ -17,6 +17,50 @@ class Main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	 
+	function menu()
+	{
+		$this->db->order_by('priority');
+		$sections = $this->db->get('lakeland_sections');
+		$menu = '';
+		foreach($sections->result() as $section)
+		{
+			$this->db->where('section',$section->id);
+			$pages = $this->db->get('lakeland_pages');
+			if($pages->num_rows() >0)
+			{
+				$menu .= "<li><a href = '#'>"  . $section->name .  "</a>";
+				$menu .= "<ul class='subnav'>";	
+				foreach($pages->result() as $page)
+				{	
+					$this->db->where('parent_page',$page->id);
+					$sub_pages = $this->db->get('lakeland_pages');
+					
+					if($sub_pages->num_rows() > 0)
+					{
+						$menu .= "<li><a href = '#'>"  . $page->title .  "</a>";
+						$menu .= "<ul class='subnav'>";	
+						
+						foreach($sub_pages->result() as $sub_page)
+							$menu .= "<li><a href = '" . $section->url_string . '/' . $sub_page->url . "'>"  . $sub_page->title .  "</a></li>";
+						
+						$menu .= "</ul></li>";
+					}
+					else
+					
+					$menu .= "<li><a href = '" . $section->url_string . '/' . $page->url . "'>"  . $page->title .  "</a></li>";
+				}
+					
+				$menu .= "</ul></li>";
+			}
+			else
+				$menu .= "<li><a href = '" . $section->url_string . "'>"  . $section->name .  "</a></li>";
+		}
+		
+		return $menu;
+		
+	} 
+	 
 	public function index()
 	{
 		$this->db->where('url','home');
@@ -24,12 +68,22 @@ class Main extends CI_Controller {
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
 		$sidebar['fb'] = 1;
+		$menu['menu'] = $this->menu();
+		
+		
 		$this->load->view('header',$header);
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
 		$this->load->view('home',$data);
 		$this->load->view('footer');
 	}
+	
+	public function home()
+	{
+		$this->index();
+	}
+	
+	
 	
 	public function about()
 	{		
@@ -41,8 +95,8 @@ class Main extends CI_Controller {
 		$this->load->view('menu');
 		$this->load->view('sidebar');
 		
-		$this->load->view('car_rentals',$data);
-		// $this->load->view('day_tours_details',$data);
+		//$this->load->view('car_rentals',$data);
+		$this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
 	}
 	
@@ -60,6 +114,8 @@ class Main extends CI_Controller {
 		$this->load->view('day_tours_details',$data);
 		$this->load->view('footer');
 	}
+	
+	
 	
 	function carrentals($url)
 	{
