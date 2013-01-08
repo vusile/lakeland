@@ -7,6 +7,19 @@
 	  </ul>
 	  <span class="rright"></span>
 	</div>
+<<<<<<< HEAD
+=======
+	
+		
+
+
+
+<div class="left">
+	
+<!-- sidebar here with div class leftmenu -->
+
+</div>
+>>>>>>> 9c02bfaa5d96206409cc657eb5b26c542517413a
 <div class="right">
 	<h1 class="sitetitle">Day Tours</h1>
 	

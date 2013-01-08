@@ -13,26 +13,8 @@
 
 
 <div class="left">
-	
-<div class="contactinformation">
-	<div class="leftmenu2">
-		<div class="kushoto">
-          <ul>
-		      <span style="margin-top: 10px;font-size: 18px;font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scheduled Trips</span>
-          <li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY</a>&nbsp;&nbsp;<a href="#">Trip Name</a></li>
-			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
-		  </ul>
-		</div>
-	</div>
+	<!-- sidebar here with div class leftmenu -->
 
-</div>
 </div>
 <div class="right">
 	<h1 class="sitetitle">Chaufer Driven</h1>
