@@ -74,6 +74,21 @@ class Main extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
+	public function destinations($url)
+	{
+		//$this->db->where('url',$url);
+	//	$content = $this->db->get('lakeland_pages');
+		
+
+		//$data['details'] =  $content->row();
+	//	$header['title'] = $data['details']->title;
+		$this->load->view('header');//,$header);
+		$this->load->view('menu');
+		$this->load->view('sidebar');
+		$this->load->view('day_tours');//,$data);
+		$this->load->view('footer');
+	}
+	
 	
 	public function day_tours($url='')
 	{

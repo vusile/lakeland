@@ -33,15 +33,8 @@ a:hover
 	<div>
 		<a href='<?php echo site_url('logout')?>'>Logout</a> |
 		<a href='<?php echo site_url('backend/lakeland_pages')?>'>Pages</a> |
-		<a href='<?php echo site_url('backend/nf_news')?>'>News</a> |
-		<a href='<?php echo site_url('backend/nf_projects_and_publications/1')?>'>Project Categories</a> | 
-		<a href='<?php echo site_url('backend/nf_projects_and_publications/2')?>'>Publication Categories</a> | 
-		<a href='<?php echo site_url('backend/nf_directory')?>'>Directory</a> | 
-		<a href='<?php echo site_url('backend/nf_company_types')?>'>Company Types</a> |
-		<a href='<?php echo site_url('backend/nf_company_sectors')?>'>Company Sectors</a> |
-		<a href='<?php echo site_url('backend/nf_team')?>'>The Team</a> |
-		<a href='<?php echo site_url('backend/nf_newsletters')?>'>Newsletters</a> |
-		<a href='<?php echo site_url('backend/nf_settings')?>'>Settings</a> 
+		<a href='<?php echo site_url('backend/lakeland_sections')?>'>Main Content Sections</a> |
+
 
 	</div>
 	<div style='height:20px;'></div>  

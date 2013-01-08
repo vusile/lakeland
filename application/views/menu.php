@@ -37,26 +37,26 @@
 	<li><a href="destinations">Destinations</a>
 		<ul class="subnav">		  	
 			<li>
-			    <a href="parks"><span class="title">National Parks</span> </a>
+			    <a href="destinations/national-parks"><span class="title">National Parks</span> </a>
 			</li>
 			<li>
-			    <a href="beaches"><span class="title">Beaches</span> </a>
+			    <a href="destinations/beaches"><span class="title">Beaches</span> </a>
 			</li>
 			<li>
-			    <a href="cultural"><span class="title">Cultural Tourism </span> </a>
+			    <a href="destinations/cultural-tourism"><span class="title">Cultural Tourism </span> </a>
 			</li>
 		</ul>
 	</li>
 	<li><a href="rentals">Car Rentals</a>
 		<ul class="subnav">		  	
 			<li>
-			    <a href="carrentals/self-driven"><span class="title">Self Drive Car Rental</span> </a>
+			    <a href="carrentals/self-driven-car-rentals"><span class="title">Self Driven Car Rentals</span> </a>
 			</li>
 			<li>
 			    <a href="carrentals/chaufer-driven"><span class="title">Chaufer Driven</span> </a>
 			</li>
 			<li>
-			    <a href="carrentals/airport-city-transfer"><span class="title">Airport & City Transfers</span> </a>
+			    <a href="carrentals/airport-city-transfers"><span class="title">Airport & City Transfers</span> </a>
 			</li>
 		</ul>
 	</li>

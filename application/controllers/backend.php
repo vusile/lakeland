@@ -30,6 +30,14 @@ class Backend extends CI_Controller {
 		$this->_example_output($output);
 	}
 	
+	function lakeland_sections()
+	{
+		$this->grocery_crud->unset_delete();
+		$this->grocery_crud->set_relation('parent','lakeland_sections','name');
+		$output = $this->grocery_crud->render();
+		$this->_example_output($output);
+	}
+	
 	
 	function lakeland_directory()
 	{
@@ -121,6 +129,7 @@ class Backend extends CI_Controller {
 	{
 		try {
 	//	$this->grocery_crud->unset_delete();
+		$this->grocery_crud->set_relation('section','lakeland_sections','name');
 		$this->grocery_crud->unset_fields('thumbnail','identifier');
 		$this->grocery_crud->unset_columns('thumbnail','identifier');
 		$this->grocery_crud->callback_after_insert(array($this, 'generate_thumb'));
