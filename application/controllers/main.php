@@ -71,6 +71,8 @@ class Main extends CI_Controller {
 		$menu['menu'] = $this->menu();
 		
 		
+		
+		
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
@@ -92,6 +94,7 @@ class Main extends CI_Controller {
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
 		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
@@ -112,6 +115,8 @@ class Main extends CI_Controller {
 		
 		$menu['menu'] = $this->menu();
 		
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Safari Vehicles</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
+		
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
@@ -131,6 +136,8 @@ class Main extends CI_Controller {
 		$header['title'] = $data['details']->title;
 		
 		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Car Rentals</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
+		
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar');
@@ -139,6 +146,22 @@ class Main extends CI_Controller {
 	}
 	
 	public function destinations($url)
+	{
+		//$this->db->where('url',$url);
+	//	$content = $this->db->get('lakeland_pages');
+		
+
+		//$data['details'] =  $content->row();
+	//	$header['title'] = $data['details']->title;
+		$menu['menu'] = $this->menu();
+		$this->load->view('header');//,$header);
+		$this->load->view('menu',$menu);
+		$this->load->view('sidebar');
+		$this->load->view('day_tours');//,$data);
+		$this->load->view('footer');
+	}
+	
+	public function safaris($url)
 	{
 		//$this->db->where('url',$url);
 	//	$content = $this->db->get('lakeland_pages');
@@ -210,9 +233,10 @@ class Main extends CI_Controller {
 	}
 	public function contact()
 	{
-		
+		$menu['menu'] = $this->menu();
 		$this->load->view('header');
-		$this->load->view('menu');
+		$this->load->view('menu',$menu);
+		$this->load->view('sidebar');
 		$this->load->view('contact');
 		$this->load->view('footer');
 	}

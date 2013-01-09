@@ -15,9 +15,10 @@
 	<div class="breadcrumb">
 	  <span class="lleft"></span>
 	  <ul>
-	    <li><a href="home">Home</a></li>
+		<?php if(isset($crumbs)) echo $crumbs ?>
+	    <!--<li><a href="home">Home</a></li>
 	    <li><a href="#">Car Rentals</a></li>
-	    <li><a href="#" class="active">Chaufer Driven</a></li>
+	    <li><a href="#" class="active">Chaufer Driven</a></li>-->
 	  </ul>
 	  <span class="rright"></span>
 	</div>
