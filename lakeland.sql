@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2013 at 06:52 AM
--- Server version: 5.5.20
--- PHP Version: 5.3.10
+-- Generation Time: Jan 11, 2013 at 04:00 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -66,6 +66,52 @@ INSERT INTO `lakeland_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lakeland_itinerary`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_itinerary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `activities` text NOT NULL,
+  `safari` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `lakeland_itinerary`
+--
+
+INSERT INTO `lakeland_itinerary` (`id`, `title`, `activities`, `safari`) VALUES
+(1, 'Day One', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Play</li>\r\n	<li>\r\n		Sing</li>\r\n</ul>\r\n', 1),
+(2, 'Day Two', '<ul>\r\n	<li>\r\n		Sit</li>\r\n	<li>\r\n		Read</li>\r\n	<li>\r\n		Reflect</li>\r\n</ul>\r\n', 1),
+(3, 'Day 1', '<ul>\r\n	<li>\r\n		Eat</li>\r\n	<li>\r\n		Pray</li>\r\n	<li>\r\n		Love</li>\r\n</ul>\r\n', 3),
+(4, 'Day 2', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Sleep</li>\r\n	<li>\r\n		Walk</li>\r\n</ul>\r\n', 3),
+(5, 'Saturday', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Play</li>\r\n	<li>\r\n		Sing</li>\r\n</ul>\r\n', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_overland_safaris_packages`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_overland_safaris_packages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `lakeland_overland_safaris_packages`
+--
+
+INSERT INTO `lakeland_overland_safaris_packages` (`id`, `title`) VALUES
+(1, '21 - 40 Day Trips'),
+(2, '14 - 20 Day Trips'),
+(3, '7 - 13 Day Trips');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lakeland_pages`
 --
 
@@ -99,7 +145,7 @@ INSERT INTO `lakeland_pages` (`id`, `title`, `content`, `section`, `parent_page`
 (13, 'Day Tours', '<p>\r\n	Day Tours</p>\r\n', 4, 0, 'day-tours', '', ''),
 (14, 'Weekend Getaways', '<p>\r\n	Weekend Getaways</p>\r\n', 4, 0, 'weekend-getaways', '', ''),
 (15, 'Overland Safaris', '', 4, 0, '', '', ''),
-(16, 'Custom Packages', '<p>\r\n	Custom Packages</p>\r\n', 4, 0, 'custom-packages', '', ''),
+(16, 'Custom Packages', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nihil dolores aliquam odio adipisci itaque nostrum cupiditate dolore officiis esse porro amet cum debitis neque a laboriosam quam ipsa voluptates.</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nihil dolores aliquam odio adipisci itaque nostrum cupiditate dolore officiis esse porro amet cum debitis neque a laboriosam quam ipsa voluptates.</p>\r\n', 4, 0, 'custom-packages', '', ''),
 (17, 'Scheduled Trips', '<p>\r\n	Scheduled Trips</p>\r\n', 4, 0, 'scheduled-trips', '', ''),
 (18, '21 - 40 Day Trips', '<p>\r\n	21 - 40 Day Trips</p>\r\n', 0, 15, '21-40-day-trips', '', ''),
 (19, '14 - 20 Day Trips', '<p>\r\n	14 - 20 Day Trips</p>\r\n', 0, 15, '14-20-day-trips', '', ''),
@@ -114,14 +160,91 @@ INSERT INTO `lakeland_pages` (`id`, `title`, `content`, `section`, `parent_page`
 CREATE TABLE IF NOT EXISTS `lakeland_safaris` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(70) NOT NULL,
+  `type` int(11) NOT NULL,
   `thumb_nail` varchar(100) NOT NULL,
   `introductory_text` text NOT NULL,
   `price` int(11) NOT NULL,
   `includes` text NOT NULL,
   `excludes` text NOT NULL,
   `itinerary` varchar(255) NOT NULL,
+  `images` varchar(255) NOT NULL,
+  `url` varchar(100) NOT NULL,
+  `safari_type` int(11) NOT NULL,
+  `schedule` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `lakeland_safaris`
+--
+
+INSERT INTO `lakeland_safaris` (`id`, `title`, `type`, `thumb_nail`, `introductory_text`, `price`, `includes`, `excludes`, `itinerary`, `images`, `url`, `safari_type`, `schedule`) VALUES
+(1, 'Test Safari Test Safari  Test Safari ', 1, '<img width = "100" src = "images/thumb__5a97-001.jpg" />', '<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 900, '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		Four</li>\r\n	<li>\r\n		Five</li>\r\n	<li>\r\n		Six</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/1/1">Itinerary</a>', '<a href = "backend/images/1/1">Images</a>', 'test-safari', 1, '<a href = "backend/lakeland_scheduled_trips/add/1">Schedule</a>'),
+(3, 'Test Trip 2 Test Trip 2 Test Trip 2', 1, '<img width = "100" src = "images/thumb__6f30-007.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 1200, '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/3/1">Itinerary</a>', '<a href = "backend/images/3/1">Images</a>', 'test-trip-2', 1, '<a href = "backend/lakeland_scheduled_trips/add/3">Schedule</a>'),
+(4, 'Day Trip 1', 0, '<img width = "100" src = "images/thumb__0cfd-penguins.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 900, '', '', '<a href = "backend/lakeland_itinerary/4/3">Itinerary</a>', '<a href = "backend/images/4/3">Images</a>', 'day-trip-1', 3, '<a href = "backend/lakeland_scheduled_trips/add/4">Schedule</a>'),
+(5, 'Weekend Getaway Test Long Title for Schedule', 0, '<img width = "100" src = "images/thumb__7035-jellyfish.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 1000, '<ul>\r\n	<li>\r\n		1</li>\r\n	<li>\r\n		2</li>\r\n	<li>\r\n		3</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		4</li>\r\n	<li>\r\n		5</li>\r\n	<li>\r\n		6</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/5/2">Itinerary</a>', '<a href = "backend/images/5/2">Images</a>', 'weekend-getaway-test', 2, '<a href = "backend/lakeland_scheduled_trips/add/5">Schedule</a>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_safari_images`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_safari_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  `title` text NOT NULL,
+  `safari` int(11) NOT NULL,
+  `priority` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+
+--
+-- Dumping data for table `lakeland_safari_images`
+--
+
+INSERT INTO `lakeland_safari_images` (`id`, `image`, `title`, `safari`, `priority`) VALUES
+(13, '21cc-002.jpg', 'Crossing the Indian Ocean', 1, 3),
+(14, '5a97-001.jpg', 'The River Green', 1, 1),
+(15, '98ca-003.jpg', 'Le Jardin', 1, 4),
+(16, 'e00f-004.jpg', 'Pretty House', 1, 5),
+(17, 'c7f4-005.jpg', 'Town', 1, 6),
+(18, '398f-006.jpg', 'Chillis', 1, 2),
+(19, '6f30-007.jpg', 'The Beautiful Bridge', 3, 0),
+(20, '626f-008.jpg', 'Waterfalls', 3, 0),
+(21, 'f681-011.jpg', 'Blue Garden', 3, 0),
+(22, '9788-012.jpg', 'Forest River', 3, 0),
+(23, 'f37b-lighthouse.jpg', '', 4, 2),
+(24, 'ee02-koala.jpg', '', 4, 3),
+(25, '0cfd-penguins.jpg', '', 4, 1),
+(26, 'e84d-tulips.jpg', '', 4, 4),
+(27, '9219-chrysanthemum.jpg', 'Flowers', 5, 2),
+(28, 'cafa-hydrangeas.jpg', 'Flowers', 5, 3),
+(29, 'd1bd-desert.jpg', 'Desert', 5, 4),
+(30, '7035-jellyfish.jpg', 'Jelly Fish', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_scheduled_trips`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_scheduled_trips` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `trip` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `lakeland_scheduled_trips`
+--
+
+INSERT INTO `lakeland_scheduled_trips` (`id`, `start_date`, `end_date`, `trip`) VALUES
+(7, '2013-01-17', '2013-01-31', 1),
+(8, '2013-02-01', '2013-02-28', 5),
+(9, '2013-04-01', '2013-05-08', 3);
 
 -- --------------------------------------------------------
 
@@ -182,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_users` (
 --
 
 INSERT INTO `lakeland_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1357650413, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1357800684, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 

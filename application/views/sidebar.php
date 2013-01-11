@@ -1,5 +1,13 @@
 <div class="left">
 <?php if(isset($fb) and $fb==1): ?>
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="facebook">
 		
        <div 
@@ -14,13 +22,13 @@
 		<div class="kushoto">
           <ul>
 		      <h2><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">Scheduled Trips</a></span></h2>
-          <li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip Name Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name Trip Name Trip Name Trip Name Trip Name Trip Name</a></li>
-			<li><a href="#">DD/MM/YY-DD/MM/YY&nbsp;&nbsp;Trip Name</a></li>
+			  
+			  <?php foreach($trips->result() as $trip): ?>
+				<li><a href="trip/<?php echo $trip->url ?>"><?php echo date('d/m/Y',strtotime($trip->start_date)) ?> - <?php echo date('d/m/Y',strtotime($trip->end_date)) ?>&nbsp;>&nbsp;<?php echo $trip->title ?></a></li>
+				<?php endforeach; ?>
+
 			
-			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><i>See More Scheduled Trips</i></a></span>
+			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="safaris/scheduled-trips"><i>See More Scheduled Trips</i></a></span>
 		  </ul>
 	</div>
 </div>

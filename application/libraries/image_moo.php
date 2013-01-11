@@ -541,8 +541,6 @@ class Image_moo
 			$py = 0;
 		}
 		$this->temp_image = imagecreatetruecolor($tx,$ty);
-		imagealphablending( $this->temp_image, false);
-		imagesavealpha( $this->temp_image, true);
 
 		// check it
 		if(!is_resource($this->temp_image))

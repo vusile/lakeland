@@ -1,41 +1,31 @@
-
-	
   <div class="first_part">
-    <h1>Exploring Northern Tanzania</h1>
+   
+	<h1 class="sitetitle"><?php echo $title ?></h1>
     <div class="inquiry">
       <a href="#" class="inquiry-button">Inquiry</a>
     </div>
     <p>  
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-    . Ducimus harum perspiciatis repudiandae rem dolores ipsa a
-    rchitecto rerum libero sint natus ipsum magnam at aperiam tempor
-    ibus sapiente dolorem eaque minus mollitia!
-      </p>
-    <h2>Price:</h2>
-    <h3> Includes:  </h3>
+		<?php echo $safari->introductory_text; ?>
+	</p>
+    <h2>Price: $<?php echo number_format($safari->price); ?></h2><br>
+	
+    <?php if($safari->includes != ''):?>
+	<h3> Includes:  </h3>
 
-      <ol>
-      <li> </li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol> 
-   
+	<?php echo $safari->includes; ?>
+	<?php endif; ?>
+    <?php if($safari->excludes != ''):?>
     <h3> Excludes  </h3>
-      <ol>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      </ol> 
+    <?php echo $safari->excludes; ?>
+	<?php endif; ?>
+    <?php if($itinerary->num_rows() > 0):?>
     <h3> Itinerary </h3>
-    <h4> Duration: </h4>
-      <ol>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ol> 
+	<?php foreach($itinerary->result() as $item): ?>
+		<h4><?php echo $item->title ?></h4>
+		<?php echo $item->activities ?>
+    <?php endforeach; ?> 
+	<?php endif; ?>
+	
   <div class="inquiry">
       <a href="#" class="inquiry-button">Inquiry</a>
     </div>
@@ -46,33 +36,14 @@
 
 
   <div class="second_part">
+  <?php foreach($images->result() as $image): ?>
     <div class="image">
-    <img src="http://lorempixel.com/output/food-q-c-300-200-7.jpg" alt="">
+    <img src="images/thumb__<?php echo $image->image ?>" alt="<?php echo $image->title ?>">
     <div class="text">
-      <p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit   </p>
+      <p><?php echo $image->title ?></p>
     </div>
     </div>
-    <div class="image">
-    <img src="http://dummyimage.com/300x200/c3c3c3/c3c3c3" alt="">
-    <div class="text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitconsectetur adipisicing elit</p>
-    </div>
-    </div>
-    <div class="image">
-     <img src="http://lorempixel.com/output/food-q-c-300-200-7.jpg" alt="">
-    <div class="text">
-      <p>Lorem Lorem ipsum dolor sit amet, consectetur adipisicing elit   </p>
-    </div>
-    </div>
-    <div class="image">
-    <img src="http://lorempixel.com/output/food-q-c-300-200-7.jpg" alt="">
-    <div class="text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elitconsectetur adipisicing elit</p>
-    </div>
-    </div>
-
-
-
+	<?php endforeach; ?>
   </div>   <!-- end of div second part  -->
 		<div class="clear"></div>
      </div>

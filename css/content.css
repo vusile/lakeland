@@ -5,7 +5,7 @@
 }
 
 .right p{ color:#044904; margin:0;padding:0; padding-left:20px;padding-right:20px;}
-.right h1.sitetitle{
+h1.sitetitle{
 	font-size: 30px;
 font-weight: bold;
 line-height: 9px;
@@ -155,7 +155,7 @@ padding:0px;
 margin-left: 20px;
 	
 }
-.first_part ol{
+.first_part ul, .first_part ol{
 	margin: 0px 0px 10px 20px;
 }
 .first_part ol li{
@@ -190,19 +190,19 @@ left: 5px;
 width: 300px;
 background-color: #009F4D;
 /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 
   /* IE 5-7 */
-  filter: alpha(opacity=50);
+  filter: alpha(opacity=70);
 
   /* Netscape */
-  -moz-opacity: 0.5;
+  -moz-opacity: 0.7;
 
   /* Safari 1.x */
-  -khtml-opacity: 0.5;
+  -khtml-opacity: 0.7;
 
   /* Good browsers */
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .text p{
@@ -248,6 +248,7 @@ background-color: #009F4D;
 }
 .inquiry{
 	margin-left: 20px;
+	margin-top: 20px;
 }
 
 /*scheduled page

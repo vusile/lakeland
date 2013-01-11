@@ -1,74 +1,30 @@
 
 <div class="right">
-	<h1 class="sitetitle">Day Tours</h1>
+	<h1 class="sitetitle"><?php echo $title; ?></h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>
-
+<?php 
+$count = 0;
+foreach($trips->result() as $trip): 
+?>
+<?php if ($count == 1):
+	$count = 0; 
+?>
+  <div class="content2">
+ <?php else: ?>
   <div class="content1">
+ <?php endif; ?>
   	<div class="resizer">
-  	<h1>Lorem</h1>
-       <img src="http://dummyimage.com/250x200/c2c2c2/c2c2c2" alt="">
+  	<h1><a href="trip/<?php echo $trip->url; ?>"><?php echo $trip->title; ?></a></h1>
+       <a href="trip/<?php echo $trip->url; ?>"><?php echo $trip->thumb_nail; ?></a>
    			<div class="teaser">
-   				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-   					Aperiam explicabo saepe itaque magnam quo necessitatibus nisi numquam 
-   					mollitia consectetur</p>
-   			<a href="day_tours_details">Read More</a>
+   				<p><?php echo substr(strip_tags($trip->introductory_text),0,160); ?></p>
+   			<a href="trip/<?php echo $trip->url; ?>">Read More</a>
    			</div>
    		</div>
-
-   	
-
-   		<div class="resizer">
-  	<h1>Lorem</h1>
-       <img src="http://dummyimage.com/250x200/c2c2c2/c2c2c2" alt="">
-   			<div class="teaser">
-   				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-   					Aperiam explicabo saepe itaque magnam quo necessitatibus nisi numquam 
-   					mollitia consectetur</p>
-   			<a href="">Read More</a>
-   			</div>
-   		</div>
-
-
-  </div>
-   
-   <div class="content2">
-   	<div class="resizer">
-  	<h1>Lorem</h1>
-       <img src="http://dummyimage.com/250x200/c2c2c2/c2c2c2" alt="">
-   			<div class="teaser">
-   				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-   					Aperiam explicabo saepe itaque magnam quo necessitatibus nisi numquam 
-   					mollitia consectetur</p>
-   			<a href="">Read More</a>
-   			</div>
-   	 </div>
-
-   	 <div class="resizer">
-  	<h1>Lorem</h1>
-       <img src="http://dummyimage.com/250x200/c2c2c2/c2c2c2" alt="">
-   			<div class="teaser">
-   				<p>Lorem ipsum </p>
-   			<a href="">Read More</a>
-   			</div>
-   	 </div>  <!-- end o f resizer-->
-   
-
-  </div>  <!-- end of content 2 -->
-   
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
+	</div>
+<?php 
+$count++;
+endforeach; ?>	
 </div></div></div>

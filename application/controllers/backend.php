@@ -23,6 +23,14 @@ class Backend extends CI_Controller {
 			redirect('login');
 	}	
 	
+	function _example_images_output($output = null)
+	{
+		if ($this->ion_auth->logged_in())
+			$this->load->view('example_images.php',$output);
+		else
+			redirect('login');
+	}	
+	
 	function lakeland_settings()
 	{
 		$this->grocery_crud->unset_delete();
@@ -534,10 +542,9 @@ class Backend extends CI_Controller {
 		
 	}
 	
-	function lakeland_home()
+	function lakeland_overland_safaris_packages()
 	{
-		$this->grocery_crud->unset_delete();
-		$this->grocery_crud->set_field_upload('image', 'img');
+
 		$output = $this->grocery_crud->render();
 
 		$this->_example_output($output);
@@ -549,7 +556,155 @@ class Backend extends CI_Controller {
 			$this->_example_output((object)array('output' => '' , 'js_files' => array() , 'css_files' => array()));
 		else
 			redirect('login');
-	}	
+	}
+
+	function lakeland_safaris($safari_type=1)
+	{
+		$this->db->where('safari_type',$safari_type);
+		$safaris=$this->db->get('lakeland_safaris');
+		$image_array = array();
+		if($safaris->num_rows() > 0)
+		{
+			foreach($safaris->result() as $safari)
+			{
+				$this->db->where('safari',$safari->id);
+				$this->db->where('priority',1);
+				$images = $this->db->get('lakeland_safari_images');
+				
+				if($images->num_rows() == 0)
+				{
+					$this->db->where('safari',$safari->id);
+					$this->db->limit(1);
+					$images = $this->db->get('lakeland_safari_images');
+					
+					if($images->num_rows() == 0)
+						continue;
+				}
+				
+				$image = $images->row()->image;
+				$image_array[] = array('id'=>$safari->id,'thumb_nail'=>'<img width = "100" src = "images/thumb__' . $image . '" />');
+				
+			}
+			
+			//print_r($image_array);
+			//die();
+			if($images->num_rows()>0)
+			$this->db->update_batch('lakeland_safaris',$image_array,'id');
+		}
+		
+		if($safari_type == 3)
+		{
+			$this->grocery_crud->display_as('introductory_text','Tour Description');
+			$this->grocery_crud->unset_fields('thumb_nail','itinerary','images','type','includes','excludes');
+			$this->grocery_crud->unset_columns('itinerary','includes','excludes','type','schedule');
+		}
+		
+		else if($safari_type == 2)
+		{
+			$this->grocery_crud->unset_fields('thumb_nail','itinerary','images','type');
+			$this->grocery_crud->unset_columns('type','schedule');
+		}
+		else
+		{
+			$this->grocery_crud->unset_columns('schedule');
+			$this->grocery_crud->unset_fields('thumb_nail','itinerary','images');
+		}	
+		
+		if($safari_type == 1)
+			$this->grocery_crud->set_relation('type','lakeland_overland_safaris_packages','title',null,'id ASC');
+		$this->grocery_crud->where('safari_type',$safari_type);
+		//$this->grocery_crud->unset_fields('thumb_nail','itinerary','images');
+		$this->grocery_crud->callback_after_insert(array($this, 'safaris_callback'));
+		$this->grocery_crud->callback_after_update(array($this, 'safaris_callback'));
+		$output = $this->grocery_crud->render();
+
+		$this->_example_output($output);
+	}
+	
+	function safaris_callback($post_array,$primary_key)
+	{
+		$data = array();
+		$data['images'] = '<a href = "backend/images/' . $primary_key . '/' . $this->uri->segment(3) . '">Images</a>'; 
+		$data['itinerary'] = '<a href = "backend/lakeland_itinerary/' . $primary_key .  '/' . $this->uri->segment(3) . '">Itinerary</a>';
+		$data['schedule'] = '<a href = "backend/lakeland_scheduled_trips/add/' . $primary_key .  '">Schedule</a>';
+		$data['safari_type'] = $this->uri->segment(3);
+		$this->db->where('id',$primary_key);
+		$this->db->update('lakeland_safaris', $data);
+
+	}
+
+	
+	
+	function images()
+	{
+		$image_crud = new image_CRUD();
+	
+		$image_crud->set_primary_key_field('id');
+		$image_crud->set_url_field('image');
+		$image_crud->set_title_field('title');
+		$image_crud->set_table('lakeland_safari_images')
+		->set_ordering_field('priority')
+		->set_relation_field('safari')
+		->set_image_path('images');
+			
+		$output = $image_crud->render();
+	
+		$this->_example_images_output($output);
+	}
+	
+	function lakeland_itinerary($safari)
+	{
+		$trip=$this->db->get_where('lakeland_safaris',array('id'=>$safari));
+		$name = $trip->row()->title;
+		//$type 
+		
+		$this->grocery_crud->where('safari',$safari);
+		$this->grocery_crud->set_subject('Itinerary for ' . $name);
+		$this->grocery_crud->unset_fields('safari');
+		$this->grocery_crud->unset_columns('safari');
+		$this->grocery_crud->callback_after_insert(array($this, 'itinerary_callback'));
+		$this->grocery_crud->callback_after_update(array($this, 'itinerary_callback'));
+		
+		
+		$output = $this->grocery_crud->render();
+		$output->additional_text='<a href = "backend/lakeland_safaris/' . $this->uri->segment(4) . '">Return to Safaris</a>';
+		//print_r ($output);
+		$this->_example_output($output);
+	}
+	
+	function itinerary_callback($post_array,$primary_key)
+	{
+			$data = array (
+			
+			'safari'=> $this->uri->segment(3)
+			
+		);
+		
+		$this->db->where('id',$primary_key);
+		$this->db->update('lakeland_itinerary',$data);
+	
+	}
+	
+	function lakeland_scheduled_trips()
+	{
+		//$this->grocery_crud->callback_after_insert(array($this, 'scheduled_trips_callback'));
+		//$this->grocery_crud->callback_after_update(array($this, 'scheduled_trips_callback'));
+		//$this->grocery_crud->unset_fields('trip');
+		$this->grocery_crud->set_relation('trip','lakeland_safaris','title');
+		$output = $this->grocery_crud->render();
+
+
+		$this->_example_output($output);
+
+	}
+	
+	function scheduled_trips_callback($post_array, $primary_key)
+	{
+		//echo $this->uri->segment(4);
+		$data = array( 'trip' => 1);
+		$this->db->where('id',$primary_key);
+		$this->db->update('lakeland_scheduled_trips',$data);
+	}
 	
 	
 	function valueToEuro($value, $row)

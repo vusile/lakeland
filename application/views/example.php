@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<base href = "<?php echo base_url(); ?>" />
 	<meta charset="utf-8" />
 <?php 
 if(isset($css_files))
@@ -33,11 +34,18 @@ a:hover
 	<div>
 		<a href='<?php echo site_url('logout')?>'>Logout</a> |
 		<a href='<?php echo site_url('backend/lakeland_pages')?>'>Pages</a> |
+		<a href='<?php echo site_url('backend/lakeland_safaris/1')?>'>Overland Safaris</a> |
+		<a href='<?php echo site_url('backend/lakeland_safaris/3')?>'>Day Trips</a> |
+		<a href='<?php echo site_url('backend/lakeland_safaris/2')?>'>Weekend Getaways</a> |
+		<a href='<?php echo site_url('backend/lakeland_scheduled_trips')?>'>Schedule</a> |
+		<a href='<?php echo site_url('backend/lakeland_overland_safaris_packages/')?>'>Overland Safaris Types</a> |
+		
 		<a href='<?php echo site_url('backend/lakeland_sections')?>'>Main Content Sections</a> |
 
 
 	</div>
 	<div style='height:20px;'></div>  
+		<?php if(isset($additional_text)) echo $additional_text; ?>
     <div>
 		<?php echo $output; ?>
     </div>

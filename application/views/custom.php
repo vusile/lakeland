@@ -1,26 +1,9 @@
-
-
-<div class="left">
-	
-<!-- sidebar here with div class leftmenu -->
-</div>
 <div class="right">
-	<h1 class="sitetitle">Custom Packages</h1>
+	<h1 class="sitetitle"><?php echo $title; ?></h1>
 	
 <div class="content">
 	<div style="margin-top: 20px;"></div>
-	<p>
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-	 Maiores nihil dolores aliquam odio adipisci itaque nostrum 
-	 cupiditate dolore officiis esse porro amet cum debitis neque 
-	 a laboriosam quam ipsa voluptates.
-	 </p>
-	 <p>
-	Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-	 Maiores nihil dolores aliquam odio adipisci itaque nostrum 
-	 cupiditate dolore officiis esse porro amet cum debitis neque 
-	 a laboriosam quam ipsa voluptates.
-	 </p>
+	<?php echo $details->content; ?>
 
   <div class="scheduled">
 

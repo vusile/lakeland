@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "main";
 $route['404_override'] = '';
-$route['^(?!backend|auth|action|examples).*'] = "main/$0";
+$route['^(?!backend|auth|action|images_examples).*'] = "main/$0";
 $route['day-tours'] = "main/day_tours";
 $route['summary'] = "main/summary";
 $route['scheduled'] = "main/schedule";
