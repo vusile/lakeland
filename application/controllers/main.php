@@ -20,20 +20,35 @@ class Main extends CI_Controller {
 	 
 	function test()
 	{
+		
+		$query = "select saf.title, saf.url, sch.start_date, sch.end_date from lakeland_safaris saf, lakeland_scheduled_trips sch where saf.id = sch.trip and start_date > '" . date('Y-m-d') . "' order by start_date limit 3";
+
+		$dates = $this->db->query($query);
+		
+		$schedule = array();
+		
+		foreach($dates->result() as $dt)
+		{
+			$schedule[date('m-Y',strtotime($dt->start_date))][$dt->url]= $dt->title . '>>>' . $dt->start_date . '---' . $dt->end_date ;
+		}
+		
+
+		
 		$interval = 12;
 		$date = new DateTime(date("d-m-Y"));
 		
+		$datas = array();
+		
 		for($i=1;$i <= $interval; $i++)
 		{
-			echo $date->format('d-m-Y') . "<br>";
+			//echo $date->format('d-m-Y') . "<br>";
+			echo $date->format('F') . "<br>";
+			if(isset($schedule[$date->format('m') . '-' . $date->format('Y')]))
+				foreach($schedule[$date->format('m') . '-' . $date->format('Y')] as $key => $value)
+					echo $key . '=>' . $value . '<br><br>';
 			$date->add(new DateInterval('P1M'));
 		}
-		
-		$this->db->where(' month(start_date) = ' , date('m') , FALSE);
-		$sch = $this->db->get('lakeland_scheduled_trips');
-		
-		echo $sch->num_rows();
-		
+
 		
 	}
 	 
