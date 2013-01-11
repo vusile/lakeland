@@ -16,11 +16,11 @@ foreach($trips->result() as $trip):
   <div class="content1">
  <?php endif; ?>
   	<div class="resizer">
-  	<h1><a href="trip/<?php echo $trip->url; ?>"><?php echo $trip->title; ?></a></h1>
-       <a href="trip/<?php echo $trip->url; ?>"><?php echo $trip->thumb_nail; ?></a>
+  	<h1><a href="<?php echo $detail_url ?>/<?php echo $trip->url; ?>"><?php echo $trip->title; ?></a></h1>
+       <a href="<?php echo $detail_url ?>/<?php echo $trip->url; ?>"><?php echo $trip->thumb_nail; ?></a>
    			<div class="teaser">
    				<p><?php echo substr(strip_tags($trip->introductory_text),0,160); ?></p>
-   			<a href="trip/<?php echo $trip->url; ?>">Read More</a>
+   			<a href="<?php echo $detail_url ?>/<?php echo $trip->url; ?>">Read More</a>
    			</div>
    		</div>
 	</div>

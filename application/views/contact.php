@@ -5,7 +5,7 @@
 
 </div>
 <div class="right">
-	<h1 class="sitetitle">Contact Us</h1>
+	<h1 class="sitetitle"><?php echo $details->title ?></h1>
 	
 <div class="content">
 	<div style="margin-top: 40px;"></div>
@@ -83,7 +83,7 @@
         </p>
         <p class="subject">	
             <label for="subject">Subject:</label><br>
-            <input type="subject" name="subject" placeholder="Enter The Subject"  required/>
+            <input type="subject" name="subject" placeholder="Enter The Subject"  required <?php if(isset($subject)) echo 'value="' . ucwords($subject) . '"' ?>/>
            <!--  <span class="form_hint">Proper format " "</span> -->
         </p> 
           <p class="interests">	

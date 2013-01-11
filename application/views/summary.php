@@ -1,24 +1,26 @@
   <div class="first_part">
    
 	<h1 class="sitetitle"><?php echo $title ?></h1>
+	<?php if(isset($inquiry)): ?>
     <div class="inquiry">
-      <a href="#" class="inquiry-button">Inquiry</a>
+      <a href="contact/<?php echo $safari->url ?>" class="inquiry-button">Inquire About <?php echo $title ?></a>
     </div>
+	<?php endif; ?>
     <p>  
 		<?php echo $safari->introductory_text; ?>
 	</p>
-    <h2>Price: $<?php echo number_format($safari->price); ?></h2><br>
+    <?php if(isset($safari->price)): ?><h2>Price: $<?php echo number_format($safari->price); ?></h2><br><?php endif; ?>
 	
-    <?php if($safari->includes != ''):?>
+    <?php if(isset($safari->includes) and $safari->includes != ''):?>
 	<h3> Includes:  </h3>
 
 	<?php echo $safari->includes; ?>
 	<?php endif; ?>
-    <?php if($safari->excludes != ''):?>
+    <?php if(isset($safari->excludes) and $safari->excludes != ''):?>
     <h3> Excludes  </h3>
     <?php echo $safari->excludes; ?>
 	<?php endif; ?>
-    <?php if($itinerary->num_rows() > 0):?>
+    <?php if( isset($itinerary) and  $itinerary->num_rows() > 0):?>
     <h3> Itinerary </h3>
 	<?php foreach($itinerary->result() as $item): ?>
 		<h4><?php echo $item->title ?></h4>
@@ -26,9 +28,11 @@
     <?php endforeach; ?> 
 	<?php endif; ?>
 	
-  <div class="inquiry">
-      <a href="#" class="inquiry-button">Inquiry</a>
+	<?php if(isset($inquiry)): ?>
+    <div class="inquiry">
+     <a href="contact/<?php echo $safari->url ?>" class="inquiry-button">Inquire About <?php echo $title ?></a>
     </div>
+	<?php endif; ?>
   </div>  <!-- end of div first_par -->
 
    <!--  <div class="clear"></div> -->

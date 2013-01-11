@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+	<base href = "<?php echo base_url(); ?>" />
 <?php 
 foreach($css_files as $file): ?>
 	<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
@@ -28,7 +29,7 @@ a:hover
 </head>
 <body>
 	<div>
-		<a href='<?php echo site_url('backend/lakeland_safaris/' . $this->uri->segment(4))?>'>Return to Safaris</a>
+		<?php if(isset($additional_text)) echo $additional_text; ?>
 	</div>
 	<div style='height:20px;'></div>  
     <div>

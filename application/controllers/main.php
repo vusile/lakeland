@@ -17,7 +17,26 @@ class Main extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	 	 
+	 
+	function test()
+	{
+		$interval = 12;
+		$date = new DateTime(date("d-m-Y"));
+		
+		for($i=1;$i <= $interval; $i++)
+		{
+			echo $date->format('d-m-Y') . "<br>";
+			$date->add(new DateInterval('P1M'));
+		}
+		
+		$this->db->where(' month(start_date) = ' , date('m') , FALSE);
+		$sch = $this->db->get('lakeland_scheduled_trips');
+		
+		echo $sch->num_rows();
+		
+		
+	}
+	 
 	function menu()
 	{
 		$this->db->order_by('priority');
@@ -29,7 +48,7 @@ class Main extends CI_Controller {
 			$pages = $this->db->get('lakeland_pages');
 			if($pages->num_rows() >0)
 			{
-				$menu .= "<li><a href = '#'>"  . $section->name .  "</a>";
+				$menu .= "<li><a href = '" . current_url() . "'>"  . $section->name .  "</a>";
 				$menu .= "<ul class='subnav'>";	
 				foreach($pages->result() as $page)
 				{	
@@ -38,7 +57,7 @@ class Main extends CI_Controller {
 					
 					if($sub_pages->num_rows() > 0)
 					{
-						$menu .= "<li><a href = '#'>"  . $page->title .  "</a>";
+						$menu .= "<li><a href = '" . current_url() . "'>"  . $page->title .  "</a>";
 						$menu .= "<ul class='subnav'>";	
 						
 						foreach($sub_pages->result() as $sub_page)
@@ -164,16 +183,50 @@ class Main extends CI_Controller {
 	{
 		//$this->db->where('url',$url);
 	//	$content = $this->db->get('lakeland_pages');
-		
+	
+		switch($url)
+		{
+			case 'national-parks':
+				
+				$this->db->where('destination_type',1);
 
-		//$data['details'] =  $content->row();
-	//	$header['title'] = $data['details']->title;
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Destinations</a></li><li><a href="#" class="active">National Parks</a></li>';
+
+				
+			break;
+			
+			case 'beaches':
+				$this->db->where('destination_type',2);
+	
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Destinations</a></li><a href="#" class="active">Beaches</a></li>';
+
+			break;
+			
+			case 'cultural-tourism':
+				$this->db->where('destination_type',3);
+
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Destinations</a></li><li><a href="#" class="active">Cultural Tourism</a></li>';	
+
+			break;
+			
+		}
+		
+		$this->db->select('*, destination_name as title, destination_description as introductory_text');
+		$data['trips'] = $this->db->get('lakeland_destinations');
+
+		
+		$this->db->where('url',$url);
+		$content = $this->db->get('lakeland_pages');
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
 		$menu['menu'] = $this->menu();
 		$sidebar['trips'] = $this->sidebar();
-		$this->load->view('header');//,$header);
+		$data['detail_url'] = 'destination';
+		
+		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
-		$this->load->view('day_tours');//,$data);
+		$this->load->view('day_tours',$data);
 		$this->load->view('footer');
 	}
 	
@@ -222,7 +275,30 @@ class Main extends CI_Controller {
 			break;
 			
 			case 'custom-packages':
+				$beaches = array();
+				$cultural = array();
+				$parks = array();
+				
 				$custom = 1;
+				$this->db->order_by('destination_type');
+				$destinations = $this->db->get('lakeland_destinations');
+				
+				foreach($destinations->result() as $destination)
+				{
+					if($destination->destination_type == 1)
+						$parks[$destination->url] = $destination->destination_name;
+					else if($destination->destination_type == 2)
+						$beaches[$destination->url] = $destination->destination_name;
+					else if($destination->destination_type == 3)
+						$cultural[$destination->url] = $destination->destination_name;
+				}
+				
+				//print_r($parks); die();
+				
+				$data['parks'] = $parks;
+				$data['beaches'] = $beaches;
+				$data['cultural'] = $cultural;
+				
 			break;
 			
 			case 'scheduled-trips':
@@ -234,6 +310,7 @@ class Main extends CI_Controller {
 		$sidebar['trips'] = $this->sidebar();
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$data['detail_url'] = 'trip';
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
@@ -248,25 +325,7 @@ class Main extends CI_Controller {
 	}
 	
 	
-	public function day_tours($url='')
-	{
-		if($url='day_tours'){
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('day_tours');
-		//$this->load->view('day_tours_details');
-		$this->load->view('footer');
-	    }
 
-		else{
-			
-				$this->load->view('header');
-				$this->load->view('menu');
-				$this->load->view('day_tours_details');
-				$this->load->view('footer');
-			}
-			
-	}
 	
 	public function trip($url)
 	{
@@ -282,6 +341,7 @@ class Main extends CI_Controller {
 		$this->db->order_by('priority');
 		$this->db->where('safari', $data['safari']->id);
 		$data['images'] = $this->db->get('lakeland_safari_images');
+		$data['inquiry'] = 1;
 		
 		//$data['details'] =  $content->row();
 		$header['title'] = $data['safari']->title;
@@ -294,51 +354,51 @@ class Main extends CI_Controller {
 		
 	}
 	
-	public function summary()
+	public function destination($url)
 	{
+		$this->db->where('url',$url);
+		$this->db->select('*, destination_name as title, destination_description as introductory_text');
+		$destination = $this->db->get('lakeland_destinations');
 		
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('summary');
-		$this->load->view('footer');
-	}
-	public function custom()
-	{
+		$data['safari'] = $destination->row();
+			
+	
+		$this->db->order_by('priority');
+		$this->db->where('destination', $data['safari']->id);
+		$data['images'] = $this->db->get('lakeland_destination_images');
 		
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('sidebar');
-		$this->load->view('custom');
+		//$data['details'] =  $content->row();
+		$header['title'] = $data['safari']->destination_name;
+		$menu['menu'] = $this->menu();
+		$this->load->view('header',$header);
+		$this->load->view('menu',$menu);
+		//$this->load->view('sidebar');
+		$this->load->view('summary',$data);
 		$this->load->view('footer');
-	}
-	public function car_rentals()
-	{
 		
-		$this->load->view('header');
-		$this->load->view('menu');
-		// $this->load->view('drive');
-		//$this->load->view('chaufer-driven');
-		$this->load->view('airport-transfer');
-		$this->load->view('footer');
 	}
-	public function scheduled()
-	{
-		
-		$this->load->view('header');
-		$this->load->view('menu');
-		$this->load->view('schedule');
-		$this->load->view('footer');
-	}
-	public function contact()
-	{
 	
 	
+	public function contact($url = '')
+	{
+		if($url != '')
+		{
+			$data['subject'] = '';
+			$subject = explode('-',$url);
+			foreach($subject as $sub)
+				$data['subject'] .= $sub . ' ';
+		}
+		$this->db->where('url','contact-us');
+		$content = $this->db->get('lakeland_pages');
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
+		
 		$menu['menu'] = $this->menu();
 		$sidebar['trips'] = $this->sidebar();
-		$this->load->view('header');
+		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
-		$this->load->view('contact');
+		$this->load->view('contact',$data);
 		$this->load->view('footer');
 	}
 	
@@ -810,23 +870,9 @@ class Main extends CI_Controller {
 			redirect('contact/3');
 	}
 	
-	function the_team()
-	{
-		$this->db->where('identifier','TEAM');
-		$details = $this->db->get('lakeland_pages');
+
 	
-		$data['details'] = $details->row();
-		$header['title'] = $details->row()->title;
-		
-		$data['team'] = $this->db->get('lakeland_team');
-		$this->load->view('Header',$header);
-		$this->load->view('Team',$data);
-		$this->load->view('Footer');
-	}
-	
-	/*function validate_captcha()
-	{
-	}*/
+
 	
 	/*function register_test()
 	{

@@ -5,64 +5,37 @@
 	<div style="margin-top: 20px;"></div>
 	<?php echo $details->content; ?>
 
-  <div class="scheduled">
+  <div class="scheduled" style="color:#009F4D;">
 
 
 	<h1 class="senta">National Parks</h1>
+	<?php foreach($parks as $url=>$park): ?>
+	<div class = "row" style = "width: 600px; margin-top: 10px; margin-left: 50px;">
+		  <div class = "col" style = "width: 290px; float: left; clear: none; margin-bottom: 5px"><a href="destination/<?php echo $url; ?>"><?php echo $park; ?></a></div> 
+	</div>
+	<?php endforeach; ?>
+	<div class = "clear" style = "width: 600px; margin-top: 10px; margin-left: 50px; border-bottom: 2px solid #CCC"></div>
+		  
+	   
+		  
+	<br><h1 class="senta">Beaches</h1>
 
 	  
-	    <div class="section1">
-	          <ul>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				
-			  </ul>
-		  </div>
-		  
-		  <div class="section2">
-		      <ul>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				
-			  </ul>
-		  </div>
-		  <hr>
-	<h1 class="senta">Beaches</h1>
+	<?php foreach($beaches as $url=>$beach): ?>
+	<div class = "row" style = "width: 600px; margin-top: 10px; margin-left: 50px;">
+		  <div class = "col" style = "width: 290px; float: left; clear: none; margin-bottom: 5px"><a href="destination/<?php echo $url; ?>"><?php echo $beach; ?></a></div> 
+	</div>
+	<?php endforeach; ?>
+	<div class = "clear" style = "width: 600px; margin-top: 10px; margin-left: 50px; border-bottom: 2px solid #CCC"></div>
+		<br><h1 class="senta">Cultural Tourism</h1>
 
 	  
-	    <div class="section1">
-	          <ul>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				
-			  </ul>
-		  </div>
-		  
-		  <div class="section2">
-		      <ul>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				<li><span style="color:#009F4D;"><a href="">lorem lipsum lorem kiagata</a></span></li>
-				
-			  </ul>
-		  </div>
-		  <hr>
-
+	   		<?php foreach($cultural as $url=>$culture): ?>
+	<div class = "row" style = "width: 600px; margin-top: 10px; margin-left: 50px;">
+		  <div class = "col" style = "width: 290px; float: left; clear: none; margin-bottom: 5px"><a href="destination/<?php echo $url; ?>"><?php echo $culture; ?></a></div> 
+	</div>
+	<?php endforeach; ?>
+	<div class = "clear" style = "width: 600px; margin-top: 10px; margin-left: 50px; border-bottom: 2px solid #CCC"></div>
 
 	
 	</div>  <!-- end of scheduled  -->

@@ -182,13 +182,72 @@ class Backend extends CI_Controller {
 		
 	}
 	
-	function lakeland_company_sectors()
+	function lakeland_destinations()
 	{
+		$destinations=$this->db->get('lakeland_destinations');
+		$image_array = array();
+		if($destinations->num_rows() > 0)
+		{
+			foreach($destinations->result() as $destination)
+			{
+				$this->db->where('destination',$destination->id);
+				$this->db->where('priority',1);
+				$images = $this->db->get('lakeland_destination_images');
+				
+				if($images->num_rows() == 0)
+				{
+					$this->db->where('destination',$destination->id);
+					$this->db->limit(1);
+					$images = $this->db->get('lakeland_destination_images');
+					
+					if($images->num_rows() == 0)
+						continue;
+				}
+				
+				$image = $images->row()->image;
+				$image_array[] = array('id'=>$destination->id,'thumb_nail'=>'<img width = "100" src = "images/thumb__' . $image . '" />');
+				
+			}
+			
+			//print_r($image_array);
+			//die();
+			if($images->num_rows()>0)
+			$this->db->update_batch('lakeland_destinations',$image_array,'id');
+		}
+		$this->grocery_crud->unset_fields('thumb_nail','images');
+		$this->grocery_crud->callback_after_insert(array($this, 'destinations_callback'));
+		$this->grocery_crud->callback_after_update(array($this, 'destinations_callback'));
+		$this->grocery_crud->set_relation('destination_type','lakeland_destination_types','title');
 		$output = $this->grocery_crud->render();
-
 		$this->_example_output($output);
-
 	}	
+	
+	function destinations_callback($post_array,$primary_key)
+	{
+		$data = array();
+		$data['images'] = '<a href = "backend/destination_images/' . $primary_key . '/' . $this->uri->segment(3) . '">Images</a>'; 
+		$this->db->where('id',$primary_key);
+		$this->db->update('lakeland_destinations', $data);
+
+	}
+	
+	function destination_images()
+	{
+		$image_crud = new image_CRUD();
+	
+		$image_crud->set_primary_key_field('id');
+		$image_crud->set_url_field('image');
+		$image_crud->set_title_field('title');
+		$image_crud->set_table('lakeland_destination_images')
+		->set_ordering_field('priority')
+		->set_relation_field('destination')
+		->set_image_path('images');
+			
+		$output = $image_crud->render();
+		$output->additional_text = "<a href = 'backend/lakeland_destinations'>Return to Destinations</a>";
+	
+		$this->_example_images_output($output);
+	}
 	
 	function lakeland_team()
 	{
@@ -648,6 +707,7 @@ class Backend extends CI_Controller {
 		->set_image_path('images');
 			
 		$output = $image_crud->render();
+		$output->additional_text = "<a href = 'backend/lakeland_safaris/" . $this->uri->segment(4) . "'>Return to Safaris</a>";
 	
 		$this->_example_images_output($output);
 	}

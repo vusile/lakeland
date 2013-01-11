@@ -37,6 +37,7 @@ a:hover
 		<a href='<?php echo site_url('backend/lakeland_safaris/1')?>'>Overland Safaris</a> |
 		<a href='<?php echo site_url('backend/lakeland_safaris/3')?>'>Day Trips</a> |
 		<a href='<?php echo site_url('backend/lakeland_safaris/2')?>'>Weekend Getaways</a> |
+		<a href='<?php echo site_url('backend/lakeland_destinations')?>'>Destinations</a> |
 		<a href='<?php echo site_url('backend/lakeland_scheduled_trips')?>'>Schedule</a> |
 		<a href='<?php echo site_url('backend/lakeland_overland_safaris_packages/')?>'>Overland Safaris Types</a> |
 		
