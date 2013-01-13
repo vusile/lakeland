@@ -18,7 +18,7 @@ class Main extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	 
-	function test()
+	function schedule()
 	{
 		
 		$query = "select saf.title, saf.url, sch.start_date, sch.end_date from lakeland_safaris saf, lakeland_scheduled_trips sch where saf.id = sch.trip and start_date > '" . date('Y-m-d') . "' order by start_date limit 3";
@@ -29,27 +29,31 @@ class Main extends CI_Controller {
 		
 		foreach($dates->result() as $dt)
 		{
-			$schedule[date('m-Y',strtotime($dt->start_date))][$dt->url]= $dt->title . '>>>' . $dt->start_date . '---' . $dt->end_date ;
+			$schedule[date('m-Y',strtotime($dt->start_date))][$dt->url] = date('d-m-Y',strtotime($dt->start_date)) . '---' . date('d-m-Y',strtotime($dt->end_date)) . ' > ' . $dt->title ;
 		}
-		
-
-		
+				
 		$interval = 12;
 		$date = new DateTime(date("d-m-Y"));
 		
 		$datas = array();
 		
+		$schedule_string = '';
+		
 		for($i=1;$i <= $interval; $i++)
 		{
-			//echo $date->format('d-m-Y') . "<br>";
-			echo $date->format('F') . "<br>";
+			$schedule_string .= '<h2>' . $date->format('F') . '</h2>';
+			
 			if(isset($schedule[$date->format('m') . '-' . $date->format('Y')]))
+			{
+				$schedule_string .= '<ul>';
 				foreach($schedule[$date->format('m') . '-' . $date->format('Y')] as $key => $value)
-					echo $key . '=>' . $value . '<br><br>';
+					$schedule_string .=  '<li ><a href = "trip/'. $key  . '">' . str_replace('---', ' to ' , $value) . '</a></li>';
+				$schedule_string .= '</ul>';
+			}
 			$date->add(new DateInterval('P1M'));
 		}
 
-		
+		return $schedule_string;
 	}
 	 
 	function menu()
@@ -290,6 +294,7 @@ class Main extends CI_Controller {
 			break;
 			
 			case 'custom-packages':
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#" class="active">Custom Packages</a></li>';
 				$beaches = array();
 				$cultural = array();
 				$parks = array();
@@ -317,6 +322,8 @@ class Main extends CI_Controller {
 			break;
 			
 			case 'scheduled-trips':
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#" class="active">Scheduled Trips</a></li>';
+				$data['schedule'] = $this->schedule();
 				$scheduled = 1;
 			break;
 			
@@ -357,6 +364,36 @@ class Main extends CI_Controller {
 		$this->db->where('safari', $data['safari']->id);
 		$data['images'] = $this->db->get('lakeland_safari_images');
 		$data['inquiry'] = 1;
+		
+		
+		if($data['safari']->safari_type == 1)
+		{
+			switch($data['safari']->type)
+			{
+				case 1:
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href="safaris/21-40-day-trips">21 - 40 Day Trips</a></li><li><a href="#" class="active">' . $data['safari']->title . '</a></li>';
+				break;
+				
+				case 2:
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href=""safaris/14-20-day-trips"">14 - 20 Day Trips</a></li><a href="#" class="active">' . $data['safari']->title . '</a></li>';
+				break;
+				
+				case 3:
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href=""safaris/7-13-day-trips"">7 - 13 Day Trips</a></li><li><a href="#" class="active">' . $data['safari']->title . '</a></li>';
+				break;
+				
+			}
+		}
+		
+		else if($data['safari']->safari_type == 2)			
+			$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="safaris/weekend-getaways">Weekend Getaways</a></li><li><a href="#" class="active">' . $data['safari']->title . '</a></li>';		
+			
+		else if($data['safari']->safari_type == 3)			
+			$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="safaris/day-tours">Day Tours</a></li><li><a href="#" class="active">' . $data['safari']->title . '</a></li>';
+				
+
+		
+		
 		
 		//$data['details'] =  $content->row();
 		$header['title'] = $data['safari']->title;
@@ -409,6 +446,7 @@ class Main extends CI_Controller {
 		$header['title'] = $data['details']->title;
 		
 		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">' .  $data['details']->title  . '</a></li>';
 		$sidebar['trips'] = $this->sidebar();
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);

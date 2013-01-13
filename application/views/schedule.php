@@ -10,7 +10,8 @@
 
   <div class="scheduled">
 
-	<h1>January 2013</h1>
+	<?php echo $schedule; ?>
+	<!--<h2>January 2013</h2>
           <ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -22,7 +23,7 @@
 			
 		  </ul>
 	<hr>
-	<h1>February</h1>
+	<h2>February</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -35,21 +36,7 @@
 		  </ul>
 	
 	<hr>
-	<h1>March</h1>
-	<ul>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			
-			
-		  </ul>
-	
-	<hr>
-	<h1>April</h1>
+	<h2>March</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -63,20 +50,7 @@
 		  </ul>
 	
 	<hr>
-	<h1>May </h1>
-	<ul>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
-			
-		  </ul>
-	
-	<hr>
-	<h1>June</h1>
+	<h2>April</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -90,7 +64,20 @@
 		  </ul>
 	
 	<hr>
-	<h1>July</h1>
+	<h2>May </h2>
+	<ul>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			
+		  </ul>
+	
+	<hr>
+	<h2>June</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -104,7 +91,21 @@
 		  </ul>
 	
 	<hr>
-	<h1>August</h1>
+	<h2>July</h2>
+	<ul>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
+			
+			
+		  </ul>
+	
+	<hr>
+	<h2>August</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -117,7 +118,7 @@
 		  </ul>
 	
 	<hr>
-	<h1>September</h1>
+	<h2>September</h2>
 	<ul><li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -130,7 +131,7 @@
 		  </ul>
 	
 	<hr>
-	<h1>October</h1>
+	<h2>October</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -143,7 +144,7 @@
 			
 		  </ul>
 	<hr>
-	<h1>November</h1>
+	<h2>November</h2>
 	<ul>
 		<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -155,7 +156,7 @@
 			
 		  </ul>
 	<hr>
-	<h1>December</h1>
+	<h2>December</h2>
 	<ul>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
@@ -165,22 +166,11 @@
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			<li><span style="color:#009F4D;">DD/MM/YY-DD/MM/YY</span>&nbsp;&nbsp;Trip Name</li>
 			
-		  </ul>
+		  </ul> -->
 	<hr>
 	
 	
 	</div>
 	
-  
-
-
-
-
-
-
-
-
-
-
-
+ 
 </div></div></div>
