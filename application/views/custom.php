@@ -111,11 +111,11 @@
             <textarea name="rooms" cols="40" rows="6" required></textarea>
         </p>
          <p class="captcha">	
-            <input type="captcha" name="captcha" placeholder="" />
+            <?php echo $cap['image'] ?>
             <p>Please Prove That You Are Human By Entering The Characters In An Image Above</p>
         </p> 
         <p class="captcha2">	
-            <input type="captcha2" name="captcha2" placeholder="" required />
+            <input type="captcha" name="captcha" placeholder="" required />
 
         </p>
           <p>	

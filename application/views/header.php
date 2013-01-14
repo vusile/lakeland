@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="images/Nat_ico.ico" />
 <title><?php if( isset($title)) echo $title; ?></title>
+<meta name="description" content= "<?php if( isset($description)) echo $description; ?>" >
  
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link href="css/dropdownmenu.css" rel="stylesheet" type="text/css" />
@@ -19,6 +20,11 @@
 <script type="text/javascript" src="js/baner.js"></script>
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/shadowbox.css">
+<script type="text/javascript" src="js/shadowbox.js"></script>
+<script type="text/javascript">
+Shadowbox.init();
+</script>
 </head>
 <body>
 	<div class="bodyimage">

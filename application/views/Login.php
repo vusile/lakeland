@@ -1,20 +1,20 @@
-<div class="container transparent" style = 'width: 900px;margin: 10px auto; background: #FFF; padding: 10px; ' >
-<h1>Login</h1>
-<p></p>
-<form class="form-horizontal" action="login_user" method = "post">
 
- <div class="control-group">
-    <label class="control-label" for="email">Email:</label>
-    <div class="controls">
-      <input type="text" id="email" name = "email" placeholder="Your Email Address">
-    </div>
-  </div>
- <div class="control-group">
-    <label class="control-label" for="password">Password:</label>
-    <div class="controls">
-      <input type="password" id="password" name = "password" placeholder="Your Password">
-    </div>
-  </div>
+<div class="right">
+	<h1 class="sitetitle"><?php echo $title ?></h1>
+<div class="content">
+	<div style="margin-top: 40px;"></div>
+<p></p>
+<form class="contact_form" action="login_user" method = "post">
+
+	   <p class="name">	
+            <label for="email">Name:</label><br>
+            <input type="email" name = "email"  required />
+        </p>	   
+		
+		<p class="password">	
+            <label for="password">Password:</label><br>
+            <input type="password" name = "password"  required />
+        </p>
  
   <div class="control-group">
     <div class="controls">
@@ -22,4 +22,6 @@
     </div>
   </div>
 </form>
+</div>
+</div>
 </div>

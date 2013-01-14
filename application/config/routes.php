@@ -45,13 +45,9 @@ $route['day-tours'] = "main/day_tours";
 $route['summary'] = "main/summary";
 $route['scheduled'] = "main/schedule";
 $route['custom'] = "main/custom";
-$route['self-drive'] = "main/car_rentals";
-$route['chaufer-driven'] = "main/car_rentals";
-$route['airport-transfer'] = "main/car_rentals";
-$route['contact'] = "main/contact";
-$route['our-songs'] = "main/songs";
 $route['contact-us'] = "main/contact";
-$route['about-us'] = "main/about";
+$route['about-lakeland-africa'] = "main/about";
+$route['photo-albums'] = "main/photos";
 
 
 

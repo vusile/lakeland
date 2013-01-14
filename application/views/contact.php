@@ -1,9 +1,4 @@
 
-<div class="left">
-	 
-<!-- sidebar here with div class leftmenu -->
-
-</div>
 <div class="right">
 	<h1 class="sitetitle"><?php echo $details->title ?></h1>
 	
@@ -15,6 +10,7 @@
        	<li><span style="color:#000;font-weight: bold;">Fax:</span><span style="color:#009F4D;font-weight: bold;"> +255 222 761 812 </span></li>
        	<li><span style="color:#000;font-weight: bold;">Mobile:</span> <span style="color:#009F4D;font-weight: bold;"> +255 784 885 901 </span></li>
        	<li><span style="color:#000;font-weight: bold;">Skype(ID:XXXXXX):</span><span style="color:#009F4D;font-weight: bold;"> johndoe</span></li> 
+       	<li><span style="color:#000;font-weight: bold;"><img src = 'images/email.png' /></span></li> 
        	<!-- <li><span style="margin-top: -24px;margin-left: 200px;"> <img src="images/skype.png" alt=""></span></li> -->
        </ul>
 
@@ -67,15 +63,7 @@
             <label for="rooms">Number and Type of Rooms Required:</label><br>
             <textarea name="rooms" cols="40" rows="6" ></textarea>
         </p>
-       <!--  <p class="desired_accomodation">	
-            <label for="desired_accomodation">Desired Accomodation:</label><br>
-           <select>
-			<option value="Moderate">Moderate</option>
-			<option value="luxury">Luxury</option>
-			<option selected="selected" value="budget">Budget</option>
-			</select>
 
-        </p>  -->
         <p class="approx_budget">	
             <label for="approx_budget">Approximated Budget:</label><br>
             <input type="approx_budget" name="approx_budget" placeholder="Enter Your Approximated Budget" />
@@ -91,11 +79,11 @@
             <textarea name="rooms" cols="40" rows="6" required></textarea>
         </p>
          <p class="captcha">	
-            <input type="captcha" name="captcha" placeholder="" />
+            <?php echo $cap['image'] ?>
             <p  class="contact_teaser">Please Prove That You Are Human By Entering The Characters In An Image Above</p>
         </p> 
         <p class="captcha2">	
-            <input type="captcha2" name="captcha2" placeholder="" required />
+            <input type="captcha" name="captcha" placeholder="" required />
 
         </p>
           <p>	

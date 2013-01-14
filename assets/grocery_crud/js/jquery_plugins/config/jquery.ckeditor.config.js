@@ -18,8 +18,8 @@ $(function(){
 		[
 			{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Link','Unlink'] },
 			{ name: 'paragraph', items : [ 'NumberedList','BulletedList','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },
-			{ name: 'insert', items : [ 'Image','HorizontalRule','MediaEmbed' ] },
-			{ name: 'styles', items : [ 'Styles','Format'] }
+			{ name: 'insert', items : [ 'Image','HorizontalRule','MediaEmbed','Table' ] },
+			{ name: 'styles', items : [ 'Styles','Format','Source'] }
 		],
 		width:700,
 		filebrowserBrowseUrl : 'http://localhost/lakeland/ckfinder/ckfinder.html',

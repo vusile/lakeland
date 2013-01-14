@@ -1,8 +1,7 @@
 </div>
-<div class="footer"><span class="first selected">HOME</span><span>Group-Budget-Travels</span><span>ACCOMMODATION</span><span>Airport and City Transfers</span><span>WILDLIFE TOURISM</span><span>BEACH HOLIDAYS</span><span>Car &amp;  Truck Rentals</span><a href="http://wwww.ebpol.pl/" target="_blank" class="nt">
-    Design by:<span>WEBPOL.<strong>pl</strong></span></a></div>
+<div class="footer"> <a href="http://www.zoomtanzania.com/Zoom-Tanzania-Web-Design" target="_blank" class="nt">Website created by Zoom Tanzania Website Design</a></div>
 <div class="underfooter">
-Lakeland Africa Limited &copy; 2011.All Rights Reserved.</div></div>
+Lakeland Africa Limited &copy; <?php echo date('Y'); ?>.All Rights Reserved.</div></div>
 
 </body>
 <script type="text/javascript">

@@ -43,9 +43,9 @@
   <?php foreach($images->result() as $image): ?>
     <div class="image">
     <img src="images/thumb__<?php echo $image->image ?>" alt="<?php echo $image->title ?>">
-    <div class="text">
+   <!-- <div class="text">
       <p><?php echo $image->title ?></p>
-    </div>
+    </div>-->
     </div>
 	<?php endforeach; ?>
   </div>   <!-- end of div second part  -->

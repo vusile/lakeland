@@ -51,7 +51,7 @@ div.sitemap span{display:inline-block;width:20px;height:9px;background:url(../im
 	
 div.sitecontainer{width:960px;background:url(../images/bgcontent.jpg) top center no-repeat #FFFFFF; overflow:hidden;padding-bottom:80px;}
 div.left{width:290px;float:left;}
-div.right{width:670px;float:left;}
+div.right{width:640px;float:left;}
 div.footer{width:960px;height:50px; background:url(../images/stopka.jpg);}
 	div.footer span,div.footer a{display:inline-block; float:left;padding-left:10px;padding-right:10px; font-family:Arial; font-size:9px; line-height:14px; 
 	color:#044904;margin-top:22px;}

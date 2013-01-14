@@ -120,13 +120,10 @@ class Main extends CI_Controller {
 		$content = $this->db->get('lakeland_pages');
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$sidebar['fb'] = 1;
 		$sidebar['trips'] = $this->sidebar();
 		$menu['menu'] = $this->menu();
-		
-		
-		
-		
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
@@ -143,10 +140,11 @@ class Main extends CI_Controller {
 	
 	public function about()
 	{		
-		$this->db->where('url','about-us');
+		$this->db->where('url','about-lakeland-africa');
 		$content = $this->db->get('lakeland_pages');
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$menu['menu'] = $this->menu();
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
 		$sidebar['trips'] = $this->sidebar();
@@ -165,7 +163,7 @@ class Main extends CI_Controller {
 
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
-		
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$menu['menu'] = $this->menu();
 		
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Safari Vehicles</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
@@ -187,6 +185,7 @@ class Main extends CI_Controller {
 		
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		//$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		
 		$menu['menu'] = $this->menu();
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Car Rentals</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
@@ -238,6 +237,7 @@ class Main extends CI_Controller {
 		$content = $this->db->get('lakeland_pages');
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$menu['menu'] = $this->menu();
 		$sidebar['trips'] = $this->sidebar();
 		$data['detail_url'] = 'destination';
@@ -258,7 +258,7 @@ class Main extends CI_Controller {
 		
 		switch($url)
 		{
-			case '21-40-day-trips':
+			case '21-40-tanzania-overland-safaris':
 				$this->db->where('safari_type',1);
 				$this->db->where('type',1);
 				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href="#" class="active">21 - 40 Day Trips</a></li>';
@@ -266,14 +266,14 @@ class Main extends CI_Controller {
 				
 			break;
 			
-			case '14-20-day-trips':
+			case '14-20-tanzania-overland-safaris':
 				$this->db->where('safari_type',1);
 				$this->db->where('type',2);
 				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href="#" class="active">14 - 20 Day Trips</a></li>';
 				$data['trips'] = $this->db->get('lakeland_safaris');
 			break;
 			
-			case '7-13-day-trips':
+			case '7-13-tanzania-overland-safaris':
 				$this->db->where('safari_type',1);
 				$this->db->where('type',3);
 				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href="#" class="active">7 - 13 Day Trips</a></li>';
@@ -314,7 +314,29 @@ class Main extends CI_Controller {
 				}
 				
 				//print_r($parks); die();
+				$word = strtoupper($this->randomAlphaNum(7));
+		
+		
+				$this->load->helper('captcha');
+				$vals = array(
+				'word' => $word,
+				'img_path'	 => './captcha/',
+				'img_url'	 => 'captcha/',
+				'font_path'	 => './captcha/fonts/arial.ttf',
+				'img_width'	 => '200',
+				'img_height' => 50,
+				);
 				
+				$data['cap'] = create_captcha($vals);
+			
+				$cap_data = array(
+				'captcha_time'	=> $data['cap']['time'],
+				'ip_address'	=> $this->input->ip_address(),
+				'word'	 => $data['cap']['word']
+				);
+				
+				$query = $this->db->insert_string('lakeland_captcha', $cap_data);	
+				$this->db->query($query);
 				$data['parks'] = $parks;
 				$data['beaches'] = $beaches;
 				$data['cultural'] = $cultural;
@@ -332,6 +354,7 @@ class Main extends CI_Controller {
 		$sidebar['trips'] = $this->sidebar();
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$data['detail_url'] = 'trip';
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
@@ -397,6 +420,7 @@ class Main extends CI_Controller {
 		
 		//$data['details'] =  $content->row();
 		$header['title'] = $data['safari']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['safari']->introductory_text));
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
@@ -421,6 +445,7 @@ class Main extends CI_Controller {
 		
 		//$data['details'] =  $content->row();
 		$header['title'] = $data['safari']->destination_name;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['safari']->introductory_text));
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
@@ -433,6 +458,32 @@ class Main extends CI_Controller {
 	
 	public function contact($url = '')
 	{
+	
+	
+		$word = strtoupper($this->randomAlphaNum(7));
+		
+		
+		$this->load->helper('captcha');
+		$vals = array(
+		'word' => $word,
+		'img_path'	 => './captcha/',
+		'img_url'	 => 'captcha/',
+		'font_path'	 => './captcha/fonts/arial.ttf',
+		'img_width'	 => '200',
+		'img_height' => 50,
+		);
+		
+		$data['cap'] = create_captcha($vals);
+	
+		$cap_data = array(
+		'captcha_time'	=> $data['cap']['time'],
+		'ip_address'	=> $this->input->ip_address(),
+		'word'	 => $data['cap']['word']
+		);
+		
+		$query = $this->db->insert_string('lakeland_captcha', $cap_data);	
+		$this->db->query($query);
+		
 		if($url != '')
 		{
 			$data['subject'] = '';
@@ -459,8 +510,13 @@ class Main extends CI_Controller {
 	public function login()
 	{
 
-		
+		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">Login</a></li>';
+		$sidebar['trips'] = $this->sidebar();
+		$header['title'] = 'Login';
 		$this->load->view('Header',$header);
+		$this->load->view('menu',$menu);
+		$this->load->view('sidebar',$sidebar);
 		$this->load->view('Login');
 		$this->load->view('Footer');
 	}
@@ -491,60 +547,6 @@ class Main extends CI_Controller {
 			redirect('login/2');
 	}
 	
-	public function get_projects($section)
-	{
-	
-		if($section == 1)
-			$url = "projects";
-		else
-			$url = "publications";
-			
-		$this->db->where('parent_category',0);
-		$this->db->where('section',$section);
-		$parent_categories = $this->db->get('lakeland_projects_and_publications');
-		
-		$this->db->where('parent_category >',0);
-		$this->db->where('section',$section);
-		$this->db->order_by('parent_category');
-		$child_categories = $this->db->get('lakeland_projects_and_publications');
-		
-		$children = array();
-		foreach($child_categories->result() as $child)
-		{
-			$children[$child->parent_category][$child->url] = $child->title;
-			
-		}
-		
-		
-		$cats = "<ul class='dropdown-menu'>";
-		
-		foreach ($parent_categories->result() as $project_category)
-		{
-			if(isset($children[$project_category->id]))
-			{
-				$cats .= "<li><a href = '#'>" . $project_category->title . "<i class='icon-arrow-right'></i></a>";
-				$cats .= '<ul class="dropdown-menu sub-menu">';
-				
-
-
-				foreach($children[$project_category->id] as $key => $value)
-				{
-					
-					$cats .= "<li><a href = '". $url . "/" . $key ."'>" . $value . "</a></li>";
-					
-				}
-				$cats .= "</ul>";
-			}
-			else
-				$cats .= "<li><a href = '" . $url . "/" . $project_category->url . "'>" . $project_category->title . "</a>";
-			
-			$cats .= "</li>";
-		}
-		
-
-		$cats .= "</ul>";
-		return $cats;
-	}
 	
 	
 	public function fetch_page($identifier)
@@ -553,186 +555,8 @@ class Main extends CI_Controller {
 		$content = $this->db->get('lakeland_pages');
 		return $content->row();
 	}
-	
 
 	
-	
-	public function blog()
-	{
-		$data['title'] =$header['title'] = 'Nipe Fagio Blog';
-		
-	
-		$this->load->view('Header',$header);
-		$this->load->view('Blog',$data);
-		$this->load->view('Footer');
-	}	
-	
-	public function news()
-	{
-		$data['title'] =$header['title'] = 'Nipe Fagio News';
-		$this->db->order_by('date','desc');
-		$data['news'] = $this->db->get('lakeland_news');
-
-			
-		$this->load->view('Header',$header);
-		$this->load->view('News',$data);
-		$this->load->view('Footer');
-	}	
-	
-	public function newsletter()
-	{
-		$data['title'] =$header['title'] = 'Nipe Fagio Newsletter';
-		
-
-
-			
-		$this->load->view('Header',$header);
-		$this->load->view('Newsletter',$data);
-		$this->load->view('Footer');
-	}
-	
-	public function nl($url)
-	{
-		$this->db->where('identifier',$url);
-		$newsletter = $this->db->get('lakeland_newsletters');
-
-		$data['subject'] = $newsletter->row()->newsletter_subject;
-	
-		$this->db->order_by('priority');
-		$this->db->where('newsletter_id',$newsletter->row()->id);
-		$news = $this->db->get('lakeland_newsletter_news');
-		
-		$articles = array();
-		foreach ($news->result() as $article)
-			$articles[] = $article->news_id;
-		
-		//print_r($articles);
-		$this->db->where_in('id',$articles);
-		$data['news'] = $this->db->get('lakeland_news');
-		
-		$this->load->view('NewsletterTemplate',$data);
-	}
-	
-	public function article($url)
-	{
-		$this->db->where('url',$url);
-		$article = $this->db->get('lakeland_news');
-		
-
-
-		if($article->num_rows() == 0)
-			$this->blog();
-		else
-		{
-			$data['details'] = $article->row();
-			$header['title'] = $data['details']->title;
-			$this->load->view('Header',$header);
-			$this->load->view('Page',$data);
-			$this->load->view('Footer');
-		}
-	}
-	
-	public function projects($url)
-	{
-
-		
-		$this->db->where('url',$url);
-		$details = $this->db->get('lakeland_projects_and_publications');
-		
-		$data['title'] = $header['title'] = $details->row()->title;
-
-		$this->db->where('category',$details->row()->id);
-		$data['projects'] = $this->db->get('lakeland_projects');
-		
-		$this->load->view('Header',$header);
-		$this->load->view('Projects',$data);
-		$this->load->view('Footer');
-	}
-	
-	public function project($url)
-	{
-		$this->db->where('url',$url);
-		$article = $this->db->get('lakeland_projects');
-
-
-		if($article->num_rows() == 0)
-			$this->index();
-		else
-		{
-			$data['details'] = $article->row();
-			$header['title'] = $data['details']->title;
-			$this->load->view('Header',$header);
-			$this->load->view('Page',$data);
-			$this->load->view('Footer');
-		}
-	}
-	
-	function the_directory()
-	{
-
-		
-		//$this->db->order_by('company_name');
-	//	$data['partners'] = $this->db->get('lakeland_directory');
-		
-		$query = "select dir.*, nct.title company_type, ncs.title sector from lakeland_directory dir, lakeland_company_sectors ncs, lakeland_company_types nct where nct.id = dir.company_type and ncs.id = dir.sector order by company_name";
-		
-		$data['partners'] = $this->db->query($query);
-		
-		$data['details'] = $this->fetch_page('DIRECTORY');
-		$header['title'] = $data['details']->title;
-		$data['text'] =$data['details']->text;
-		
-		//$data['title'] = $header['title'] = "Directory of our Partners";
-
-		//$data['text'] = "Some introductory text, blah blah blah.";
-		
-		$this->load->view('Header',$header);
-		
-		$this->load->view('Directory',$data);
-		$this->load->view('Footer');
-		
-
-	}
-	
-	public function publications($url)
-	{
-
-		
-		$this->db->where('url',$url);
-		$details = $this->db->get('lakeland_projects_and_publications');
-		
-		$data['title'] = $header['title'] = $details->row()->title;
-
-		$this->db->where('category',$details->row()->id);
-		$data['publications'] = $this->db->get('lakeland_publications');
-		
-		$this->load->view('Header',$header);
-		
-		$this->load->view('Publications',$data);
-		$this->load->view('Footer');
-	}
-	
-	public function album($id)
-	{
-		$this->db->where('album',$id);
-		$this->db->order_by('priority');
-		$data['images'] = $this->db->get('lakeland_images');
-		
-		$this->db->where('id',$id);
-		$album = $this->db->get('lakeland_albums');
-		
-		if($album->num_rows() == 0)
-			$this->gallery();
-		else
-		{
-			$data['title'] = $header['title'] = $album->row()->title;
-			$data['description'] = $album->row()->description;
-			
-			$this->load->view('Header',$header);
-			$this->load->view('Gallery',$data);
-			$this->load->view('Footer');
-		}
-	}
 	
 	private function randomAlphaNum($length){ 
 
@@ -921,6 +745,49 @@ class Main extends CI_Controller {
 		
 		else
 			redirect('contact/3');
+	}
+	
+	function photos()
+	{
+		$this->db->where('url','photo-albums');
+		$content = $this->db->get('lakeland_pages');
+		
+		$data['albums'] = $this->db->get('lakeland_photo_albums');
+		
+		$data['details'] =  $content->row();
+		$header['title'] = $data['details']->title;
+		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
+		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
+		$sidebar['trips'] = $this->sidebar();
+		$this->load->view('header',$header);
+		$this->load->view('menu',$menu);
+		$this->load->view('sidebar',$sidebar);
+		$this->load->view('albums',$data);
+		$this->load->view('footer');
+	}
+	
+	function album($url)
+	{
+		
+		$this->db->where('url',$url);
+		
+		$data['album'] = $this->db->get('lakeland_photo_albums');
+		
+		$this->db->where('album',$data['album']->row()->id);
+		$data['pictures'] = $this->db->get('lakeland_album_images');
+		
+
+		$header['title'] =  $data['title'] = $data['album']->row()->title;
+
+		$menu['menu'] = $this->menu();
+		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href = "photo-albums">Photo Albums</a></li><li><a href="#" class="active">' . $data['album']->row()->title . '</a></li>';
+		$sidebar['trips'] = $this->sidebar();
+		$this->load->view('header',$header);
+		$this->load->view('menu',$menu);
+		$this->load->view('sidebar',$sidebar);
+		$this->load->view('album',$data);
+		$this->load->view('footer');
 	}
 	
 

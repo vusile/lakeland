@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 11, 2013 at 02:03 PM
+-- Generation Time: Jan 14, 2013 at 02:08 PM
 -- Server version: 5.5.20
 -- PHP Version: 5.3.10
 
@@ -23,6 +23,36 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `lakeland_album_images`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_album_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) NOT NULL,
+  `title` text NOT NULL,
+  `album` int(11) NOT NULL,
+  `priority` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `lakeland_album_images`
+--
+
+INSERT INTO `lakeland_album_images` (`id`, `image`, `title`, `album`, `priority`) VALUES
+(1, 'af49-tulips.jpg', 'Flowers', 1, 0),
+(2, 'a407-lighthouse.jpg', 'Tower', 1, 0),
+(3, 'a51f-penguins.jpg', 'Penguis', 1, 0),
+(4, 'cfd6-jellyfish.jpg', 'Jelly FIsh', 2, 0),
+(5, 'bfcc-chrysanthemum.jpg', 'Flower', 2, 0),
+(6, 'c225-desert.jpg', 'Desert', 2, 0),
+(7, '3e6d-koala.jpg', 'Koala', 2, 0),
+(8, '6dee-hydrangeas.jpg', 'Wild Orchird From Mikumi National Park', 3, 0),
+(9, 'e583-desert.jpg', 'Mountains', 3, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lakeland_captcha`
 --
 
@@ -33,14 +63,17 @@ CREATE TABLE IF NOT EXISTS `lakeland_captcha` (
   `word` varchar(20) NOT NULL,
   PRIMARY KEY (`captcha_id`),
   KEY `word` (`word`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=346 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=349 ;
 
 --
 -- Dumping data for table `lakeland_captcha`
 --
 
 INSERT INTO `lakeland_captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
-(345, 1355910887, '127.0.0.1', 'H852REB');
+(345, 1355910887, '127.0.0.1', 'H852REB'),
+(346, 1358167598, '127.0.0.1', 'YAK2VMF'),
+(347, 1358167779, '127.0.0.1', '5FHKDTW'),
+(348, 1358167932, '127.0.0.1', 'NCHPVTZ');
 
 -- --------------------------------------------------------
 
@@ -57,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_destinations` (
   `images` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `lakeland_destinations`
@@ -162,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_itinerary` (
   `activities` text NOT NULL,
   `safari` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `lakeland_itinerary`
@@ -173,7 +206,10 @@ INSERT INTO `lakeland_itinerary` (`id`, `title`, `activities`, `safari`) VALUES
 (2, 'Day Two', '<ul>\r\n	<li>\r\n		Sit</li>\r\n	<li>\r\n		Read</li>\r\n	<li>\r\n		Reflect</li>\r\n</ul>\r\n', 1),
 (3, 'Day 1', '<ul>\r\n	<li>\r\n		Eat</li>\r\n	<li>\r\n		Pray</li>\r\n	<li>\r\n		Love</li>\r\n</ul>\r\n', 3),
 (4, 'Day 2', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Sleep</li>\r\n	<li>\r\n		Walk</li>\r\n</ul>\r\n', 3),
-(5, 'Saturday', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Play</li>\r\n	<li>\r\n		Sing</li>\r\n</ul>\r\n', 5);
+(5, 'Saturday', '<ul>\r\n	<li>\r\n		Dance</li>\r\n	<li>\r\n		Play</li>\r\n	<li>\r\n		Sing</li>\r\n</ul>\r\n', 5),
+(6, 'Day 1: Arrive in Dar es Salaam', '<ul>\r\n	<li>\r\n		Accommodation in a Hotel</li>\r\n</ul>\r\n', 9),
+(7, 'Day 2: Dar es Salaam - Mikumi National Park', '<ul>\r\n	<li>\r\n		Game drive and overnight Mikumi</li>\r\n	<li>\r\n		Distance 300kms</li>\r\n	<li>\r\n		Camping in Mikumi National Park</li>\r\n</ul>\r\n', 9),
+(8, 'Day 3:  Mikumi - Udzungwa Mountains', '<ul>\r\n	<li>\r\n		Hiking</li>\r\n	<li>\r\n		Distance 75kms</li>\r\n	<li>\r\n		Camping at Udzungwa</li>\r\n</ul>\r\n', 9);
 
 -- --------------------------------------------------------
 
@@ -212,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_pages` (
   `thumbnail` varchar(50) NOT NULL,
   `alternate_browser_title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `lakeland_pages`
@@ -220,13 +256,13 @@ CREATE TABLE IF NOT EXISTS `lakeland_pages` (
 
 INSERT INTO `lakeland_pages` (`id`, `title`, `content`, `section`, `parent_page`, `url`, `thumbnail`, `alternate_browser_title`) VALUES
 (1, 'Lakeland Africa Limited', '<p>\r\n	Lakeland Africa Limited is Tanzania&#39;s leading provider of group overland budget travels.&nbsp; It was formed with the intention of ultimately providing all forms of land travels as well as wildlife safaris, adventure and cultural tourism.</p>\r\n<p>\r\n	<strong>Our current services:</strong></p>\r\n<p>\r\n	City Car &amp; Truck Rentals, Airport and hotel transfers, Camping safaris, Beach holidays, Wildlife tourism, Overland Adventure tourism, Cultural and historical tourism, Mountain Climbing. We also organise fishing and water sports such as canoeing festivals in Lake Victoria.</p>\r\n', 0, 0, 'home', '', ''),
-(4, 'About Lakeland Africa', '<p>\r\n	<strong>Our Mission</strong></p>\r\n<p>\r\n	We believe that developed Tanzania is best for Lakeland Africa Limited. We therefore exist to help create wealth for our nation, for our employees and for our shareholders through a dedicated customer service to our clients.</p>\r\n<p>\r\n	<br />\r\n	<strong>Our Values</strong></p>\r\n<ul>\r\n	<li>\r\n		Honesty and integrity: We are ethical; we respect and keep our word</li>\r\n	<li>\r\n		Efficiency and effective: High level of service delivery</li>\r\n	<li>\r\n		Personalized services: We avoid the one size fits all modul</li>\r\n	<li>\r\n		Team work: we pool together our ideas and efforts to the benefit of our clients</li>\r\n	<li>\r\n		The community that houses us is our own best hope for progress, wealth creation and security.</li>\r\n</ul>\r\n<p>\r\n	<br />\r\n	<strong>Our Vision</strong></p>\r\n<p>\r\n	To care, think and always act in the best interest of our clients and the Nation.</p>\r\n', 0, 0, 'about-us', '', ''),
+(4, 'About Lakeland Africa', '<p>\r\n	<strong>Our Mission</strong></p>\r\n<p>\r\n	We believe that developed Tanzania is best for Lakeland Africa Limited. We therefore exist to help create wealth for our nation, for our employees and for our shareholders through a dedicated customer service to our clients.</p>\r\n<p>\r\n	<br />\r\n	<strong>Our Values</strong></p>\r\n<ul>\r\n	<li>\r\n		Honesty and integrity: We are ethical; we respect and keep our word</li>\r\n	<li>\r\n		Efficiency and effective: High level of service delivery</li>\r\n	<li>\r\n		Personalized services: We avoid the one size fits all modul</li>\r\n	<li>\r\n		Team work: we pool together our ideas and efforts to the benefit of our clients</li>\r\n	<li>\r\n		The community that houses us is our own best hope for progress, wealth creation and security.</li>\r\n</ul>\r\n<p>\r\n	<br />\r\n	<strong>Our Vision</strong></p>\r\n<p>\r\n	To care, think and always act in the best interest of our clients and the Nation.</p>\r\n', 0, 0, 'about-lakeland-africa', '', ''),
 (5, 'Overland Vehicles', '<p>\r\n	Overland Vehicles</p>\r\n', 1, 0, 'overland-vehicles', '', ''),
 (6, 'Safari Landcruisers', '<p>\r\n	Safari Landcruisers.</p>\r\n', 1, 0, 'safari-landcruisers', '', ''),
-(7, 'Self Driven Car Rentals', '<p>\r\n	Self Driven Car Rentals</p>\r\n', 2, 0, 'self-driven-car-rentals', '', ''),
-(8, 'Chaufer Driven', '<p>\r\n	Chaufer Driven</p>\r\n', 2, 0, 'chaufer-driven', '', ''),
-(9, 'Airport & City Transfers', '<p>\r\n	Airport &amp; City Transfers</p>\r\n', 2, 0, 'airport-city-transfers', '', ''),
-(10, 'National Parks', '<p>\r\n	National Parks</p>\r\n', 3, 0, 'national-parks', '', ''),
+(7, 'Self Driven Car Rentals in Dar es Salaam & Tanzania', '<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Rental Rates Within Dar es Salaam</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				30</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				35</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				180</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Rental Rates Within Dar es Salaam</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				50</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				45</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				220</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Monthly Rental Rates</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				850</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				1,000</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				2,200</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				2,200</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<strong>Conditions for the Rates Above:</strong></p>\r\n<ul>\r\n	<li>\r\n		You are free to travel 100kms per day within or outside Dar es Salaam. Any extra kilometer travelled over and above the first 100kms will be charged at US$ 0.5 as an addition cost.&nbsp; Except for the Overland Truck which has unlimited mileage usage within Tanzania.</li>\r\n	<li>\r\n		Fuel is not included in the charges except for the Overland Truck where the above rates include fuel.</li>\r\n	<li>\r\n		VAT is excluded from the above charge</li>\r\n	<li>\r\n		Driver allowance is an addition cost and is paid to Lakeland Africa Limited.</li>\r\n	<li>\r\n		Driver overtime is charged at USD 1.2 per hour.</li>\r\n	<li>\r\n		Monthly wages for the driver US $ 250 within Dar es Salaam and US $ 500 outside Dar es Salaam.</li>\r\n</ul>\r\n', 2, 0, 'self-driven-car-rentals', '', ''),
+(8, 'Chaufer Driven Car Hire in Dar es Salaam & Tanzania', '<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Rental Rates Within Dar es Salaam</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				50</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				35</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				60</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				180</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Rental Rates Within Dar es Salaam</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				50</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				45</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				70</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				80</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				220</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Car Monthly Rental Rates</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Saloon</td>\r\n			<td>\r\n				850</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (Old Model)</td>\r\n			<td>\r\n				1,000</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Rav 4 (New Model)</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Hyundai / Suzuki Grand Vitara</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Nissan X-trail</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Harrier / Noah</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Prado / Land Cruiser / Nissan Patrol / 4WD</td>\r\n			<td>\r\n				1,600</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Mini Bus</td>\r\n			<td>\r\n				2,200</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Toyota Coaster</td>\r\n			<td>\r\n				2,200</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	&nbsp;</p>\r\n<table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">\r\n	<tbody>\r\n		<tr>\r\n			<td>\r\n				<strong>Drivers&rsquo; Allowance:</strong></td>\r\n			<td>\r\n				<strong>US$</strong></td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Rate within Dar es Salaam per day</td>\r\n			<td>\r\n				15</td>\r\n		</tr>\r\n		<tr>\r\n			<td>\r\n				Daily Rate outside Dar Es Salaam</td>\r\n			<td>\r\n				30</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<p>\r\n	<strong>Conditions for the Rates Above:</strong></p>\r\n<ul>\r\n	<li>\r\n		You are free to travel 100kms per day within or outside Dar es Salaam. Any extra kilometer travelled over and above the first 100kms will be charged at US$ 0.5 as an addition cost.&nbsp; Except for the Overland Truck which has unlimited mileage usage within Tanzania.</li>\r\n	<li>\r\n		Fuel is not included in the charges except for the Overland Truck where the above rates include fuel.</li>\r\n	<li>\r\n		VAT is excluded from the above charge</li>\r\n	<li>\r\n		Driver allowance is an addition cost and is paid to Lakeland Africa Limited.</li>\r\n	<li>\r\n		Driver overtime is charged at USD 1.2 per hour.</li>\r\n	<li>\r\n		Monthly wages for the driver US $ 250 within Dar es Salaam and US $ 500 outside Dar es Salaam.</li>\r\n</ul>\r\n', 2, 0, 'chaufer-driven', '', ''),
+(9, 'Dar es Salaam Airport & City Transfers & Pickups', '<ol>\r\n	<li>\r\n		<strong>Office2Office Transfer:</strong><br />\r\n		<br />\r\n		This is a Professional approach and gives your company and staff a professional image.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Airport Transfer:</strong><br />\r\n		<br />\r\n		Pick up at the airport and transfer to your home, office or hotel. Pick up clients from their homes, offices and hotels to their desired destinations. It is professional, Safe, secure and reliable to use a professional shuttle and transfer company that arrives at your door steps.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Visitors Transfer:</strong><br />\r\n		<br />\r\n		A well uniformed chauffeur and a well known company will be there so meet and greet your visitor and bring them to your office, home or take them to the airport. So book our transfer services and then relax.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Hotel2Business Transfer:</strong><br />\r\n		<br />\r\n		From the hotel, we will transfer you or your visitor to a stated meeting. A clean car and a uniformed clean driver who knows the city so well is sure to beat the traffic and get our clients to their business meeting. Plus it is safe and professional to arrive at your meeting in a professional way. Image matters in business.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Meeting2Meeting Transfer:</strong><br />\r\n		<br />\r\n		No needs to wait for a passing Taxi after you have had a meeting. Let our uniformed driver wait for you at the door steps.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Late Night Travellers&rsquo; Transfer:</strong><br />\r\n		<br />\r\n		Please don&rsquo;t grab a Taxi or unknown driver. Also it&rsquo;s our professional view that it is unwise to use family members or employees to drive you to and from the airport and other terminals at night. The employees need to rest and be ready for the next productive day; they need to be with their families at night and with employers during the day. At night family members need to be safe and secure at home. Use a professional night transfer service.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Executive Transfers:</strong><br />\r\n		<br />\r\n		We will meet and greet your VIP and transfer them using the cars that have VIP status. You instruct us what to do and we will do exactly that.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>My kids Shuttle:</strong><br />\r\n		<br />\r\n		Home to school morning service, school to home afternoon service and the extracurricular activities evening transfer services. It gives you the time to concentrate on the most important tasks at hand, no need to reschedule that important meeting. No need to worry about the safety and security of the kids as we have thoroughly checked the background of all drivers handling the kids.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Night Out Transfers:</strong><br />\r\n		<br />\r\n		With us you know your driver during your night out.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Don&rsquo;t drink and Drive shuttles:</strong><br />\r\n		<br />\r\n		When you know you will be drunk, book our transfer service in advance and indicate the time that our driver can come and transfer you home. We help you not to endanger other road users&rsquo; lives. A good citizen doesn&rsquo;t drink and drive. Book our shuttle services if you know you will be drunk.<br />\r\n		<br />\r\n		&nbsp;</li>\r\n	<li>\r\n		<strong>Home-Office-Home (Same Route Employees&rsquo; Shuttle):</strong><br />\r\n		<br />\r\n		Come with your friends and co workers and create a classic home to work group shuttle. Alternatively contact our office to join our pre-arranged employees&rsquo; shuttles. Avoid the hassles of using daladalas. Go to work in style and comfort.</li>\r\n</ol>\r\n', 2, 0, 'airport-city-transfers', '', ''),
+(10, 'Tanzania National Parks', '<p>\r\n	National Parks</p>\r\n', 3, 0, 'national-parks', '', ''),
 (11, 'Beaches', '<p>\r\n	Beaches</p>\r\n', 3, 0, 'beaches', '', ''),
 (12, 'Cultural Tourism', '<p>\r\n	Cultural Tourism</p>\r\n', 3, 0, 'cultural-tourism', '', ''),
 (13, 'Day Tours', '<p>\r\n	Day Tours</p>\r\n', 4, 0, 'day-tours', '', ''),
@@ -234,10 +270,35 @@ INSERT INTO `lakeland_pages` (`id`, `title`, `content`, `section`, `parent_page`
 (15, 'Overland Safaris', '', 4, 0, '', '', ''),
 (16, 'Custom Packages', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nihil dolores aliquam odio adipisci itaque nostrum cupiditate dolore officiis esse porro amet cum debitis neque a laboriosam quam ipsa voluptates.</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nihil dolores aliquam odio adipisci itaque nostrum cupiditate dolore officiis esse porro amet cum debitis neque a laboriosam quam ipsa voluptates.</p>\r\n', 4, 0, 'custom-packages', '', ''),
 (17, 'Scheduled Trips', '<p>\r\n	Scheduled Trips</p>\r\n', 4, 0, 'scheduled-trips', '', ''),
-(18, '21 - 40 Day Trips', '<p>\r\n	21 - 40 Day Trips</p>\r\n', 0, 15, '21-40-day-trips', '', ''),
-(19, '14 - 20 Day Trips', '<p>\r\n	14 - 20 Day Trips</p>\r\n', 0, 15, '14-20-day-trips', '', ''),
-(20, '7 - 13 Day Trips', '<p>\r\n	7 - 13 Day Trips</p>\r\n', 0, 15, '7-13-day-trips', '', ''),
-(21, 'Contact Lakeland Africa', '', 0, 0, 'contact-us', '', '');
+(18, '21 - 40 Tanzania Overland Safaris', '<p>\r\n	21 - 40 Tanzania Overland Safaris</p>\r\n', 0, 15, '21-40-tanzania-overland-safaris', '', ''),
+(19, '14 - 20 Tanzania Overland Safaris', '<p>\r\n	14 - 20 Tanzania Overland Safaris</p>\r\n', 0, 15, '14-20-tanzania-overland-safaris', '', ''),
+(20, '7 - 13 Tanzania Overland Safaris', '<p>\r\n	7 - 13 &nbsp;Tanzania Overland Safaris</p>\r\n', 0, 15, '7-13-tanzania-overland-safaris', '', ''),
+(21, 'Contact Lakeland Africa', '', 0, 0, 'contact-us', '', ''),
+(23, 'Photo Albums', '<p>\r\n	Please View and Enjoy our Photo Albums</p>\r\n', 0, 0, 'photo-albums', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_photo_albums`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_photo_albums` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `thumb_nail` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `images` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `lakeland_photo_albums`
+--
+
+INSERT INTO `lakeland_photo_albums` (`id`, `title`, `thumb_nail`, `url`, `images`) VALUES
+(1, 'The North Tanzania Tour', '<img width = "100" src = "images/thumb__af49-tulips.jpg" />', 'the-north-tanzania-tour', '<a href = "backend/album_images/1/update">Images</a>'),
+(2, 'The South Tanzania Tour', '<img width = "100" src = "images/thumb__cfd6-jellyfish.jpg" />', 'the-south-tanzania-tour', '<a href = "backend/album_images/2/insert">Images</a>'),
+(3, 'The Northern Tanzania 14th Dec - 27th Dec', '<img width = "100" src = "images/thumb__6dee-hydrangeas.jpg" />', 'the-northern-tanzania-14th-dec-27th-dec', '<a href = "backend/album_images/3/insert">Images</a>');
 
 -- --------------------------------------------------------
 
@@ -260,17 +321,21 @@ CREATE TABLE IF NOT EXISTS `lakeland_safaris` (
   `safari_type` int(11) NOT NULL,
   `schedule` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `lakeland_safaris`
 --
 
 INSERT INTO `lakeland_safaris` (`id`, `title`, `type`, `thumb_nail`, `introductory_text`, `price`, `includes`, `excludes`, `itinerary`, `images`, `url`, `safari_type`, `schedule`) VALUES
-(1, 'Test Safari Test Safari  Test Safari ', 1, '<img width = "100" src = "images/thumb__f183-jellyfish.jpg" />', '<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 900, '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		Four</li>\r\n	<li>\r\n		Five</li>\r\n	<li>\r\n		Six</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/1/1">Itinerary</a>', '<a href = "backend/images/1/1">Images</a>', 'test-safari', 1, '<a href = "backend/lakeland_scheduled_trips/add/1">Schedule</a>'),
-(3, 'Test Trip 2 Test Trip 2 Test Trip 2', 1, '<img width = "100" src = "images/thumb__894a-lighthouse.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 1200, '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		One</li>\r\n	<li>\r\n		Two</li>\r\n	<li>\r\n		Three</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/3/1">Itinerary</a>', '<a href = "backend/images/3/1">Images</a>', 'test-trip-2', 1, '<a href = "backend/lakeland_scheduled_trips/add/3">Schedule</a>'),
-(4, 'Day Trip 1', 0, '<img width = "100" src = "images/thumb__0cfd-penguins.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 900, '', '', '<a href = "backend/lakeland_itinerary/4/3">Itinerary</a>', '<a href = "backend/images/4/3">Images</a>', 'day-trip-1', 3, '<a href = "backend/lakeland_scheduled_trips/add/4">Schedule</a>'),
-(5, 'Weekend Getaway Test Long Title for Schedule', 0, '<img width = "100" src = "images/thumb__7035-jellyfish.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 1000, '<ul>\r\n	<li>\r\n		1</li>\r\n	<li>\r\n		2</li>\r\n	<li>\r\n		3</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		4</li>\r\n	<li>\r\n		5</li>\r\n	<li>\r\n		6</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/5/2">Itinerary</a>', '<a href = "backend/images/5/2">Images</a>', 'weekend-getaway-test', 2, '<a href = "backend/lakeland_scheduled_trips/add/5">Schedule</a>');
+(5, 'Weekend Getaway Test Long Title for Schedule', 0, '<img width = "100" src = "images/thumb__7035-jellyfish.jpg" />', '<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla velit dui, elementum vitae volutpat non, rhoncus at dolor. Integer dapibus orci eget tellus egestas fringilla. Nunc enim turpis, auctor id mattis eu, gravida in nisl. Aliquam tristique arcu ac erat congue sagittis. Nunc faucibus purus non enim vestibulum ultrices. Nunc nec dolor nisl, et bibendum felis. Duis lorem sem, molestie nec bibendum eu, gravida ut massa. Nam scelerisque fermentum ipsum, sit amet tincidunt lorem iaculis nec. Pellentesque sagittis vulputate lorem a adipiscing. Quisque et urna vitae massa suscipit auctor sed sed velit. Sed tincidunt ornare enim id bibendum. Aliquam erat volutpat. Sed imperdiet pretium libero, ac porttitor ligula congue id. Nulla dictum, sapien in dignissim consectetur, odio velit varius tortor, non interdum mauris quam a nisl. In ultrices ultricies lobortis. Phasellus porttitor venenatis mauris.</p>\r\n<p>\r\n	Nunc varius fermentum imperdiet. Aliquam in enim diam. Praesent eu neque tellus, non iaculis leo. Etiam et mi dolor. Mauris tincidunt, eros id dapibus tincidunt, leo arcu rhoncus arcu, vitae auctor neque orci eget lectus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec posuere ullamcorper fringilla. Morbi turpis neque, hendrerit ac sodales eu, gravida ornare enim.</p>\r\n', 1000, '<ul>\r\n	<li>\r\n		1</li>\r\n	<li>\r\n		2</li>\r\n	<li>\r\n		3</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		4</li>\r\n	<li>\r\n		5</li>\r\n	<li>\r\n		6</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/5/2">Itinerary</a>', '<a href = "backend/images/5/2">Images</a>', 'weekend-getaway-test', 2, '<a href = "backend/lakeland_scheduled_trips/add/5">Schedule</a>'),
+(6, 'Test Safari To See If It Works', 0, '', '', 0, '', '', '', '', '', 0, ''),
+(7, 'This is a Test', 0, '', '', 0, '', '', '', '', '', 0, ''),
+(9, '13 Day 12 Night Southern Tanzania Overland Safari', 3, '<img width = "100" src = "images/thumb__9dc6-desert.jpg" />', '<p>\r\n	These activities take about 6 hours</p>\r\n', 2240, '<ul>\r\n	<li>\r\n		Hotel accommodation on the day of arrival</li>\r\n	<li>\r\n		Airport Transfers</li>\r\n	<li>\r\n		Tour guide, Chef and driver.</li>\r\n	<li>\r\n		Three meals a day: breakfast, Lunch and Dinner</li>\r\n	<li>\r\n		One bottler of water per day( 1.5litres)</li>\r\n	<li>\r\n		Transport(Overland Truck)</li>\r\n	<li>\r\n		Guiding Fees</li>\r\n	<li>\r\n		Camping equipment</li>\r\n	<li>\r\n		National Park entry fees</li>\r\n	<li>\r\n		National Park Camping fees</li>\r\n	<li>\r\n		Boat safari/cruise in the Selous Game Reserve</li>\r\n	<li>\r\n		Cultural Tour guide fee in Morogoro</li>\r\n	<li>\r\n		Historical sites tour fees in Bagamoyo</li>\r\n	<li>\r\n		Cultural dances in Bagamoyo.</li>\r\n</ul>\r\n', '<ul>\r\n	<li>\r\n		VISAs&nbsp;</li>\r\n	<li>\r\n		Medical Insurance</li>\r\n	<li>\r\n		International Tickets</li>\r\n</ul>\r\n', '<a href = "backend/lakeland_itinerary/9/1">Itinerary</a>', '<a href = "backend/images/9/1">Images</a>', 'the-southern-trail', 1, '<a href = "backend/lakeland_scheduled_trips/add/9">Schedule</a>'),
+(10, 'Mikumi National Park Tanzania Day Trip', 0, '<img width = "100" src = "images/thumb__0cbb-lighthouse.jpg" />', '<p>\r\n	This park is 300kms away from Dar Es Salaam and 100kms away from Morogoro Town.</p>\r\n<p>\r\n	To read more about Mikumi National Park&nbsp;<a href="http://localhost/lakeland/destination/mikumi-national-park">click here</a></p>\r\n<p>\r\n	<br />\r\n	<strong>Why Lakeland Africa goes to Mikumi National Park:</strong></p>\r\n<ul>\r\n	<li>\r\n		Wonderful wildlife game viewing nearby the Dar es Salaam commercial city, giving those business visitors and tourists with a short stay in Dar Es Salaam a good two days or even a one day visit of this great natural wildlife.</li>\r\n	<li>\r\n		A nearby weekends and holidays period getaway national park for local residents in Dar es Salaam city.</li>\r\n	<li>\r\n		The park is accessible all year round.</li>\r\n	<li>\r\n		Main attractions here:</li>\r\n	<li>\r\n		The Mkata flood plain dominated by open grassland along with the mountain ranges that border the park on two sides</li>\r\n	<li>\r\n		The woodlands is a favorite area for sporting lions</li>\r\n	<li>\r\n		Home to a formidable herds of buffalo and Mikumi elephants are more compact than those in the rest of the country</li>\r\n	<li>\r\n		The highlight of Mikumi National Park is the African hunting dog, one of Africa&rsquo;s rarest mammals.</li>\r\n	<li>\r\n		Birdlife is also a great attraction here as the rains swell the park birds population due to the European birds seeking refuge in the Mikumi National Park</li>\r\n</ul>\r\n<p>\r\n	Although this park can still be visited throughout the year the best times to go are December to March when wildlife numbers are their highest and elephants from Selous Game Reserve and Rubeho Mountains converge here.</p>\r\n<p>\r\n	The dry season from August to October is also ideal when animals are concentrated around water sources.</p>\r\n', 100, '', '', '<a href = "backend/lakeland_itinerary/10/3">Itinerary</a>', '<a href = "backend/images/10/3">Images</a>', 'mikumi-national-park-tanzania-day-trip', 3, '<a href = "backend/lakeland_scheduled_trips/add/10">Schedule</a>'),
+(11, 'Test', 3, '<img width = "100" src = "images/thumb__1f2d-hydrangeas.jpg" />', '', 0, '', '', '<a href = "backend/lakeland_itinerary/11/1">Itinerary</a>', '<a href = "backend/images/11/1">Images</a>', 'test', 1, '<a href = "backend/lakeland_scheduled_trips/add/11">Schedule</a>'),
+(13, '', 0, '', '', 0, '', '', '', '', '', 0, ''),
+(14, 'Test 2', 3, '<img width = "100" src = "images/thumb__0663-chrysanthemum.jpg" />', '', 0, '', '', '<a href = "backend/lakeland_itinerary/14/1">Itinerary</a>', '<a href = "backend/images/14/1">Images</a>', 'test-2', 1, '<a href = "backend/lakeland_scheduled_trips/add/14">Schedule</a>');
 
 -- --------------------------------------------------------
 
@@ -285,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_safari_images` (
   `safari` int(11) NOT NULL,
   `priority` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
 
 --
 -- Dumping data for table `lakeland_safari_images`
@@ -306,7 +371,18 @@ INSERT INTO `lakeland_safari_images` (`id`, `image`, `title`, `safari`, `priorit
 (34, 'ae00-koala.jpg', 'Koala Bear', 1, 4),
 (35, '5ed7-tulips.jpg', 'Flowers', 3, 2),
 (36, '894a-lighthouse.jpg', 'The Lighthouse', 3, 1),
-(37, 'bb7f-chrysanthemum.jpg', 'Orange Flower', 3, 3);
+(37, 'bb7f-chrysanthemum.jpg', 'Orange Flower', 3, 3),
+(38, '8e16-hydrangeas.jpg', 'Flowers in Mikumi National Park Tanzania', 9, 2),
+(39, '9dc6-desert.jpg', 'Udzungwa Mountains in Tanzania', 9, 1),
+(40, '8eb0-jellyfish.jpg', 'Jellyfish Swimming off Zanzibar', 9, 3),
+(41, '0cbb-lighthouse.jpg', 'Tower', 10, 0),
+(42, '8bdb-koala.jpg', 'Koala', 10, 0),
+(43, 'aa25-penguins-1-.jpg', 'Penguins', 10, 0),
+(44, '1f2d-hydrangeas.jpg', '', 11, 0),
+(45, '20f6-desert.jpg', '', 11, 0),
+(46, '0f7e-desert.jpg', '', 12, 0),
+(47, '308d-jellyfish.jpg', '', 12, 0),
+(48, '0663-chrysanthemum.jpg', '', 14, 0);
 
 -- --------------------------------------------------------
 
@@ -320,16 +396,14 @@ CREATE TABLE IF NOT EXISTS `lakeland_scheduled_trips` (
   `end_date` date NOT NULL,
   `trip` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `lakeland_scheduled_trips`
 --
 
 INSERT INTO `lakeland_scheduled_trips` (`id`, `start_date`, `end_date`, `trip`) VALUES
-(7, '2013-01-17', '2013-01-31', 1),
-(8, '2013-02-01', '2013-02-28', 5),
-(9, '2013-04-01', '2013-05-08', 3);
+(10, '2013-01-26', '2013-01-27', 10);
 
 -- --------------------------------------------------------
 
@@ -343,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_sections` (
   `url_string` varchar(255) NOT NULL,
   `priority` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `lakeland_sections`
@@ -355,8 +429,9 @@ INSERT INTO `lakeland_sections` (`id`, `name`, `url_string`, `priority`) VALUES
 (3, 'Destinations', 'destinations', 4),
 (4, 'Group Overland Safaris', 'safaris', 3),
 (6, 'Home', 'home', 1),
-(7, 'About Us', 'about-us', 2),
-(8, 'Contact Us', 'contact-us', 7);
+(7, 'About Us', 'about-lakeland-africa', 2),
+(8, 'Contact Us', 'contact-us', 8),
+(9, 'Photo Albums', 'photo-albums', 7);
 
 -- --------------------------------------------------------
 
@@ -390,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_users` (
 --
 
 INSERT INTO `lakeland_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1357886905, 1, 'Admin', 'istrator', 'ADMIN', '0');
+(1, '\0\0', 'administrator', '59beecdf7fc966e2f17fd8f65a4a9aeb09d4a3d4', '9462e8eee0', 'admin@admin.com', '', NULL, NULL, NULL, 1268889823, 1358159341, 1, 'Admin', 'istrator', 'ADMIN', '0');
 
 -- --------------------------------------------------------
 
@@ -415,6 +490,18 @@ INSERT INTO `lakeland_users_groups` (`id`, `user_id`, `group_id`) VALUES
 (3, 2, 2),
 (4, 3, 2),
 (5, 4, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `safari_types`
+--
+
+CREATE TABLE IF NOT EXISTS `safari_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
