@@ -7,7 +7,7 @@
 <form class="contact_form" action="login_user" method = "post">
 
 	   <p class="name">	
-            <label for="email">Name:</label><br>
+            <label for="email">Email:</label><br>
             <input type="email" name = "email"  required />
         </p>	   
 		

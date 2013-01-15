@@ -280,6 +280,13 @@ class Main extends CI_Controller {
 				$data['trips'] = $this->db->get('lakeland_safaris');
 			break;
 			
+			case '3-6-tanzania-overland-safaris':
+				$this->db->where('safari_type',1);
+				$this->db->where('type',4);
+				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#">Overland Safaris</a></li><li><a href="#" class="active">3 - 6 Day Trips</a></li>';
+				$data['trips'] = $this->db->get('lakeland_safaris');
+			break;
+			
 			case 'weekend-getaways':
 				$this->db->where('safari_type',2);
 				$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Group Overland Safaris</a></li><li><a href="#" class="active">Weekend Getaways</a></li>';
@@ -459,7 +466,6 @@ class Main extends CI_Controller {
 	public function contact($url = '')
 	{
 	
-	
 		$word = strtoupper($this->randomAlphaNum(7));
 		
 		
@@ -514,11 +520,11 @@ class Main extends CI_Controller {
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">Login</a></li>';
 		$sidebar['trips'] = $this->sidebar();
 		$header['title'] = 'Login';
-		$this->load->view('Header',$header);
+		$this->load->view('header',$header);
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
 		$this->load->view('Login');
-		$this->load->view('Footer');
+		$this->load->view('footer');
 	}
 	
 	function login_user()

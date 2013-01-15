@@ -1,7 +1,4 @@
-
-- 3 - 7 Overland Safaris
-
 - show images url..???
 - restrict to add alt.???
-- check space on the albums page
+
 
