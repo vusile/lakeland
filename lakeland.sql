@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2013 at 01:16 PM
--- Server version: 5.5.20
--- PHP Version: 5.3.10
+-- Generation Time: Jan 21, 2013 at 03:11 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_captcha` (
   `word` varchar(20) NOT NULL,
   PRIMARY KEY (`captcha_id`),
   KEY `word` (`word`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=376 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=378 ;
 
 --
 -- Dumping data for table `lakeland_captcha`
@@ -85,7 +85,30 @@ INSERT INTO `lakeland_captcha` (`captcha_id`, `captcha_time`, `ip_address`, `wor
 (372, 1358756393, '127.0.0.1', 'DBYJP3E'),
 (373, 1358756610, '127.0.0.1', '2T83BZF'),
 (374, 1358758591, '127.0.0.1', '5AVBWH6'),
-(375, 1358758615, '127.0.0.1', 'FKG9Z5V');
+(375, 1358758615, '127.0.0.1', 'FKG9Z5V'),
+(376, 1358776544, '127.0.0.1', 'SUDE7QX'),
+(377, 1358777149, '127.0.0.1', 'NXKY5R7');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_car_rental_locations`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_car_rental_locations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `lakeland_car_rental_locations`
+--
+
+INSERT INTO `lakeland_car_rental_locations` (`id`, `title`) VALUES
+(1, 'Arusha'),
+(2, 'Dar es Salaam'),
+(3, 'Mwanza');
 
 -- --------------------------------------------------------
 
@@ -496,6 +519,33 @@ INSERT INTO `lakeland_sections` (`id`, `name`, `url_string`, `priority`) VALUES
 (7, 'About Us', 'about-lakeland-africa', 2),
 (8, 'Contact Us', 'contact-us', 8),
 (9, 'Photo Albums', 'photo-albums', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lakeland_types_of_cars`
+--
+
+CREATE TABLE IF NOT EXISTS `lakeland_types_of_cars` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+
+--
+-- Dumping data for table `lakeland_types_of_cars`
+--
+
+INSERT INTO `lakeland_types_of_cars` (`id`, `title`) VALUES
+(1, 'Toyota Saloon'),
+(2, 'Toyota Rav 4 (Old Model)'),
+(3, 'Toyota Rav 4 (New Model)'),
+(6, 'Hyundai / Suzuki Grand Vitara'),
+(7, 'Nissan X-trail'),
+(10, 'Harrier / Noah'),
+(11, 'Toyota Prado / Land Cruiser / Nissan Patrol / 4WD'),
+(12, 'Mini Bus'),
+(13, 'Toyota Coaster');
 
 -- --------------------------------------------------------
 

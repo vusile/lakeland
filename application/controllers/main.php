@@ -269,6 +269,10 @@ class Main extends CI_Controller {
 		$data['details'] =  $content->row();
 		$header['title'] = $data['details']->title . ' in Tanzania';
 		//$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
+		$this->db->order_by('title');
+        $inquiry['cities']=$this->db->get('lakeland_car_rental_locations');
+        $this->db->order_by('title');
+        $inquiry['types']=$this->db->get('lakeland_types_of_cars');
 		
 		$menu['menu'] = $this->menu();
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Car Rentals</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
@@ -278,7 +282,8 @@ class Main extends CI_Controller {
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
 		$this->load->view('day_tours_details',$data);
-		//ADD CAR RENTALS CONTACT FORM HERE.
+        $this->load->view('car_rental_form',$inquiry);
+
 		$this->load->view('footer');
 	}
 	
