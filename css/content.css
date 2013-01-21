@@ -25,7 +25,7 @@ background: url(../images/home_content_bg.jpg) 0 0 no-repeat;
 
 div.content *{font-family:"Comic Sans MS";font-size:14px;line-height:20px;color:#044904;}
 div.content a{}
-div.content a:hover{color:#009900;}
+div.content a:hover{color:#000;}
 div.content p{
 	margin: 15px 0px 0px 32px;
 padding: 0;

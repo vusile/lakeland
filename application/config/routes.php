@@ -47,6 +47,7 @@ $route['scheduled'] = "main/schedule";
 $route['custom'] = "main/custom";
 $route['contact-us'] = "main/contact";
 $route['about-lakeland-africa'] = "main/about";
+$route['about-us'] = "main/about";
 $route['photo-albums'] = "main/photos";
 
 

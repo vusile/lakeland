@@ -22,7 +22,5 @@
 	  </ul>
 	
 	</div>
-
+<div style = "margin-top:2px; float: left; clear: both"></div>
 <div class="main_part">
-	
-

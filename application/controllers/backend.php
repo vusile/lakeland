@@ -17,23 +17,37 @@ class Backend extends CI_Controller {
 	
 	function make_url_from_title($title,$table,$id)
 	{
+		
 		$url = strtolower(url_title($title));
 		
 
-		$this->db->where('id',$id);
-		//$this->db->where('url',$url);
+		$this->db->where('url',$url);
 		$obj=$this->db->get($table);
-		
-		if($obj->row()->url !='')
-			return $obj->row()->url;
+
+		if($table=='lakeland_pages')
+		{
+			$this->db->where('id',$id);
+			$objs=$this->db->get($table);
+
+			if($objs->row()->url != '')
+				$url=$objs->row()->url;
 			
+
+		}
+
 		else
 		{
-			$this->db->where('url',$url);
-			$obj=$this->db->get($table);
+		
+			if($obj->num_rows() > 0)
+			{
+				$this->db->where('id',$id);
+				$this->db->where('url',$url);
+				$obj=$this->db->get($table);
+				
+				if( $obj->num_rows() == 0 )
+					$url = $this->make_url_from_title($url . '-' . $url,$table,$id);
 			
-			if( $obj->num_rows() > 0 )
-				$url = $this->make_url_from_title($url . '-' . $url,$table,$id);
+			}
 		}
 		
 		return $url;
@@ -63,9 +77,10 @@ class Backend extends CI_Controller {
 		try {
 	//	$this->grocery_crud->unset_delete();
 		$this->grocery_crud->set_relation('parent_page','lakeland_pages','title');
-		$this->grocery_crud->set_relation('section','lakeland_sections','name');
-		$this->grocery_crud->unset_fields('thumbnail','identifier','alternate_browser_title','url');
-		$this->grocery_crud->unset_columns('thumbnail','identifier','alternate_browser_title','url');
+		//$this->grocery_crud->set_relation('section','lakeland_sections','name');
+		$this->grocery_crud->set_relation('draws_from','lakeland_draws_from','title');
+		$this->grocery_crud->unset_fields('section','thumbnail','identifier','alternate_browser_title','url','priority');
+		$this->grocery_crud->unset_columns('section','thumbnail','identifier','alternate_browser_title','url','priority');
 		$this->grocery_crud->callback_after_insert(array($this, 'generate_thumb'));
 		$this->grocery_crud->callback_after_update(array($this, 'generate_thumb'));
 		$output = $this->grocery_crud->render();
@@ -74,7 +89,8 @@ class Backend extends CI_Controller {
 		}catch(Exception $e){
 			show_error($e->getMessage().' --- '.$e->getTraceAsString());
 		}
-	}	
+	}
+
 	
 	function generate_thumb($post_array,$primary_key)
 	{
@@ -99,6 +115,10 @@ class Backend extends CI_Controller {
 			
 			$index = count($name);
 			
+			//if($post_array['browser_title']=='')
+			//	$data['browser_title'] = $post_array['title'];
+
+
 			$data['thumbnail'] = $name[$index-1];	
 			$data['url'] = $this->make_url_from_title($post_array['title'],'lakeland_pages',$primary_key);
 			
@@ -107,9 +127,37 @@ class Backend extends CI_Controller {
 		}
 		
 	}
+
+	function lakeland_page_categories($type) {
+
+		if($type==1)
+			$this->grocery_crud->set_subject('Group Overland Safaris Sub Page');
+		else
+			$this->grocery_crud->set_subject('Destination Sub Page');
+
+		$this->grocery_crud->where('lakeland_page_categories.type',$type);
+		$this->grocery_crud->set_relation('parent_category', 'lakeland_page_categories', 'title', array('parent_category'=>0));
+		$this->grocery_crud->unset_fields('url','type','template','safari_type');
+		$this->grocery_crud->unset_columns('url','type','template','safari_type');
+		$this->grocery_crud->callback_after_insert(array($this, 'categories_callback'));
+		$this->grocery_crud->callback_after_update(array($this, 'categories_callback'));
+		$output = $this->grocery_crud->render();
+		$this->_example_output($output);
+	}
+
+	function categories_callback($post_array, $primary_key) {
+		$data['url']=$this->make_url_from_title($post_array['title'],'lakeland_page_categories',$primary_key);
+		$data['type']=$this->uri->segment(3);
+		$data['template']='safari';
+		if($post_array['parent_category']==3)
+			$data['safari_type']=1;
+		$this->db->where('id', $primary_key);
+		$this->db->update('lakeland_page_categories', $data);	
+	}
 	
 	function lakeland_destinations()
 	{
+		$this->grocery_crud->set_subject('Destination');
 		$destinations=$this->db->get('lakeland_destinations');
 		$image_array = array();
 		if($destinations->num_rows() > 0)
@@ -144,7 +192,8 @@ class Backend extends CI_Controller {
 		$this->grocery_crud->unset_columns('url');
 		$this->grocery_crud->callback_after_insert(array($this, 'destinations_callback'));
 		$this->grocery_crud->callback_after_update(array($this, 'destinations_callback'));
-		$this->grocery_crud->set_relation('destination_type','lakeland_destination_types','title');
+		$this->grocery_crud->set_relation('destination_type','lakeland_page_categories','title',array('type'=>2),'id ASC');
+		//$this->grocery_crud->set_relation('destination_type','lakeland_destination_types','title');
 		$output = $this->grocery_crud->render();
 		$this->_example_output($output);
 	}	
@@ -194,39 +243,45 @@ class Backend extends CI_Controller {
 			redirect('login');
 	}
 
-	function lakeland_safaris($safari_type=1)
+	function lakeland_safaris($safari_type=1,$safari_id=0)
 	{
-		$this->db->where('safari_type',$safari_type);
-		$safaris=$this->db->get('lakeland_safaris');
-		$image_array = array();
-		if($safaris->num_rows() > 0)
+		if($safari_type==1)
+			$this->grocery_crud->set_subject('Overland Safari');
+		else if($safari_type==2)
+			$this->grocery_crud->set_subject('Weekend Getaway');		
+		else if($safari_type==3)
+			$this->grocery_crud->set_subject('Day Tour');
+
+		if($safari_id != 0)
 		{
-			foreach($safaris->result() as $safari)
+
+			$this->db->where('safari',$safari_id);
+			$this->db->where('priority',1);
+			$images = $this->db->get('lakeland_safari_images');
+			
+			if($images->num_rows() == 0)
 			{
-				$this->db->where('safari',$safari->id);
-				$this->db->where('priority',1);
+				$this->db->where('safari',$safari_id);
+				$this->db->limit(1);
 				$images = $this->db->get('lakeland_safari_images');
 				
 				if($images->num_rows() == 0)
-				{
-					$this->db->where('safari',$safari->id);
-					$this->db->limit(1);
-					$images = $this->db->get('lakeland_safari_images');
-					
-					if($images->num_rows() == 0)
-						continue;
-				}
-				
-				$image = $images->row()->image;
-				$image_array[] = array('id'=>$safari->id,'thumb_nail'=>'<img width = "100" src = "images/thumb__' . $image . '" />');
-				
+					continue;
 			}
 			
+			$image = $images->row()->image;
+			$image_array = array('thumb_nail'=>'<img width = "100" src = "images/thumb__' . $image . '" />');
+			
+			
+			if($images->num_rows()>0)
+			{
+				$this->db->where('id', $safari_id);
+				$this->db->update('lakeland_safaris',$image_array);
+			}
 			//print_r($image_array);
 			//die();
-			if($images->num_rows()>0)
-			$this->db->update_batch('lakeland_safaris',$image_array,'id');
-		}
+			
+		}	
 		
 		if($safari_type == 3)
 		{
@@ -247,8 +302,8 @@ class Backend extends CI_Controller {
 		}	
 		
 		if($safari_type == 1)
-			$this->grocery_crud->set_relation('type','lakeland_overland_safaris_packages','title',null,'id ASC');
-		$this->grocery_crud->where('safari_type',$safari_type);
+			$this->grocery_crud->set_relation('type','lakeland_page_categories','title',array('parent_category'=>3),'id ASC');
+		$this->grocery_crud->where('lakeland_safaris.safari_type',$safari_type);
 		//$this->grocery_crud->unset_fields('thumb_nail','itinerary','images');
 		$this->grocery_crud->callback_after_insert(array($this, 'safaris_callback'));
 		$this->grocery_crud->callback_after_update(array($this, 'safaris_callback'));
@@ -262,7 +317,7 @@ class Backend extends CI_Controller {
 		$data = array();
 		$data['images'] = '<a href = "backend/images/' . $primary_key . '/' . $this->uri->segment(3) . '">Images</a>'; 
 		$data['itinerary'] = '<a href = "backend/lakeland_itinerary/' . $primary_key .  '/' . $this->uri->segment(3) . '">Itinerary</a>';
-		$data['schedule'] = '<a href = "backend/lakeland_scheduled_trips/add/' . $primary_key .  '">Schedule</a>';
+		
 		$data['url'] = $this->make_url_from_title($post_array['title'],'lakeland_safaris',$primary_key);
 		$data['safari_type'] = $this->uri->segment(3);
 		$this->db->where('id',$primary_key);
@@ -285,7 +340,7 @@ class Backend extends CI_Controller {
 		->set_image_path('images');
 			
 		$output = $image_crud->render();
-		$output->additional_text = "<a href = 'backend/lakeland_safaris/" . $this->uri->segment(4) . "'>Return to Safaris</a>";
+		$output->additional_text = "<a href = 'backend/lakeland_safaris/" . $this->uri->segment(4) . "/" . $this->uri->segment(3) . "'>Return to Safaris</a>";
 	
 		$this->_example_images_output($output);
 	}

@@ -50,11 +50,11 @@ div.sitemap{width:960px;height:20px;padding-top:5px;background:#FFFFFF;font-size
 div.sitemap span{display:inline-block;width:20px;height:9px;background:url(../images/topmenu/dropdown_linkbg_selected.gif) center center no-repeat;}	
 	
 div.sitecontainer{width:960px;background:url(../images/bgcontent.jpg) top center no-repeat #FFFFFF; overflow:hidden;padding-bottom:80px;}
-div.left{width:290px;float:left;}
-div.right{width:640px;float:left;}
+div.left{width:290px;float:left; clear: none;}
+div.right{width:640px;float:left; clear: none;}
 div.footer{width:960px;height:50px; background:url(../images/stopka.jpg);}
-	div.footer span,div.footer a{display:inline-block; float:left;padding-left:10px;padding-right:10px; font-family:Arial; font-size:9px; line-height:14px; 
-	color:#044904;margin-top:22px;}
+	div.footer span,div.footer a{display:inline-block; float:left;padding-left:10px;padding-right:10px; font-family:Arial; font-size:12px; line-height:14px; 
+	color:rgb(14, 82, 226);margin-top:22px;}
 	div.footer span.first{margin-left:30px;}
 	div.footer span.selected{text-decoration:underline;}
 	div.footer a{float:right;text-decoration:none;margin-right:20px;}
@@ -66,8 +66,10 @@ div.underfooter{width:960px;height:50px;font-family:Arial;font-size:10px; color:
 	
 div.leftmenu{width:270px; margin-left: -20px; margin-top: -73px; background:url(../images/contact_bg.jpg) 0 0 no-repeat; height: 300px;}
 div.leftmenu2{
-	width: 292px;
+	width: 290px;
 	margin-left: 10px;
+	float: left;
+	
 margin-top: 10px;
 background: url(../images/contact_bg.jpg) 0 0 no-repeat;
 height: 237px;
@@ -82,7 +84,7 @@ height: 300px;
 	/*div.leftmenu a{display:block; width:230px; height:20px; line-height:20px; padding:3px; color:#033f03; font-family:Arial; font-size:12px;text-decoration:none;
 	font-weight:bold;}
 	div.leftmenu a:hover{background:#d9f6d5; }*/
-	.kushoto{ margin: 0px 0px 0px 14px;padding-top: 20px;  }
+	.kushoto{ margin: 0px 0px 0px 14px;padding-top: 20px; float: left;   }
 	.kushoto ul { list-style-type:none;margin:0;padding:0;text-decoration:none; }
 	.kushoto ul h2 a{ color:#000000; font-size: 20px;margin-left: -15px;}
 	.kushoto ul h2 { margin-top: 5px;margin-bottom: 5px;	}

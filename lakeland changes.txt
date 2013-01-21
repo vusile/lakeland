@@ -1,4 +1,54 @@
 - show images url..???
 - restrict to add alt.???
 
+Alternatives:
+	- Use Numeric Values
+	- have a permanent url field
+	- Create a Page 
+		- Select Parent
+		- Select Sub - Parent
+		- 
 
+
+Group Overland Safaris Categories, Destinations,
+	- id
+	- title
+	- parent
+	- intro_text
+	- url
+	- template
+
+	Pages
+		- Home
+		- About Us
+		- Group Overland Safaris
+		- Destinations
+		- Car Rentals
+		- Safari Vehicles
+		- Photo Albums
+		- Contact Us
+
+
+	Pages
+		- Look at Draws From
+		- 
+
+	safaris($url)
+	{
+		get_where($url)
+		get the template
+
+		switch()
+		{
+			safari
+			custom
+			schedule
+		}
+
+	}
+
+	destinations
+	{
+		get_where($url)
+		get the template
+	}

@@ -3,7 +3,7 @@ $('document').ready(function(){
 	
 
 if($('div.banerscontainer div.zdjecia img').length>1)
-$(document).everyTime(15000, function(i) {  
+$(document).everyTime('15s', function(i) {  
 									 
 	$('div.banerscontainer div.zdjecia img:visible').fadeOut(800,function(){});
 			var tmp=$('div.banerscontainer div.zdjecia img:visible');

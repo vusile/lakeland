@@ -11,15 +11,15 @@
 <link href="css/dropdownmenu.css" rel="stylesheet" type="text/css" />
 <link href="css/content.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
-<script type="text/javascript" src="code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="js/jquery.translate-1.4.7-debug-all.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+<!-- <script type="text/javascript" src="js/jquery.translate-1.4.7-debug-all.js"></script> -->
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/jquery.timers-1.2.js"></script>
 <script type="text/javascript" src="js/dropdownmenu.js"></script>
-<script type="text/javascript" src="js/language.js"></script>
 <script type="text/javascript" src="js/baner.js"></script>
-    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <!--   // <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    //  -->
 	<link rel="stylesheet" type="text/css" href="css/shadowbox.css">
 <script type="text/javascript" src="js/shadowbox.js"></script>
 <script type="text/javascript">

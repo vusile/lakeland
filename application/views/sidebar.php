@@ -17,7 +17,7 @@
      </div>
 </div>
 <?php endif; ?>
-
+	<div style = "margin-top:2px; float: left; clear: both"></div>
 	<div class="leftmenu2">
 		<div class="kushoto">
           <ul>
@@ -30,6 +30,6 @@
 			
 			<span style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="safaris/scheduled-trips"><i>See More Scheduled Trips</i></a></span>
 		  </ul>
+		</div>
 	</div>
-</div>
 </div>

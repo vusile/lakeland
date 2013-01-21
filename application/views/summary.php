@@ -9,7 +9,7 @@
     <p>  
 		<?php echo $safari->introductory_text; ?>
 	</p>
-    <?php if(isset($safari->price)): ?><h2>Price: $<?php echo number_format($safari->price); ?></h2><br><?php endif; ?>
+    <?php if(isset($safari->price)): ?><h2>Price: <?php echo $safari->price; ?></h2><br><?php endif; ?>
 	
     <?php if(isset($safari->includes) and $safari->includes != ''):?>
 	<h3> Includes:  </h3>
