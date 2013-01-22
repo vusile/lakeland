@@ -42,7 +42,7 @@
         </p> 
        <p class="area">
          <label for="location">Choose the Location:</label><br>
-         <select name = "area" id = "area" style="width: 300px;">
+         <select name = "area" id = "area" style="width: 300px;" required>
         <option>Select One</option>
         <?php
         foreach($cities->result() as $city)
@@ -54,7 +54,7 @@
 
        <p class="type">
          <label for="location">Choose the Type of Car:</label><br>
-        <select name = "type_of_car" id = "type_of_car" style="width: 300px;">
+        <select name = "type_of_car" id = "type_of_car" style="width: 300px;" required>
         <option>Select One</option>
         <?php
         foreach($types->result() as $type)
@@ -64,7 +64,7 @@
      </p>
      <p class="chaguo">
          <label for="driving_options">Choose the Driving Option:</label><br>
-        <select name = "driving_options" id = "driving_options" style="width: 300px;">
+        <select name = "driving_options" id = "driving_options" style="width: 300px;" required>
         <option value="self">Select One</option>
         <option value="self">Self Driven</option>
         <option value="chaufer">Chaufer Driven</option>
