@@ -33,7 +33,7 @@ class Main extends CI_Controller {
 		}
 				
 		$interval = 12;
-		$date = new DateTime(date("d-m-Y"));
+		$date = new DateTime(date("01-m-Y"));
 		
 		$datas = array();
 		
@@ -41,7 +41,7 @@ class Main extends CI_Controller {
 		
 		for($i=1;$i <= $interval; $i++)
 		{
-			$schedule_string .= '<h2>' . $date->format('F') . '</h2>';
+			$schedule_string .= '<h2>' . $date->format('F') . ' ' . $date->format('Y')  . '</h2>';
 			
 			if(isset($schedule[$date->format('m') . '-' . $date->format('Y')]))
 			{
@@ -172,7 +172,7 @@ class Main extends CI_Controller {
 
 	function sidebar()
 	{
-		$query = "select saf.title, saf.url, sch.start_date, sch.end_date from lakeland_safaris saf, lakeland_scheduled_trips sch where saf.id = sch.trip order by start_date limit 3";
+		$query = "select saf.title, saf.url, sch.start_date, sch.end_date from lakeland_safaris saf, lakeland_scheduled_trips sch where saf.id = sch.trip and start_date > '" . date('Y-m-d') . "' order by start_date limit 3";
 //		$this->db->limit(4);
 	//	$this->db->order_by('start_date');
 		//$trips = $this->db->get('lakeland_scheduled_trips');
@@ -226,7 +226,7 @@ class Main extends CI_Controller {
 
 
 		$data['details'] =  $content->row();
-		$header['title'] = $data['details']->browser_title . ' in Tanzania';
+		$header['title'] = $data['details']->title;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$menu['menu'] = $this->menu();
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
@@ -245,7 +245,7 @@ class Main extends CI_Controller {
 		
 
 		$data['details'] =  $content->row();
-		$header['title'] = $data['details']->title . ' in Tanzania';
+		$header['title'] = $data['details']->title;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
 		$menu['menu'] = $this->menu();
 		
@@ -267,12 +267,8 @@ class Main extends CI_Controller {
 		
 		
 		$data['details'] =  $content->row();
-		$header['title'] = $data['details']->title . ' in Tanzania';
+		$header['title'] = $data['details']->title;
 		//$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['details']->content));
-		$this->db->order_by('title');
-        $inquiry['cities']=$this->db->get('lakeland_car_rental_locations');
-        $this->db->order_by('title');
-        $inquiry['types']=$this->db->get('lakeland_types_of_cars');
 		
 		$menu['menu'] = $this->menu();
 		$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#">Car Rentals</a></li><li><a href="#" class="active">' . $data['details']->title . '</a></li>';
@@ -282,8 +278,6 @@ class Main extends CI_Controller {
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
 		$this->load->view('day_tours_details',$data);
-        $this->load->view('car_rental_form',$inquiry);
-
 		$this->load->view('footer');
 	}
 	
@@ -307,7 +301,7 @@ class Main extends CI_Controller {
 		
 
 		$data['details'] =  $cat;
-		$header['title'] = $cat->title . ' in Tanzania';
+		$header['title'] = $cat->title;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$cat->intro_text));
 		$menu['menu'] = $this->menu();
 		$sidebar['trips'] = $this->sidebar();
@@ -317,7 +311,6 @@ class Main extends CI_Controller {
 		$this->load->view('menu',$menu);
 		$this->load->view('sidebar',$sidebar);
 		$this->load->view('day_tours',$data);
-
 		$this->load->view('footer');
 	}
 	
@@ -408,7 +401,7 @@ class Main extends CI_Controller {
 		
 		$sidebar['trips'] = $this->sidebar();
 		$data['details'] =  $content;
-		$header['title'] = $content->title . ' in Tanzania';
+		$header['title'] = $content->title;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$content->intro_text));
 		$data['detail_url'] = 'trip';
 		$menu['menu'] = $this->menu();
@@ -474,7 +467,7 @@ class Main extends CI_Controller {
 		
 		
 		//$data['details'] =  $content->row();
-		$header['title'] = $data['safari']->title . ' in Tanzania';
+		$header['title'] = $data['safari']->title;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['safari']->introductory_text));
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
@@ -499,7 +492,7 @@ class Main extends CI_Controller {
 		$data['images'] = $this->db->get('lakeland_destination_images');
 		
 		//$data['details'] =  $content->row();
-		$header['title'] = $data['safari']->destination_name . ' in Tanzania';
+		$header['title'] = $data['safari']->destination_name;
 		$header['description'] = strip_tags( preg_replace("/&#?[a-z0-9]{2,8};/i","",$data['safari']->introductory_text));
 		$menu['menu'] = $this->menu();
 		$this->load->view('header',$header);
@@ -628,7 +621,67 @@ class Main extends CI_Controller {
 
 	} 
 	
+	// public function contact($item='',$id=0)
 
+	// {
+	
+	
+		// $word = strtoupper($this->randomAlphaNum(7));
+		
+		
+		// $this->load->helper('captcha');
+		// $vals = array(
+		// 'word' => $word,
+		// 'img_path'	 => './captcha/',
+		// 'img_url'	 => 'captcha/',
+		// 'font_path'	 => './captcha/fonts/arial.ttf',
+		// 'img_width'	 => '200',
+		// 'img_height' => 50,
+		// );
+		
+		// $data['cap'] = create_captcha($vals);
+	
+		// $cap_data = array(
+		// 'captcha_time'	=> $data['cap']['time'],
+		// 'ip_address'	=> $this->input->ip_address(),
+		// 'word'	 => $data['cap']['word']
+		// );
+		
+		// $query = $this->db->insert_string('lakeland_captcha', $cap_data);	
+		// $this->db->query($query);
+		
+		// $header['projects'] = $this->get_projects(1);
+		// $header['publications'] = $this->get_projects(2);
+		
+		// switch($item)
+		// {
+		// 	case 'activity':
+				
+		// 		$this->db->where('id',$id);
+		// 		$activities = $this->db->get('lakeland_activities');
+		// 		$activity = $activities->row();
+									
+		// 		if($activity->contact_intro != '')
+		// 			$data['contact_intro'] = $activity->contact_intro;
+		// 		else
+		// 			$data['details'] = $this->fetch_page('CONTACT');
+				
+		// 		$data['details']->title = $header['title'] = $activity->title;
+		// 		$data['subject'] = $activity->link_text;
+		// 	break;
+			
+		// 	default:
+				
+		// 		$data['details'] = $this->fetch_page('CONTACT');
+		// 		$data['title'] = $header['title'] = $data['details']->title;
+		// 	break;
+		// }
+		//$data['details'] = $this->fetch_page('CONTACT');
+		//$data['title'] = $header['title'] = $data['details']->title;
+	// 	$this->load->view('Header',$header);
+	// 	$this->load->view('Contact',$data);
+	// 	$this->load->view('Footer');
+	// }
 	
 	function validate_captcha($captcha)
 	{
@@ -652,31 +705,37 @@ class Main extends CI_Controller {
 		
 	}
 	
-	function send_message($form=1)
+	function send_message()
 	{
 		if(isset($_POST))
 		{
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('name', 'Name', 'required');
 			$this->form_validation->set_rules('subject', 'Subject', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-			$this->form_validation->set_rules('interests', 'Your interests', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('message', 'The Message', 'required');
 			$this->form_validation->set_rules('captcha', 'The Captcha', 'required|callback_validate_captcha');
 			
-			$this->form_validation->set_error_delimiters('<p style = "color: red; font-weight: bold;">','</p>');
+			$this->form_validation->set_error_delimiters('<li>','</li>');
 			
 			if ($this->form_validation->run() == TRUE)
 			{	
 				
-
+				$this->db->where('id',1);
+				$obj = $this->db->get('lakeland_settings');
+				$email = $obj->row()->value;
+				
+				
+				$this->db->where('setting','CCEMAIL');
+				$ccemails = $this->db->get('lakeland_settings');
 				
 				//echo "Not Configured";
 				$this->load->library('email');
 				
-				$config['protocol'] = 'smtp';
-				$config['smtp_host'] = 'mail.lakelandafrica.com';
-				$config['smtp_user'] = 'reservations@lakelandafrica.com';
-				$config['smtp_pass'] = '1919wisiko';
+				$config['protocol'] = 'mail';
+				$config['smtp_host'] = 'auth.smtp.1and1.com';
+				$config['smtp_user'] = 'info@nipefagio.com';
+				$config['smtp_pass'] = 'nipefagio123';
 				$config['smtp_port'] = '25';
 				$config['mailtype'] = 'html';
 				$config['wordwrap'] = TRUE;
@@ -685,74 +744,54 @@ class Main extends CI_Controller {
 
 				$this->email->initialize($config);
 
-				$this->email->from('reservations@lakelandafrica.com', 'Lakeland Africa');
+				$this->email->from('info@nipefagio.com', 'NipeFagio');
 				$this->email->bcc('terence@zoomtanzania.com'); 
 				
-				$this->email->to('reservations@lakelandafrica.com'); 
+				$this->email->to($email); 
 				
-
+				foreach($ccemails->result() as $ccemail)
+				{
+					$this->email->cc($ccemail->value); 
+				}
+				
 				
 				$this->email->subject($_POST['subject']);
 				$message = '<html><head></head><body>';
-
-				foreach($_POST as $key=>$value)
-				{
-					if($key == 'subject' or $key == 'captcha' or $key == 'confirm_email')
-						$message .= "";
-					else
-					{
-						if($value != '')
-							$message .= '<strong>' . ucwords(str_replace("_", " ", $key)) .'</strong>: '. $value . '<br>';
-					}
-				}
-
-
+				$message .= 'Name: ' . $_POST['name'] . '<br><br>';
+				$message .= 'E-mail: ' . $_POST['email'] . '<br><br>';
+				if(isset($_POST['phone']))
+					$message .= 'Phone: ' . $_POST['phone'] . '<br><br>';
+				$message .= 'Subject: ' . $_POST['subject'] . '<br><br>';
+				$message .= 'Message: '. $_POST['message'] . '<br><br>';
 				$message .= '</body></html>';	
 				$this->email->message($message);	
-				$this->email->set_alt_message($message);
 
 				if($this->email->send())
 				{
-
-					$header['title'] = 'Message Sent';
-
-					$menu['menu'] = $this->menu();
-					$menu['crumbs'] = '<li><a href = "home">Home</a></li><li><a href="#" class="active">Message Sent</a></li>';
-					$sidebar['trips'] = $this->sidebar();
-					$data['details']->title = "Message Sent";
-					$data['details']->content = "<p>Your Message has been sent to us, please give us a while to respond.</p>";
-					$this->load->view('header',$header);
-					$this->load->view('menu',$menu);
-					$this->load->view('sidebar',$sidebar);
-					$this->load->view('day_tours_details',$data);
-					$this->load->view('footer');
+					
+					
+					$this->db->where('identifier','MESSAGE_SENT');
+					$details = $this->db->get('lakeland_pages');
+					
+					$header['projects'] = $this->get_projects(1);
+					$header['publications'] = $this->get_projects(2);	
+					$data['details'] = $details->row();
+					$header['title'] = $details->row()->title;
+					$this->load->view('Header',$header);
+					$this->load->view('Page',$data);
+					$this->load->view('Footer');
 				}
 				else
-				{
-					if($form==1)
-						$this->contact(2);
-					else
-						$this->safaris('custom-packages');
-				}
-
+					$this->contact(2);
+				
 			}
 			
 			else
-			{
-				if($form==1)
-					$this->contact(2);
-				else $this->safaris('custom-packages');
-			}
+				$this->contact(2);
 		}
 		
 		else
-		{
-			if($form==1)
-				redirect('contact/3');
-			else
-				$this->redirect('safaris/custom-packages');
-			
-		}
+			redirect('contact/3');
 	}
 	
 	function photos()
@@ -798,139 +837,68 @@ class Main extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
-	function xml_sitemap()
+
+	
+
+	
+	/*function register_test()
 	{
-		$this->load->helper('file');
-		$this->db->where('draws_from', 0);
-		$this->db->where('parent_page', 0);
-		$pages = $this->db->get('lakeland_pages');
+		$username = 'mandy.fuller@gmail.com';
+		$email = 'mandy.fuller@gmail.com';
+		$password = 'nIp3F@giO';
+		$additional_data = array(
+			'first_name' => 'Mandy',
+		);								
+//		$group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default
 
-
-
+		$id = $this->ion_auth->register($username, $password, $email, $additional_data);
+		echo($id);		
 		
-		$xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+		$username = 'tania@nabaki.com';
+		$email = 'tania@nabaki.com';
+		$password = 'nIp3F@giO';
+		$additional_data = array(
+			'first_name' => 'Tania',
+		);								
+//		$group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default
+
+		$id = $this->ion_auth->register($username, $password, $email, $additional_data);
+		echo($id);
 		
 		
+		$username = 'sassgroup@gmail.com';
+		$email = 'sassgroup@gmail.com';
+		$password = 'nIp3F@giO';
+		$additional_data = array(
+			'first_name' => 'Said',
+		);								
+//		$group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default
 
-
-
-		$xml .= '<url><loc>' . base_url() . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>1</priority></url>';
-
-		foreach ($pages->result() as $page) {
-			if($page->url == 'home')
-				$xml .= '';
-			else
-			{	
-
-				$this->db->where('parent_page',$page->id);
-				$subs=$this->db->get('lakeland_pages');
-				if($subs->num_rows() > 0)
-				{
-					foreach ($subs->result() as $sub) {
-						
-						$xml .= '<url><loc>' . base_url()  . $page->url . '/' . $sub->url . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>.7</priority></url>';
-					}
-				}
-
-				else
-
-				$xml .= '<url><loc>' . base_url()  . $page->url . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>.7</priority></url>';
-			}
-		}
-
-		$this->db->where('type', 1);
-		$this->db->where('safari_type <>', 0);
-		$cats=$this->db->get('lakeland_page_categories');
-
-		foreach($cats->result() as $cat)
-		{
-
-			if($cat->url =='custom-packages' or $cat->url =='scheduled-trips')
-				$xml .= '<url><loc>' . base_url()  . 'safaris/' . $cat->url . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>1</priority></url>';
-			else
-			{
-				$this->db->where('safari_type', $cat->safari_type);
-
-				if($cat->parent_category==3)
-					$this->db->where('type', $cat->id);		
-
-				$safaris=$this->db->get('lakeland_safaris');
-
-				if($safaris->num_rows()>0)
-				{
-					foreach($safaris->result() as $safari)
-					{
-						$xml .= '<url><loc>' . base_url()  . 'trip/' . $safari->url . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>1</priority></url>';
-					}
-				}
-
-			}
-		}
-
-		$this->db->where('type', 2);
-		$cats=$this->db->get('lakeland_page_categories');
-
-		foreach($cats->result() as $cat)
-		{
-
-
-			$this->db->where('destination_type', $cat->id);
-			$destinations=$this->db->get('lakeland_destinations');
-
-			if($destinations->num_rows()>0)
-			{
-				foreach($destinations->result() as $destination)
-				{
-					$xml .= '<url><loc>' . base_url()  . 'destination/' . $destination->url . '</loc><lastmod>' . date('Y-m-d') . '</lastmod><changefreq>monthly</changefreq><priority>1</priority></url>';
-				}
-			}
-
-			
-		}
-
-		$xml .= '</urlset>';
+		$id = $this->ion_auth->register($username, $password, $email, $additional_data);
+		echo($id);		
 		
-		if ( ! write_file('sitemap.xml', $xml))
-		{
-			 echo 'Unable to write the xml file';
-		}
-		else
-		{
-			echo 'xml Sitemap was updated';
-			$this->pingGoogleSitemaps('http://www.lakelandafrica.com/sitemap.xml');
-		}
-	}
-	
-	function pingGoogleSitemaps( $url_xml )
-	{
-	   $status = 0;
-	   $google = 'www.google.com';
-	   if( $fp=@fsockopen($google, 80) )
-	   {
-		  $req =  'GET /webmasters/sitemaps/ping?sitemap=' .
-				  urlencode( $url_xml ) . " HTTP/1.1\r\n" .
-				  "Host: $google\r\n" .
-				  "User-Agent: Mozilla/5.0 (compatible; " .
-				  PHP_OS . ") PHP/" . PHP_VERSION . "\r\n" .
-				  "Connection: Close\r\n\r\n";
-		  fwrite( $fp, $req );
-		  while( !feof($fp) )
-		  {
-			 if( @preg_match('~^HTTP/\d\.\d (\d+)~i', fgets($fp, 128), $m) )
-			 {
-				$status = intval( $m[1] );
-				break;
-			 }
-		  }
-		  fclose( $fp );
-	   }
-	   //return( $status );
-	   echo $status;
-	}
-	
+		$username = 'joshpalfreman@yahoo.com';
+		$email = 'joshpalfreman@yahoo.com';
+		$password = 'nIp3F@giO';
+		$additional_data = array(
+			'first_name' => 'Josh',
+		);								
+//		$group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default
 
-	
-	
+		$id = $this->ion_auth->register($username, $password, $email, $additional_data);
+		echo($id);	
+		
+		$username = 'caroline.eric@giz.de';
+		$email = 'caroline.eric@giz.de';
+		$password = 'nIp3F@giO';
+		$additional_data = array(
+			'first_name' => 'Caroline',
+		);								
+//		$group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default
+
+		$id = $this->ion_auth->register($username, $password, $email, $additional_data);
+		echo($id);
+	}*/
 }
 
 /* End of file welcome.php */

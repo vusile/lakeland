@@ -1,10 +1,7 @@
-<div style = "color:red; font-weight: bold; margin-left: 30px;">
- <?php echo validation_errors(); ?>
-</div>
- <p>Please use the form below to inquire about our tours, overnight packages or to ask 
- 	about a custom itinerary designed just for you.</p>
+<div style = "margin-left: 35px; margin-top: 20px;" id="inquire">
 
- <form class="contact_form" action="send_message/1" method="post" name="contact_form"  id="contact_form">
+ <p style ="font-weight: bold;">Please use the form below to inquire about our Car Rental Services</p>
+ <form class="contact_form" action="send_message/3" method="post" name="contact_form"  id="contact_form">
     
         <p class="denotes">			
              
@@ -43,7 +40,7 @@
        <p class="area">
          <label for="location">Choose the Location:</label><br>
          <select name = "area" id = "area" style="width: 300px;" required>
-        <option>Select One</option>
+        <option value = "">Select One</option>
         <?php
         foreach($cities->result() as $city)
         echo "<option value = '" . $city->title . "'>" . $city->title . "</option>";
@@ -55,7 +52,7 @@
        <p class="type">
          <label for="location">Choose the Type of Car:</label><br>
         <select name = "type_of_car" id = "type_of_car" style="width: 300px;" required>
-        <option>Select One</option>
+        <option value = "">Select One</option>
         <?php
         foreach($types->result() as $type)
         echo "<option value = '" . $type->title . "'>" . $type->title . "</option>";
@@ -63,12 +60,12 @@
         </select>
      </p>
      <p class="chaguo">
-         <label for="driving_options">Choose the Driving Option:</label><br>
-        <select name = "driving_options" id = "driving_options" style="width: 300px;" required>
-        <option value="self">Select One</option>
-        <option value="self">Self Driven</option>
-        <option value="chaufer">Chaufer Driven</option>
-        <option value="chaufer">City Transfer</option>
+         <label for="driving_option">Choose the Driving Option:</label><br>
+        <select name = "driving_option" id = "driving_option" style="width: 300px;" required>
+        <option value="">Select One</option>
+        <option value="Self Driven">Self Driven</option>
+        <option value="Chaufer Driven">Chaufer Driven</option>
+        <option value="City Transfer">City Transfer</option>
         </select>
      </p>
 
@@ -92,4 +89,12 @@
 
 </div>
 </div>
+</div>
 
+
+<script>
+$(function() {
+        $( "#date_of_rent,#date_of_return" ).datepicker();
+    });
+
+</script>

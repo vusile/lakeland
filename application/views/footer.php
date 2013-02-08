@@ -1,4 +1,6 @@
 </div>
+</div>
+</div>
 <div class="footer"> <a href="http://www.zoomtanzania.com/Zoom-Tanzania-Web-Design" target="_blank" class="nt">Website created by Zoom Tanzania Website Design</a></div>
 <div class="underfooter">
 Lakeland Africa Limited &copy; <?php echo date('Y'); ?>.All Rights Reserved.</div></div>

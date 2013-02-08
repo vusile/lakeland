@@ -32,12 +32,9 @@ Shadowbox.init();
 	<div id="logo"><a href="/"><img src="images/Lakeland-Africa-Logo-Best-Res.png" alt="" /></a></div>
 <div class="languages">
 
-	  <a href=""><img src="images/youtube.png" alt="" /></a>
-	   <a href=""><img src="images/twitter.png" alt="" /></a>
-	<!-- <a href="en.html" class="language en">
-	</a> <a href="pl.html" class="language pl"></a> 
-	<a href="de.html" class="language de"></a>		
-	<a href="fr.html" class="language fr"></a> -->
+	  <a href="http://www.youtube.com/lakelandafrica" target = "_blank"><img src="images/youtube.png" alt="" /></a>
+	   <a href="http://www.twitter.com/lakelandafricaa" target = "_blank"><img src="images/twitter.png" alt="" /></a>
+
 </div>
 </div>
 <div class="topmenu">

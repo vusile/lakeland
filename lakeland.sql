@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 3.4.10.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 21, 2013 at 03:11 PM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Feb 08, 2013 at 01:18 PM
+-- Server version: 5.5.20
+-- PHP Version: 5.3.10
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -63,31 +63,38 @@ CREATE TABLE IF NOT EXISTS `lakeland_captcha` (
   `word` varchar(20) NOT NULL,
   PRIMARY KEY (`captcha_id`),
   KEY `word` (`word`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=378 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=401 ;
 
 --
 -- Dumping data for table `lakeland_captcha`
 --
 
 INSERT INTO `lakeland_captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
-(360, 1358749489, '127.0.0.1', 'ZP8MKUD'),
-(361, 1358749934, '127.0.0.1', 'X8M43TK'),
-(362, 1358749999, '127.0.0.1', 'GUPJ2KV'),
-(363, 1358750067, '127.0.0.1', '4XHDK9C'),
-(364, 1358753679, '127.0.0.1', '769REFV'),
-(365, 1358753718, '127.0.0.1', 'FZPCKVH'),
-(366, 1358755014, '127.0.0.1', 'Z7GDSUP'),
-(367, 1358755062, '127.0.0.1', '2CKT84R'),
-(368, 1358756103, '127.0.0.1', 'ZPU9S3E'),
-(369, 1358756202, '127.0.0.1', 'PG83ZYD'),
-(370, 1358756236, '127.0.0.1', '3CFRTM9'),
-(371, 1358756299, '127.0.0.1', 'QRJHVKY'),
-(372, 1358756393, '127.0.0.1', 'DBYJP3E'),
-(373, 1358756610, '127.0.0.1', '2T83BZF'),
-(374, 1358758591, '127.0.0.1', '5AVBWH6'),
-(375, 1358758615, '127.0.0.1', 'FKG9Z5V'),
-(376, 1358776544, '127.0.0.1', 'SUDE7QX'),
-(377, 1358777149, '127.0.0.1', 'NXKY5R7');
+(376, 1358844406, '127.0.0.1', 'H3XTRPU'),
+(377, 1358844434, '127.0.0.1', '7GTKPRM'),
+(378, 1358844464, '127.0.0.1', 'GZV68SE'),
+(379, 1358844570, '127.0.0.1', 'DTMN9VW'),
+(380, 1358845097, '127.0.0.1', '9BTHXC4'),
+(381, 1358846461, '127.0.0.1', 'JH9Y3TR'),
+(382, 1358846482, '127.0.0.1', 'W8EVQHK'),
+(383, 1358846572, '127.0.0.1', '2KYC9TS'),
+(384, 1358846680, '127.0.0.1', 'ZR2QCMW'),
+(385, 1358846795, '127.0.0.1', '3CFRTM9'),
+(386, 1358846908, '127.0.0.1', '57XCEKP'),
+(387, 1358846976, '127.0.0.1', 'S3XUQME'),
+(388, 1358846997, '127.0.0.1', 'AS76HCU'),
+(389, 1358847047, '127.0.0.1', '4BSKUQ7'),
+(390, 1358847270, '127.0.0.1', 'A8WKVYQ'),
+(391, 1358847312, '127.0.0.1', 'N82WVSH'),
+(392, 1358849158, '127.0.0.1', '6Y2PQGC'),
+(393, 1358849170, '127.0.0.1', '6432YQZ'),
+(394, 1358849195, '127.0.0.1', 'FSY7PCA'),
+(395, 1358849230, '127.0.0.1', 'Q9KDMZB'),
+(396, 1358849270, '127.0.0.1', 'JM8SCNT'),
+(397, 1358849315, '127.0.0.1', 'SUE24DB'),
+(398, 1358849365, '127.0.0.1', 'MSHR73J'),
+(399, 1358849464, '127.0.0.1', 'NEVFMZC'),
+(400, 1358867904, '127.0.0.1', 'PW2MH8V');
 
 -- --------------------------------------------------------
 
@@ -99,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `lakeland_car_rental_locations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `lakeland_car_rental_locations`
